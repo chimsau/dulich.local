@@ -19,6 +19,7 @@
                   <li><a href="tintuc.php">Quản lý tin tức</a></li>
               </ul>
             </li>
+             <li><a href="index.php"><i class="icon mdi mdi-comments"></i><span>Bình luận</span></a>
           </ul>
         </div>
       </div>
