@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand fixed-top be-top-header">
   <div class="container-fluid">
-    <div class="be-navbar-header"><a class="navbar-brand" href="index.php"></a>
+    <div class="be-navbar-header"><a class="navbar-brand" href="<?php echo BASE_URL ?>"></a>
     </div>
     <div class="page-title"><span>Dashboard</span></div>
     <div class="be-right-navbar">

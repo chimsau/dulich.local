@@ -1,46 +1,98 @@
+<?php include('includes/mysqli_connect.php');?>
 <?php include('includes/functions.php');?>
 <?php include('includes/header.php');?>
+
+<?php 
+  if($_SERVER['REQUEST_METHOD'] == "POST"){ //Giá trị tồn tại, xử lý form
+    $errors = array();
+    $trimmed = array_map('trim', $_POST);
+
+    if($trimmed['cauchuyen_tieude']){
+      $tieude = $trimmed['cauchuyen_tieude'];
+    } else {
+      $errors[] = "tieude";
+    }
+
+    if($trimmed['cauchuyen_tacgia']){
+      $tacgia = $trimmed['cauchuyen_tacgia'];
+    } else {
+      $errors[] = "tacgia";
+    }
+
+    if($trimmed['cauchuyen_noidung']){
+      $noidung = $trimmed['cauchuyen_noidung'];
+    } else {
+      $errors[] = "noidung";
+    }
+
+    if(empty($errors)){ // kiểm tra nếu không có lỗi xảy ra, thì chèn dữ liệu vào database
+
+      $query = "INSERT INTO cauchuyen (cauchuyen_tieude, cauchuyen_tacgia, cauchuyen_noidung, cauchuyen_ngay, cauchuyen_trangthai) VALUES ( ?, ?, ?,NOW(), 0)";
+      $stmt = $dbc->prepare($query);
+
+      //gan tham so cho cau lenh prepare
+      $stmt->bind_param('sss', $tieude, $tacgia, $noidung);
+
+      //cho chay cau lenh prepare
+      $stmt->execute();
+
+      if($stmt->affected_rows == 1){
+        $messages = "<div class='alert alert-success alert-icon alert-dismissible' role='alert'><div class='icon'><span class='mdi mdi-close-circle-o'></span></div><div class='message'>Cám ơn bạn đã chia sẻ câu chuyện</div></div>";
+      } else {
+        $messages = "<div class='alert alert-danger alert-icon alert-dismissible' role='alert'><div class='icon'><span class='mdi mdi-close-circle-o'></span></div><div class='message'>Lỗi khi thêm mới</div></div>";
+      }
+      
+    } else {
+      $messages = "<div class='alert alert-danger alert-icon alert-dismissible' role='alert'><div class='icon'><span class='mdi mdi-close-circle-o'></span></div><div class='message'>Nhập đầy đủ các thông tin</div></div>";
+    }
+  }
+
+ ?>
   <main class="main py-5 bg-light" role="main">
-
     <div class="container">
-
       <div class="row">
         <div class="col-md-8 mx-auto">
           <div class="text-center">
-            <h2>Tell your story..</h2>
+            <h2>Nói về câu chuyện của bạn</h2>
             <hr>
+            <?php if(isset($messages)) {echo $messages;} ?>
           </div>
-
-          <div class="form-group">
-            <label for="title">Title</label>
-            <input type="text" class="form-control form-control-lg" id="title" placeholder="Enter a title">
-          </div>
-
-          <div class="form-group">
-            <label for="tags">Tags</label>
-            <input type="text" class="form-control form-control-lg" id="tags" placeholder="Enter tags">
-          </div>
-
-          <div class="form-group">
-            <label for="title">Your story</label>
-            <div class="editor">
-              <div class="js-editable medium-editor-element" contenteditable="true" spellcheck="true" data-medium-editor-element="true" role="textbox" aria-multiline="true" data-medium-editor-editor-index="1" medium-editor-index="f2c449ff-94c7-8449-25fe-4562b7f6d349" data-placeholder="Type your text">
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque <a href="#">penatibus</a> et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, <strong>pretium quis, sem.</strong></p>
-
-                <p>Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.</p>
-
-                <p><strong>Aliquam lorem ante</strong>, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. <strong>Etiam rhoncus</strong>. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante <a href="#">tincidunt tempus</a>.</p>
-
-                <blockquote>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                </blockquote>
-
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, <a href="#">nascetur ridiculus</a> mus. Donec quam felis, ultricies nec, pellentesque eu, <strong>pretium quis, sem.</strong></p>
-              </div>
+          <form action="" method="post">
+            <div class="form-group">
+              <label for="title">Tiêu đề</label>
+              <input type="text" class="form-control form-control-lg" id="title" name="cauchuyen_tieude" placeholder="Nhập tên tiêu đề" value="<?php if(isset($_POST['cauchuyen_tieude'])) echo strip_tags($_POST['cauchuyen_tieude']); ?>">
+              <?php 
+                if(isset($errors) && in_array('tieude',$errors)) 
+                echo "
+                  <div class='alert alert-danger' role='alert'>Chưa nhập tên tiêu đề</div>
+                ";
+              ?>
             </div>
-          </div>
 
-          <a href="#" class="btn btn-success">Publish</a>
+            <div class="form-group">
+              <label for="tags">Tên của bạn</label>
+              <input type="text" class="form-control form-control-lg" id="tags" name="cauchuyen_tacgia" placeholder="Nhập tên của bạn" value="<?php if(isset($_POST['cauchuyen_tacgia'])) echo strip_tags($_POST['cauchuyen_tacgia']); ?>">
+              <?php 
+                if(isset($errors) && in_array('tacgia',$errors)) 
+                echo "
+                  <div class='alert alert-danger' role='alert'>Chưa nhập tên</div>
+                ";
+              ?>
+            </div>
+
+            <div class="form-group">
+              <label for="title">Câu chuyện</label>
+              <textarea class="form-control" name="cauchuyen_noidung"><?php if(isset($_POST['cauchuyen_noidung'])) echo htmlentities($_POST['cauchuyen_noidung'], ENT_COMPAT, 'UTF-8'); ?></textarea>
+              <?php 
+                if(isset($errors) && in_array('noidung',$errors)) 
+                echo "
+                  <div class='alert alert-danger' role='alert'>Chưa nhập nội dung câu chuyện</div>
+                ";
+              ?>
+            </div>
+
+            <button type="submit" class="btn btn-success">Chia sẻ</button>
+          </form>
         </div>
       </div>
     </div>

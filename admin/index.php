@@ -1,3 +1,4 @@
+<?php include('../includes/functions.php');?>
 <?php include('includes/header.php');?>
 <?php include('includes/top-header.php');?>
 <?php include('includes/left-sidebar.php');?>
