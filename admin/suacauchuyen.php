@@ -7,7 +7,7 @@
 <?php 
   // Kiem tra gia tri cua bien tid tu $_GET
   if(isset($_GET['id']) && filter_var($_GET['id'], FILTER_VALIDATE_INT, array('min_range' =>1))){
-    $tid = $_GET['id'];
+    $id = $_GET['id'];
 
     // Neu tid ton tai, bat dau xu ly form
     if($_SERVER['REQUEST_METHOD'] == "POST"){ //Giá trị tồn tại, xử lý form
@@ -37,7 +37,7 @@
         $stmt = $dbc->prepare($query);
 
         //gan tham so cho cau lenh prepare
-        $stmt->bind_param('sissii', $tinTucTen, $danhMuc, $tinTucNoiDung, $tinTucAnh, $tinTucHot, $tid);
+        $stmt->bind_param('sissii', $tinTucTen, $danhMuc, $tinTucNoiDung, $tinTucAnh, $tinTucHot, $id);
 
         //cho chay cau lenh prepare
         $stmt->execute();
@@ -120,21 +120,18 @@
                   <label class="col-12 col-sm-3 col-form-label text-sm-right">Trạng thái *</label>
                   <div class="col-12 col-sm-8 col-lg-6">
                     <select class="form-control" name="cauchuyen_trangthai">
-                      <option>Chọn trạng thái</option>
                       <?php 
-                        $query = "SELECT cauchuyen_trangthai FROM cauchuyen ORDER BY cauchuyen_trangthai ASC";
-                        $stmt = $dbc->query($query) or die("Mysqli Error: $query ". $stmt->error());
-                        if($stmt->num_rows > 0) {
-                          while($trangthai = $stmt->fetch_array(MYSQLI_NUM)) {
-                            $trangthai = array(0 => 'Chưa kiểm duyệt', 1 => 'kiểm duyệt');
-                            foreach ($trangthai as $key => $value) {
-                              echo "<option value='{$key}'";
-                                if(isset($cauchuyens['cauchuyen_trangthai']) && ($cauchuyens['cauchuyen_trangthai'] == $key)) echo "selected='selected'";
-                              echo ">{$value}</option>";
-                            }
+                        $query = "SELECT cauchuyen_trangthai FROM cauchuyen WHERE cauchuyen_id = {$id} ORDER BY cauchuyen_trangthai ASC";
+                        $stmt = $dbc->query($query);
+                        if($stmt->num_rows == 1) {
+                          $trangthais = $stmt->fetch_array(MYSQLI_NUM);
+                          $trangthai = array('0' => 'Chưa kiểm duyệt', '1' => 'Kiểm duyệt');
+                          foreach ($trangthai as $key => $value) {
+                            echo "<option value='{$key}' ";
+                              if($key == $trangthais[0]) echo "selected='selected'";
+                            echo ">{$value}</option>";
                           }
                         } 
-
                        ?>
                     </select>
                     <?php 
