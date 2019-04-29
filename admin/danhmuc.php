@@ -59,7 +59,7 @@
                                       <a href='suadanhmuc.php?cid={$danhmuc['danhmuc_id']}' class='icon' href='#'><i class='mdi mdi-edit'></i></a>
                                       </span>
                                       <span style='padding:0 3px'>
-                                      <a href='xoadanhmuc.php?cid={$danhmuc['danhmuc_id']}&danhmuc_ten={$danhmuc['danhmuc_ten']}' class='icon' href='#'><i class='mdi mdi-delete'></i>
+                                      <a id='{$danhmuc['danhmuc_id']}' class='icon remove'><i class='mdi mdi-delete'></i>
                                       </a>
                                       </span>
                                     </td>
@@ -76,6 +76,10 @@
       </div>
     </div>
 </div>
-
+<script>
+  $(document).ready(function() {
+    functions.remove_danhmuc();
+  });
+</script>
 <?php include('includes/right-sidebar.php');?>
 <?php include('includes/footer.php');?>

@@ -70,7 +70,7 @@
                                     <a href='suacauchuyen.php?id={$cauchuyens['cauchuyen_id']}' class='icon' href='#'><i class='mdi mdi-edit'></i></a>
                                     </span>
                                     <span style='padding:0 3px'>
-                                    <a href='xoatintuc.php?id={$cauchuyens['cauchuyen_id']}&tintucten={$cauchuyens['cauchuyen_tieude']}' class='icon'><i class='mdi mdi-delete'></i>
+                                    <a id='{$cauchuyens['cauchuyen_id']}' class='icon remove'><i class='mdi mdi-delete'></i>
                                     </a>
                                     </span>
                                   </td>
@@ -87,6 +87,10 @@
       </div>
     </div>
 </div>
-
+<script>
+  $(document).ready(function() {
+    functions.remove_story();
+  });
+</script>
 <?php include('includes/right-sidebar.php');?>
 <?php include('includes/footer.php');?>

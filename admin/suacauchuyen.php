@@ -10,51 +10,57 @@
     $id = $_GET['id'];
 
     // Neu tid ton tai, bat dau xu ly form
-    if($_SERVER['REQUEST_METHOD'] == "POST"){ //Giá trị tồn tại, xử lý form
-      $errors = array();
-      $trimmed = array_map('trim', $_POST);
 
-      if($trimmed['tintuc_ten']){
-        $tinTucTen = $trimmed['tintuc_ten'];
-      } else {
-        $errors[] = "tinTucTen";
-      }
+  if($_SERVER['REQUEST_METHOD'] == "POST"){ //Giá trị tồn tại, xử lý form
+    $errors = array();
+    $trimmed = array_map('trim', $_POST);
 
-      if(filter_var($trimmed['danhmuc'], FILTER_VALIDATE_INT, array('min_range'=>1))) {
-        $danhMuc = $trimmed['danhmuc'];
-      } else {
-        $errors[] = "danhMuc";
-      }
-
-      if($trimmed['tintuc_noidung']){
-        $tinTucNoiDung = $trimmed['tintuc_noidung'];
-      } 
-
-      $tinTucHot = isset($trimmed['tintuc_hot']) ? 1 : 0;
-
-      if(empty($errors)){ // kiểm tra nếu không có lỗi xảy ra, thì chèn dữ liệu vào database
-        $query = "UPDATE tintuc SET tintuc_ten = ?, danhmuc_id = ?, tintuc_noidung = ?, tintuc_anh = ?, tintuc_hot = ? WHERE tintuc_id = ? LIMIT 1";
-        $stmt = $dbc->prepare($query);
-
-        //gan tham so cho cau lenh prepare
-        $stmt->bind_param('sissii', $tinTucTen, $danhMuc, $tinTucNoiDung, $tinTucAnh, $tinTucHot, $id);
-
-        //cho chay cau lenh prepare
-        $stmt->execute();
-
-        if($stmt->affected_rows == 1){
-          $messages = "<div class='alert alert-success alert-icon alert-dismissible' role='alert'><div class='icon'><span class='mdi mdi-close-circle-o'></span></div><div class='message'>Cập nhập thành công</div></div>";
-        } else {
-          $messages = "<div class='alert alert-success alert-icon alert-dismissible' role='alert'><div class='icon'><span class='mdi mdi-close-circle-o'></span></div><div class='message'>Cập nhập thành công</div></div>";
-        }
-        
-      } else {
-        $messages = "<div class='alert alert-danger alert-icon alert-dismissible' role='alert'><div class='icon'><span class='mdi mdi-close-circle-o'></span></div><div class='message'>Nhập đầy đủ các thông tin</div></div>";
-      }
+    if($trimmed['cauchuyen_tieude']){
+      $tieude = $trimmed['cauchuyen_tieude'];
+    } else {
+      $errors[] = "tieude";
     }
+
+    if($trimmed['cauchuyen_tacgia']){
+      $tacgia = $trimmed['cauchuyen_tacgia'];
+    } else {
+      $errors[] = "tacgia";
+    }
+
+    if($trimmed['cauchuyen_noidung']){
+      $noidung = $trimmed['cauchuyen_noidung'];
+    } else {
+      $errors[] = "noidung";
+    }
+
+    $trangthai = $trimmed['cauchuyen_trangthai'];
+
+
+
+    if(empty($errors)){ // kiểm tra nếu không có lỗi xảy ra, thì chèn dữ liệu vào database
+      $query = "UPDATE cauchuyen SET cauchuyen_tieude = ?, cauchuyen_tacgia = ?, cauchuyen_noidung = ?, cauchuyen_trangthai = ? WHERE cauchuyen_id = ? LIMIT 1";
+      $stmt = $dbc->prepare($query);
+
+      //gan tham so cho cau lenh prepare
+      $stmt->bind_param('sssii', $tieude, $tacgia, $noidung, $trangthai, $id);
+
+      //cho chay cau lenh prepare
+      $stmt->execute();
+
+      if($stmt->affected_rows == 1){
+        $messages = "<div class='alert alert-success alert-icon alert-dismissible' role='alert'><div class='icon'><span class='mdi mdi-close-circle-o'></span></div><div class='message'>Cập nhập câu chuyện thành công</div></div>";
+      } else {
+        $messages = "<div class='alert alert-danger alert-icon alert-dismissible' role='alert'><div class='icon'><span class='mdi mdi-close-circle-o'></span></div><div class='message'>Chưa cập nhập thêm gì</div></div>";
+      }
+      
+    } else {
+      $messages = "<div class='alert alert-danger alert-icon alert-dismissible' role='alert'><div class='icon'><span class='mdi mdi-close-circle-o'></span></div><div class='message'>Nhập đầy đủ các thông tin</div></div>";
+    }
+  }
+
   } else {
     //Neu tid khong ton tai, thi redirect
-    redirect_to('admin/tintuc.php');
+    redirect_to('admin/cauchuyen.php');
   }
 
  ?>
@@ -134,12 +140,6 @@
                         } 
                        ?>
                     </select>
-                    <?php 
-                      if(isset($errors) && in_array('danhMuc',$errors)) 
-                        echo "
-                          <ul class='parsley-errors-list filled'><li class='parsley-required'>Chưa chọn danh mục</li></ul>
-                        ";
-                      ?>
                   </div>
                 </div>
                 <div class="form-group row text-right">

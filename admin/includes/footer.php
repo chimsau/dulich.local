@@ -2,6 +2,7 @@
     <script src="assets/lib/perfect-scrollbar/js/perfect-scrollbar.min.js" type="text/javascript"></script>
     <script src="assets/lib/bootstrap/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
     <script src="assets/js/app.js" type="text/javascript"></script>
+    <script src="assets/js/page.js" type="text/javascript"></script>
     <script src="assets/lib/jquery.sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
     <script src="assets/lib/countup/countUp.min.js" type="text/javascript"></script>
     <script src="assets/lib/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
