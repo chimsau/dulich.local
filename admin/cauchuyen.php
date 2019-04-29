@@ -44,11 +44,11 @@
                             break;
                           
                           default:
-                            $order_by = 'cauchuyen_id';
+                            $order_by = 'cauchuyen_trangthai';
                             break;
                         }
                       } else {
-                        $order_by = 'cauchuyen_id';
+                        $order_by = 'cauchuyen_trangthai';
                       }
 
                         // truy vấn CSDL
