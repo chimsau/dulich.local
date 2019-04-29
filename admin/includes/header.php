@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="assets/lib/datetimepicker/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="assets/css/app.css" type="text/css">
     <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+    <script src="assets/lib/jquery/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="assets/lib/tinymce/tinymce.min.js"></script>
     <script type="text/javascript">
         tinymce.init({
