@@ -16,6 +16,32 @@
       $errors[] = "ten";
     }
 
+    if(isset($_FILES['file-2'])) {
+      $renamed = NULL;
+      // tao mot array, de kiem tra xem file upload co thuoc dang cho phep
+      $allowed = array('image/jpeg', 'image/jpg', 'image/png', 'images/x-png');
+
+      //kiem tra xem file upload co nam trong dinh dang cho phep
+      if(in_array(strtolower($_FILES['file-2']['type']), $allowed)) {
+        // Neu co trong dinh dang cho phep, tach lay phan mo rong
+        $ext = end(explode('.', $_FILES['file-2']['name']));
+        $renamed = uniqid(rand(), true).'.'."$ext";
+
+        if(!move_uploaded_file($_FILES['file-2']['tmp_name'], "uploads/images/".$renamed)) {
+          $messages = "<div class='alert alert-danger alert-icon alert-dismissible' role='alert'><div class='icon'><span class='mdi mdi-close-circle-o'></span></div><div class='message'>Lỗi server</div></div>";
+        }
+      } else {
+        //File upload không thuộc định dạng cho phép
+        $messages = "<div class='alert alert-danger alert-icon alert-dismissible' role='alert'><div class='icon'><span class='mdi mdi-close-circle-o'></span></div><div class='message'>Không đúng định dạng ảnh</div></div>";
+      }
+
+      if(isset($_FILES['file-2']['tmp_name']) && is_file($_FILES['file-2']['tmp_name']) && file_exists($_FILES['file-2']['tmp_name'])) {
+        unlink($_FILES['file-2']['tmp_name']);
+      }
+
+      $anh = is_null($renamed) ? $trimmed['diadiem_anh'] : $renamed;
+    }
+
     if(filter_var($trimmed['diadiem_vitri'], FILTER_VALIDATE_INT, array('min_range'=>1))) {
       $vitri = $trimmed['diadiem_vitri'];
     } else {
@@ -24,19 +50,22 @@
 
     if(empty($errors)){// kiểm tra nếu không có lỗi xảy ra, thì chèn dữ liệu vào database
 
-      $query = "INSERT INTO danhmuc (diadiem_ten, diadiem_vitri, danhmuc_ngaytao) VALUES ('{$danhMucTen}', $danhMucViTri, NOW())";
+      $query = "INSERT INTO diadiem (diadiem_ten, diadiem_anh, diadiem_ngaytao , diadiem_vitri ) VALUES (?, ?, NOW(), ? )";
 
-      if($ins_stmt = $dbc->prepare($query)) {
+      $stmt = $dbc->prepare($query);
 
-        //cho chạy câu lệnh
-        $ins_stmt->execute() or die("Lỗi mysqli: $query " . $ins_stmt->error());
+      //gan tham so cho cau lenh prepare
+      $stmt->bind_param('ssi', $ten, $anh, $vitri);
 
-        if($ins_stmt->affected_rows == 1){
-          $messages = "<div class='alert alert-success alert-icon alert-dismissible' role='alert'><div class='icon'><span class='mdi mdi-close-circle-o'></span></div><div class='message'>Thêm mới thành công</div></div>";
-        } else {
-          $messages = "<div class='alert alert-danger alert-icon alert-dismissible' role='alert'><div class='icon'><span class='mdi mdi-close-circle-o'></span></div><div class='message'>Lỗi khi thêm mới</div></div>";
-        }
+      //cho chay cau lenh prepare
+      $stmt->execute();
+
+      if($stmt->affected_rows == 1){
+        $messages = "<div class='alert alert-success alert-icon alert-dismissible' role='alert'><div class='icon'><span class='mdi mdi-close-circle-o'></span></div><div class='message'>Thêm mới thành công</div></div>";
+      } else {
+        $messages = "<div class='alert alert-danger alert-icon alert-dismissible' role='alert'><div class='icon'><span class='mdi mdi-close-circle-o'></span></div><div class='message'>Lỗi khi thêm mới</div></div>";
       }
+      
     } else {
       $messages = "<div class='alert alert-danger alert-icon alert-dismissible' role='alert'><div class='icon'><span class='mdi mdi-close-circle-o'></span></div><div class='message'>Nhập đầy đủ các thông tin</div></div>";
     }
@@ -51,7 +80,7 @@
             <div class="card-header card-header-divider">Thêm địa điểm</div>
             <div class="card-body">
               <?php if(isset($messages)) {echo $messages;} ?>
-              <form action="" method="post">
+              <form enctype="multipart/form-data" action="" method="post">
                 <div class="form-group row">
                   <label for="diadiem_ten" class="col-12 col-sm-3 col-form-label text-sm-right">Tên địa điểm *</label>
                   <div class="col-12 col-sm-8 col-lg-6">
@@ -64,12 +93,22 @@
                     ?>
                   </div>
                 </div>
+
+                <div class="form-group row">
+                  <label class="col-12 col-sm-3 col-form-label text-sm-right" for="file-2">Ảnh đại diện</label>
+                  <div class="col-12 col-sm-6">
+                      <input class="inputfile" id="file-2" type="file" name="file-2">
+                      <label class="btn-primary" for="file-2"> <i class="mdi mdi-upload"></i><span><?php echo(isset($anh)) ? trim($anh) : 'Browse files...';?></span></label>
+                      <input name="diadiem_anh" class="d-none" type="text" value="<?php echo(isset($anh)) ? trim($anh) : NULL; ?>">
+                  </div>
+                </div>
+
                 <div class="form-group row">
                   <label for="diadiem_vitri" class="col-12 col-sm-3 col-form-label text-sm-right">Vị trí *</label>
                   <div class="col-12 col-sm-8 col-lg-6">
                     <input name="diadiem_vitri" tabindex="2" class="form-control" type="text" value="<?php if(isset($_POST['diadiem_vitri'])) echo strip_tags($_POST['diadiem_vitri']); ?>">
                     <?php 
-                      if(isset($errors) && in_array('danhMucViTri',$errors)) 
+                      if(isset($errors) && in_array('vitri',$errors)) 
                       echo "
                         <ul class='parsley-errors-list filled'><li class='parsley-required'>Chưa nhập vị trí</li></ul>
                       ";
