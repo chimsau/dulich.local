@@ -19,6 +19,8 @@
               <ul class="sub-menu" style="">
                   <li><a href="themtintuc.php">Thêm tin tức</a></li>
                   <li><a href="tintuc.php">Quản lý tin tức</a></li>
+                  <li><a href="thembaivietdiadiem.php">Thêm bài viết địa điểm</a></li>
+                  <li><a href="baivietdiadiem.php">Quản lý bài viết địa điểm</a></li>
               </ul>
             </li>
              <li><a href="cauchuyen.php"><i class="icon mdi mdi-book"></i><span>Câu chuyện</span></a>
