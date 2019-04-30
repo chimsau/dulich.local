@@ -50,7 +50,7 @@
         unlink($_FILES['file-2']['tmp_name']);
       }
 
-      $anh = is_null($renamed) ? $trimmed['baivietdiadiem_noidung'] : $renamed;
+      $anh = is_null($renamed) ? $trimmed['baivietdiadiem_anh'] : $renamed;
     }
 
     if(empty($errors)){ // kiểm tra nếu không có lỗi xảy ra, thì chèn dữ liệu vào database
