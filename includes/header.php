@@ -1,10 +1,13 @@
-<html lang="en"><head>
+<?php 
+ini_set('session.use_only_cookies', true);
+session_start(); ?>
+<html lang="vi">
+<head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Responsive Bootstrap 4 Magazine/Blog Theme">
-  <meta name="author" content="Bootlab">
-
+  <meta name="description" content="">
+  <meta name="author" content="">
   <title>Milo - Magazine/Blog Theme</title>
   <link href="css/app.css" rel="stylesheet">
   <script type="text/javascript" src="admin/assets/lib/tinymce/tinymce.min.js"></script>
