@@ -11,9 +11,11 @@
               <ul class="sub-menu" style="">
                   <li><a href="themdanhmuc.php">Thêm danh mục</a></li>
                   <li><a href="danhmuc.php">Quản lý danh mục</a></li>
+                  <li><a href="themdiadiem.php">Thêm địa điểm</a></li>
+                  <li><a href="diadiem.php">Quản lý địa điểm</a></li>
               </ul>
             </li>
-            <li class="parent"><a href="#"><i class="icon mdi mdi-collection-text"></i><span>Tin tức</span></a>
+            <li class="parent"><a href="#"><i class="icon mdi mdi-collection-text"></i><span>Bài viết</span></a>
               <ul class="sub-menu" style="">
                   <li><a href="themtintuc.php">Thêm tin tức</a></li>
                   <li><a href="tintuc.php">Quản lý tin tức</a></li>

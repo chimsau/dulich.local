@@ -28,6 +28,7 @@
     $tinTucHot = isset($trimmed['tintuc_hot']) ? 1 : 0;
 
     if(isset($_FILES['file-2'])) {
+      $renamed = NULL;
       // tao mot array, de kiem tra xem file upload co thuoc dang cho phep
       $allowed = array('image/jpeg', 'image/jpg', 'image/png', 'images/x-png');
 
@@ -48,6 +49,8 @@
       if(isset($_FILES['file-2']['tmp_name']) && is_file($_FILES['file-2']['tmp_name']) && file_exists($_FILES['file-2']['tmp_name'])) {
         unlink($_FILES['file-2']['tmp_name']);
       }
+
+      $tinTucAnh = is_null($renamed) ? $trimmed['tintuc_anh'] : $renamed;
     }
 
     if(empty($errors)){ // kiểm tra nếu không có lỗi xảy ra, thì chèn dữ liệu vào database
@@ -56,7 +59,7 @@
       $stmt = $dbc->prepare($query);
 
       //gan tham so cho cau lenh prepare
-      $stmt->bind_param('sissi', $tinTucTen, $danhMuc, $tinTucNoiDung, $renamed, $tinTucHot);
+      $stmt->bind_param('sissi', $tinTucTen, $danhMuc, $tinTucNoiDung, $tinTucAnh, $tinTucHot);
 
       //cho chay cau lenh prepare
       $stmt->execute();
@@ -133,14 +136,15 @@
                   <label class="col-12 col-sm-3 col-form-label text-sm-right" for="file-2">Ảnh đại diện</label>
                   <div class="col-12 col-sm-6">
                       <input class="inputfile" id="file-2" type="file" name="file-2">
-                      <label class="btn-primary" for="file-2"> <i class="mdi mdi-upload"></i><span>Browse files...</span></label>
+                      <label class="btn-primary" for="file-2"> <i class="mdi mdi-upload"></i><span><?php echo(isset($tinTucAnh)) ? trim($tinTucAnh) : 'Browse files...';?></span></label>
+                      <input name="tintuc_anh" class="d-none" type="text" value="<?php echo(isset($tinTucAnh)) ? trim($tinTucAnh) : NULL; ?>">
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <div class="col-12 col-sm-8 col-lg-6 offset-sm-3">
                       <div class="be-checkbox custom-control custom-checkbox">
-                          <input class="custom-control-input" type="checkbox" id="check1" name="tintuc_hot">
+                          <input class="custom-control-input" type="checkbox" id="check1" name="tintuc_hot" <?php  if(isset($_POST['tintuc_hot']) ) echo 'checked'; ?>>
                           <label class="custom-control-label" for="check1">Tin tức nổi bật</label>
                           <?php 
                             if(isset($errors) && in_array('tinTucHot',$errors)) 
