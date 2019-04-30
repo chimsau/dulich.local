@@ -6,31 +6,31 @@
 
 <?php 
   // Kiem tra gia tri cua bien tid tu $_GET
-  if(isset($_GET['tid']) && filter_var($_GET['tid'], FILTER_VALIDATE_INT, array('min_range' =>1))){
-    $tid = $_GET['tid'];
+  if(isset($_GET['id']) && filter_var($_GET['id'], FILTER_VALIDATE_INT, array('min_range' =>1))){
+    $id = $_GET['id'];
 
     // Neu tid ton tai, bat dau xu ly form
     if($_SERVER['REQUEST_METHOD'] == "POST"){ //Giá trị tồn tại, xử lý form
       $errors = array();
       $trimmed = array_map('trim', $_POST);
 
-      if($trimmed['tintuc_ten']){
-        $tinTucTen = $trimmed['tintuc_ten'];
+      if($trimmed['baiviet_diadiem_ten']){
+        $ten = $trimmed['baiviet_diadiem_ten'];
       } else {
-        $errors[] = "tinTucTen";
+        $errors[] = "ten";
       }
 
-      if(filter_var($trimmed['danhmuc'], FILTER_VALIDATE_INT, array('min_range'=>1))) {
-        $danhMuc = $trimmed['danhmuc'];
+      if(filter_var($trimmed['diadiem'], FILTER_VALIDATE_INT, array('min_range'=>1))) {
+        $diadiem = $trimmed['diadiem'];
       } else {
-        $errors[] = "danhMuc";
+        $errors[] = "diadiem";
       }
 
-      if($trimmed['tintuc_noidung']){
-        $tinTucNoiDung = $trimmed['tintuc_noidung'];
+      if($trimmed['baiviet_diadiem_noidung']){
+        $noidung = $trimmed['baiviet_diadiem_noidung'];
       } 
 
-      $tinTucHot = isset($trimmed['tintuc_hot']) ? 1 : 0;
+      $hot = isset($trimmed['baiviet_diadiem_hot']) ? 1 : 0;
 
       if(isset($_FILES['file-2'])) {
         $renamed = NULL;
@@ -55,17 +55,17 @@
           unlink($_FILES['file-2']['tmp_name']);
         }
 
-        $tinTucAnh = is_null($renamed) ? $trimmed['tintuc_anh'] : $renamed;
+        $anh = is_null($renamed) ? $trimmed['baiviet_diadiem_anh'] : $renamed;
       }
 
       
 
       if(empty($errors)){ // kiểm tra nếu không có lỗi xảy ra, thì chèn dữ liệu vào database
-        $query = "UPDATE tintuc SET tintuc_ten = ?, danhmuc_id = ?, tintuc_noidung = ?, tintuc_anh = ?, tintuc_hot = ? WHERE tintuc_id = ? LIMIT 1";
+        $query = "UPDATE baiviet_diadiem SET baiviet_diadiem_ten = ?, diadiem_id = ?, baiviet_diadiem_noidung = ?, baiviet_diadiem_anh = ?, baiviet_diadiem_hot = ? WHERE baiviet_diadiem_id = ? LIMIT 1";
         $stmt = $dbc->prepare($query);
 
         //gan tham so cho cau lenh prepare
-        $stmt->bind_param('sissii', $tinTucTen, $danhMuc, $tinTucNoiDung, $tinTucAnh, $tinTucHot, $tid);
+        $stmt->bind_param('sissii', $ten, $diadiem, $noidung, $anh, $hot, $id);
 
         //cho chay cau lenh prepare
         $stmt->execute();
@@ -82,7 +82,7 @@
     }
   } else {
     //Neu tid khong ton tai, thi redirect
-    redirect_to('admin/tintuc.php');
+    redirect_to('admin/baivietdiadiem.php');
   }
 
  ?>
@@ -90,14 +90,14 @@
   <?php 
 
   //truy van csdl lieu de do du lieu ra
-    $query = "SELECT * FROM tintuc WHERE tintuc_id = {$tid}";
+    $query = "SELECT * FROM baiviet_diadiem WHERE baiviet_diadiem_id = {$id}";
     if($stmt = $dbc->query($query)){
       if($stmt->num_rows == 1) {
         //neu du lieu ton tai trong database, dua du lieu thong qua TID vao, xuat du lieu ra ngoai trinh duyet
-        $tinTucs = $stmt->fetch_array(MYSQLI_ASSOC);
+        $baivietdiadiem = $stmt->fetch_array(MYSQLI_ASSOC);
       } else {
         //neu TID khong hop le, se khong hien thi danh muc
-        $messages = "<div class='alert alert-danger alert-icon alert-dismissible' role='alert'><div class='icon'><span class='mdi mdi-close-circle-o'></span></div><div class='message'>Tin tức không tồn tại</div></div>";
+        $messages = "<div class='alert alert-danger alert-icon alert-dismissible' role='alert'><div class='icon'><span class='mdi mdi-close-circle-o'></span></div><div class='message'>Bài viết không tồn tại</div></div>";
       }
     }
    ?>
@@ -105,17 +105,17 @@
       <div class="row">
         <div class="col-md-12">
           <div class="card card-border-color card-border-color-primary">
-            <div class="card-header card-header-divider">Sửa tin tức: <?php if(isset($tinTucs['tintuc_ten'])) echo $tinTucs['tintuc_ten']; ?></div>
+            <div class="card-header card-header-divider">Sửa bài viết: <?php if(isset($baivietdiadiem['baiviet_diadiem_ten'])) echo $baivietdiadiem['baiviet_diadiem_ten']; ?></div>
             <div class="card-body">
               <?php if(isset($messages)) {echo $messages;} ?>
               <form enctype="multipart/form-data" action="" method="post">
                 <div class="form-group row">
 
-                  <label class="col-12 col-sm-3 col-form-label text-sm-right">Tên tin tức *</label>
+                  <label class="col-12 col-sm-3 col-form-label text-sm-right">Tiểu đề *</label>
                   <div class="col-12 col-sm-8 col-lg-6">
-                    <input name="tintuc_ten" tabindex="1" class="form-control" type="text" value="<?php if(isset($tinTucs['tintuc_ten'])) echo strip_tags($tinTucs['tintuc_ten']); ?>">
+                    <input name="baiviet_diadiem_ten" tabindex="1" class="form-control" type="text" value="<?php if(isset($baivietdiadiem['baiviet_diadiem_ten'])) echo strip_tags($baivietdiadiem['baiviet_diadiem_ten']); ?>">
                     <?php 
-                      if(isset($errors) && in_array('tinTucTen',$errors)) 
+                      if(isset($errors) && in_array('ten',$errors)) 
                       echo "
                         <ul class='parsley-errors-list filled'><li class='parsley-required'>Chưa nhập tên tin tức</li></ul>
                       ";
@@ -124,35 +124,35 @@
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-12 col-sm-3 col-form-label text-sm-right">Danh mục *</label>
+                  <label class="col-12 col-sm-3 col-form-label text-sm-right">Địa điểm *</label>
                   <div class="col-12 col-sm-8 col-lg-6">
-                    <select class="form-control" name="danhmuc">
-                      <option>Chọn danh mục</option>
+                    <select class="form-control" name="diadiem">
+                      <option>Chọn địa điểm</option>
                       <?php 
-                        $query = "SELECT danhmuc_id, danhmuc_ten FROM danhmuc ORDER BY danhmuc_vitri ASC";
-                        $stmt = $dbc->query($query) or die("Mysqli Error: $query ". $stmt->error());
+                        $query = "SELECT diadiem_id, diadiem_ten FROM diadiem ORDER BY diadiem_id ASC";
+                        $stmt = $dbc->query($query);
                         if($stmt->num_rows > 0) {
-                          while($danhmucs = $stmt->fetch_array(MYSQLI_NUM)) {
-                            echo "<option value='{$danhmucs[0]}'";
-                              if(isset($tinTucs['danhmuc_id']) && ($tinTucs['danhmuc_id'] == $danhmucs[0])) echo "selected='selected'";
-                            echo ">".$danhmucs[1]."</option>";
+                          while($diadiem = $stmt->fetch_array(MYSQLI_NUM)) {
+                            echo "<option value='{$diadiem[0]}'";
+                              if(isset($baivietdiadiem['diadiem_id']) && ($baivietdiadiem['diadiem_id'] == $diadiem[0])) echo "selected='selected'";
+                            echo ">".$diadiem[1]."</option>";
                           }
                         }
                        ?>
                     </select>
                     <?php 
-                      if(isset($errors) && in_array('danhMuc',$errors)) 
+                      if(isset($errors) && in_array('diadiem',$errors)) 
                         echo "
-                          <ul class='parsley-errors-list filled'><li class='parsley-required'>Chưa chọn danh mục</li></ul>
+                          <ul class='parsley-errors-list filled'><li class='parsley-required'>Chưa chọn địa điểm</li></ul>
                         ";
                       ?>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-12 col-sm-3 col-form-label text-sm-right">Nội dung tin tức</label>
+                  <label class="col-12 col-sm-3 col-form-label text-sm-right">Nội dung</label>
                   <div class="col-12 col-sm-8 col-lg-6">
-                      <textarea class="form-control" name="tintuc_noidung"><?php if(isset($tinTucs['tintuc_noidung'])) echo $tinTucs['tintuc_noidung']; ?></textarea>
+                      <textarea class="form-control" name="baiviet_diadiem_noidung"><?php if(isset($baivietdiadiem['baiviet_diadiem_noidung'])) echo $baivietdiadiem['baiviet_diadiem_noidung']; ?></textarea>
                   </div>
                 </div>
 
@@ -160,16 +160,16 @@
                   <label class="col-12 col-sm-3 col-form-label text-sm-right" for="file-2">Ảnh đại diện</label>
                   <div class="col-12 col-sm-6">
                       <input class="inputfile" id="file-2" type="file" name="file-2">
-                      <label class="btn-primary" for="file-2"> <i class="mdi mdi-upload"></i><span><?php echo(is_null($tinTucs['tintuc_anh'])) ? 'Browse files...' : trim($tinTucs['tintuc_anh']); ?></span></label>
-                      <input name="tintuc_anh" class="d-none" type="text" value="<?php echo(is_null($tinTucs['tintuc_anh'])) ? NULL : trim($tinTucs['tintuc_anh']); ?>">
+                      <label class="btn-primary" for="file-2"> <i class="mdi mdi-upload"></i><span><?php echo(is_null($baivietdiadiem['baiviet_diadiem_anh'])) ? 'Browse files...' : trim($baivietdiadiem['baiviet_diadiem_anh']); ?></span></label>
+                      <input name="baiviet_diadiem_anh" class="d-none" type="text" value="<?php echo(is_null($baivietdiadiem['baiviet_diadiem_anh'])) ? NULL : trim($baivietdiadiem['baiviet_diadiem_anh']); ?>">
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <div class="col-12 col-sm-8 col-lg-6 offset-sm-3">
                       <div class="be-checkbox custom-control custom-checkbox">
-                          <input class="custom-control-input" type="checkbox" id="check1" name="tintuc_hot" <?php  if(isset($tinTucs['tintuc_hot']) && $tinTucs['tintuc_hot'] == 1) echo 'checked'; ?>>
-                          <label class="custom-control-label" for="check1">Tin tức nổi bật</label>
+                          <input class="custom-control-input" type="checkbox" id="check1" name="baiviet_diadiem_hot" <?php  if(isset($baivietdiadiem['baiviet_diadiem_hot']) && $baivietdiadiem['baiviet_diadiem_hot'] == 1) echo 'checked'; ?>>
+                          <label class="custom-control-label" for="check1">Bài viết nổi bật</label>
                       </div>
                   </div>
                 </div>

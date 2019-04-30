@@ -74,5 +74,24 @@ var functions = {
 				});
 			}
 		});
+	},
+	remove_baivietdiadiem: function(){
+		$('.remove').on('click', function(){
+			var result = confirm("Bạn muốn xóa");
+			if (result) {
+				var container = $(this).closest("tr");
+				var id = $(this).attr('id');
+				var string = 'baivietdiadiem_id='+ id;
+
+				$.ajax({
+					type: "POST",
+					url: "xoabaivietdiadiem.php",
+					data: string,
+					success: function(){
+						container.slideUp('slow', function() {container.remove();});
+					}
+				});
+			}
+		});
 	}
 } 
