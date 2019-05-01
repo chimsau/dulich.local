@@ -93,5 +93,24 @@ var functions = {
 				});
 			}
 		});
+	},
+	remove_binhluan: function(){
+		$('.remove').on('click', function(){
+			var result = confirm("Bạn muốn xóa");
+			if (result) {
+				var container = $(this).closest("tr");
+				var id = $(this).attr('id');
+				var string = 'binhluan_id='+ id;
+
+				$.ajax({
+					type: "POST",
+					url: "xoabinhluan.php",
+					data: string,
+					success: function(){
+						container.slideUp('slow', function() {container.remove();});
+					}
+				});
+			}
+		});
 	}
 } 

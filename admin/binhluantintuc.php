@@ -87,7 +87,7 @@
 </div>
 <script>
   $(document).ready(function() {
-    functions.remove_binhluantintuc();
+    functions.remove_binhluan();
   });
 </script>
 <?php include('includes/right-sidebar.php');?>

@@ -1,5 +1,6 @@
 <?php include('../includes/mysqli_connect.php');?>
 <?php include('../includes/functions.php');?>
+<?php session_start(); ?>
 <?php admin_access();?>
 <?php 
   //xac nhan bien GET ton tai va thuoc loai du lieu cho phep
