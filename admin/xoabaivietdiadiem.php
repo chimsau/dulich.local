@@ -1,6 +1,6 @@
 <?php include('../includes/mysqli_connect.php');?>
 <?php include('../includes/functions.php');?>
-
+<?php admin_access();?>
 <?php 
   //xac nhan bien GET ton tai va thuoc loai du lieu cho phep
   if(isset($_POST['baivietdiadiem_id']) && filter_var($_POST['baivietdiadiem_id'], FILTER_VALIDATE_INT, array('min_range' =>1))){

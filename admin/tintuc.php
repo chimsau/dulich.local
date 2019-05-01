@@ -3,7 +3,7 @@
 <?php include('includes/header.php');?>
 <?php include('includes/top-header.php');?>
 <?php include('includes/left-sidebar.php');?>
-
+<?php admin_access();?>
 <div class="be-content">
     <div class="main-content container-fluid">
       <div class="row">

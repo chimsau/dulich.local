@@ -19,4 +19,16 @@
         }
        
     }
+    // Ham tao ra de kiem tra xem co phai la admin hay khong
+    function is_admin() {
+
+        return isset($_SESSION['name']);
+    }
+    
+    // Kiem tra xem nguoi dung co the vao trang admin hay khong?
+    function admin_access() {
+        if(!is_admin()) {
+            redirect_to('admin/login.php');
+        }
+    }
 ?>

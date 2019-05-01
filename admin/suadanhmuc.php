@@ -3,6 +3,7 @@
 <?php include('includes/header.php');?>
 <?php include('includes/top-header.php');?>
 <?php include('includes/left-sidebar.php');?>
+<?php admin_access();?>
 
 <?php 
   //xac nhan bien GET ton tai va thuoc loai du lieu cho phep

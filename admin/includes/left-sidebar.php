@@ -23,8 +23,14 @@
                   <li><a href="baivietdiadiem.php">Quản lý bài viết địa điểm</a></li>
               </ul>
             </li>
-             <li><a href="cauchuyen.php"><i class="icon mdi mdi-book"></i><span>Câu chuyện</span></a>
-             <li><a href="index.php"><i class="icon mdi mdi-comments"></i><span>Bình luận</span></a>
+            <li><a href="cauchuyen.php"><i class="icon mdi mdi-book"></i><span>Câu chuyện</span></a>
+            <li class="parent"><a href="#"><i class="icon mdi mdi-collection-text"></i><span>Bình luận</span></a>
+              <ul class="sub-menu" style="">
+                  <li><a href="binhluantintuc.php">Bình luận tin tức</a></li>
+                  <li><a href="binhluandiadiem.php">Bình luận địa điểm</a></li>
+                  <li><a href="binhluancauchuyen.php">Bình luận câu chuyện</a></li>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>

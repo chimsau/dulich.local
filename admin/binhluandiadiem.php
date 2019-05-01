@@ -9,16 +9,16 @@
       <div class="row">
         <div class="col-md-12">
           <div class="card card-table">
-            <div class="card-header">Câu chuyện</div>
+            <div class="card-header">Bình luận về địa điểm</div>
             <div class="card-body table-responsive">
                 <table class="table table-striped table-hover" style="font-size: 13px">
                     <thead>
                         <tr>
-                            <th style="width:20%;"><a href="cauchuyen.php?sort=title">Tiêu đề</a></th>
-                            <th style="width:10%;"><a href="cauchuyen.php?sort=name">Tác giả</a></th>
+                            <th style="width:20%;"><a href="binhluandiadiem.php?sort=title">Bài viết</a></th>
+                            <th style="width:10%;"><a href="binhluandiadiem.php?sort=name">Tên tác giả</a></th>
+                            <th style="width:10%;"><a href="binhluandiadiem.php?sort=email">Email</a></th>
                             <th>Nội dung</th>
-                            <th style="width:95px;" class="actions"><a href="cauchuyen.php?sort=status">Trạng thái</a></th>
-                            <th style="width:80px;" class="actions"><a href="cauchuyen.php?sort=by">Ngày tạo</a></th>
+                            <th style="width:80px;" class="actions"><a href="binhluandiadiem.php?sort=by">Ngày tạo</a></th>
                             <th style="width:75px;" class="actions"></th>
                         </tr>
                     </thead>
@@ -28,15 +28,15 @@
                       if(isset($_GET['sort'])) {
                         switch ($_GET['sort']) {
                           case 'title':
-                            $order_by = 'cauchuyen_tieude';
+                            $order_by = 'diadiem_ten';
                             break;
 
                           case 'name':
-                            $order_by = 'cauchuyen_tacgia';
+                            $order_by = 'binhluan_tacgia';
                             break;
 
-                          case 'status':
-                            $order_by = 'cauchuyen_trangthai';
+                          case 'email':
+                            $order_by = 'binhluan_email';
                             break;
 
                           case 'by':
@@ -44,33 +44,31 @@
                             break;
                           
                           default:
-                            $order_by = 'cauchuyen_id';
+                            $order_by = 'binhluan_id';
                             break;
                         }
                       } else {
-                        $order_by = 'cauchuyen_id';
+                        $order_by = 'binhluan_id';
                       }
 
-                        // truy vấn CSDL
-                        $query = "SELECT cauchuyen_id, cauchuyen_tieude, cauchuyen_tacgia, cauchuyen_noidung, DATE_FORMAT(cauchuyen_ngay, '%d/%m/%y') AS date , cauchuyen_trangthai ";
-                        $query .= " FROM cauchuyen";
-                        $query .= " ORDER BY {$order_by} ASC";
+                      $query = "SELECT b.binhluan_id, t.diadiem_id, t.diadiem_ten, b.binhluan_tacgia, b.binhluan_email, b.binhluan_noidung, DATE_FORMAT(b.binhluan_ngay, '%d/%m/%y') AS date ";
+                      $query .= " FROM binhluan AS b";
+                      $query .= " INNER JOIN diadiem AS t";
+                      $query .= " ON (foreign_id = diadiem_id)";
+                      $query .= " WHERE binhluan_kieu = 'diadiem'";
+                      $query .= " ORDER BY {$order_by} ASC";
                           if ($result = $dbc->query($query)) {
-                            $status = array(0 => 'Chưa kiểm duyệt', 1 => 'kiểm duyệt');
-                            while ($cauchuyens = $result->fetch_array(MYSQLI_ASSOC)) {
+                            while ($binhluan = $result->fetch_array(MYSQLI_ASSOC)) {
                               echo "
                                 <tr>
-                                  <td>".the_excerpt($cauchuyens['cauchuyen_tieude'], 50)."</td>
-                                  <td>".the_excerpt($cauchuyens['cauchuyen_tacgia'], 50)."</td>
-                                  <td>".the_excerpt($cauchuyens['cauchuyen_noidung'], 200)."</td>
-                                  <td class='actions'>".$status[($cauchuyens['cauchuyen_trangthai'])]."</td>
-                                  <td class='actions'>{$cauchuyens['date']}</td>
+                                  <td>".the_excerpt($binhluan['diadiem_ten'], 50)."</td>
+                                  <td>".the_excerpt($binhluan['binhluan_tacgia'], 100)."</td>
+                                  <td>".the_excerpt($binhluan['binhluan_email'], 100)."</td>
+                                  <td>{$binhluan['binhluan_noidung']}</td>
+                                  <td class='actions'>{$binhluan['date']}</td>
                                   <td class='actions'>
                                     <span style='padding:0 3px'>
-                                    <a href='suacauchuyen.php?id={$cauchuyens['cauchuyen_id']}' class='icon' href='#'><i class='mdi mdi-edit'></i></a>
-                                    </span>
-                                    <span style='padding:0 3px'>
-                                    <a id='{$cauchuyens['cauchuyen_id']}' class='icon remove'><i class='mdi mdi-delete'></i>
+                                    <a id='{$binhluan['binhluan_id']}' class='icon remove'><i class='mdi mdi-delete'></i>
                                     </a>
                                     </span>
                                   </td>
@@ -89,7 +87,7 @@
 </div>
 <script>
   $(document).ready(function() {
-    functions.remove_story();
+    functions.remove_binhluandiadiem();
   });
 </script>
 <?php include('includes/right-sidebar.php');?>

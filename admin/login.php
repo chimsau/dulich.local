@@ -1,7 +1,6 @@
 <?php include('../includes/mysqli_connect.php');?>
 <?php include('../includes/functions.php');?>
 <?php 
-ini_set('session.use_only_cookies', true);
 session_start(); ?>
 
 <html lang="vi"><head>
@@ -40,6 +39,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
       $query = "SELECT taikhoan FROM admin WHERE (taikhoan = '{$username}' AND matkhau = '$password') LIMIT 1";
       $stmt = $dbc->query($query);
       if($stmt->num_rows == 1) {
+          session_regenerate_id();
           // Neu tim thay thong tin nguoi dung trong CSDL, se chuyen huong nguoi dung ve trang thich hop.
           list($name) = $stmt->fetch_array(MYSQLI_NUM);
           $_SESSION['name'] = $name;
