@@ -1,6 +1,6 @@
 <?php 
 	// Xac dinh hang so cho dia chi tuyet doi
-    define('BASE_URL', 'http://dulich.local/');
+    define('BASE_URL', 'http://localhost/dulich/');
 
     //Tái định hướng người dùng về trang mặc đinh là index
     function redirect_to($page = 'index.php') {
