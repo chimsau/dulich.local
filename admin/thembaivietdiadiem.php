@@ -36,8 +36,9 @@
       //kiem tra xem file upload co nam trong dinh dang cho phep
       if(in_array(strtolower($_FILES['file-2']['type']), $allowed)) {
         // Neu co trong dinh dang cho phep, tach lay phan mo rong
-        $ext = end(explode('.', $_FILES['file-2']['name']));
-        $renamed = uniqid(rand(), true).'.'."$ext";
+        $tmp = explode('.',  $_FILES['file-2']['name']);
+        $ext = end($tmp);
+        $renamed = uniqid(rand(),true).'.'."$ext";
 
         if(!move_uploaded_file($_FILES['file-2']['tmp_name'], "uploads/images/".$renamed)) {
           $messages = "<div class='alert alert-danger alert-icon alert-dismissible' role='alert'><div class='icon'><span class='mdi mdi-close-circle-o'></span></div><div class='message'>Lỗi server</div></div>";
