@@ -1,0 +1,318 @@
+<?php include('includes/functions.php');?>
+<?php 
+ini_set('session.use_only_cookies', true);
+session_start(); ?>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Milo - Magazine/Blog Theme</title>
+  <link href="assets/css/app.css" rel="stylesheet">
+  <script type="text/javascript" src="admin/assets/lib/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript">
+        tinymce.init({
+          selector: 'textarea',
+          height: 300,
+          theme: 'modern',
+          plugins: [
+            'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+            'searchreplace wordcount visualblocks visualchars code fullscreen',
+            'insertdatetime media nonbreaking save table contextmenu directionality',
+            'emoticons template paste textcolor colorpicker textpattern imagetools'
+          ],
+          toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+          toolbar2: 'print preview media | forecolor backcolor emoticons',
+          image_advtab: true,
+          templates: [
+            { title: 'Test template 1', content: 'Test 1' },
+            { title: 'Test template 2', content: 'Test 2' }
+          ],
+          content_css: [
+            'assets/lib/tinymce/css/codepen.min.css'
+          ]
+            
+         });
+    </script>
+</head>
+<body>
+<header role="banner">
+  <nav class="navbar navbar-expand-md navbar-light bg-white absolute-top">
+    <div class="container">
+      <button class="navbar-toggler order-2 order-md-1" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse order-3 order-md-2" id="navbar">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="<?php echo BASE_URL ?>">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?php echo BASE_URL ?>post-new.php">New story</a>
+          </li>
+        </ul>
+      </div>
+      <a class="navbar-brand mx-auto order-1 order-md-3" href="<?php echo BASE_URL ?>">Milø</a>
+      <div class="collapse navbar-collapse order-4 order-md-4" id="navbar">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="<?php echo BASE_URL ?>page-about.php">About</a>
+          </li>
+        </ul>
+        <form class="form-inline" role="search">
+          <input class="search js-search form-control form-control-rounded mr-sm-2" type="text" title="Enter search query here.." placeholder="Search.." aria-label="Search">
+        </form>
+      </div>
+    </div>
+  </nav>
+</header>
+  <main class="main pt-4" role="main">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="row">
+            <div class="col-md-6">
+              <article class="card mb-4">
+                <header class="card-header">
+                  <div class="card-meta">
+                    <a href="#"><time class="timeago" datetime="2017-10-26 20:00" data-tid="1">1 year ago</time></a> in <a href="page-category.html">Journey</a>
+                  </div>
+                  <a href="post-image.html">
+                    <h4 class="card-title">How can we sing about love?</h4>
+                  </a>
+                </header>
+                <a href="post-image.html">
+                  <img class="card-img" src="assets/img/articles/22.jpg" alt="">
+                </a>
+                <div class="card-body">
+                  <p class="card-text">Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. </p>
+                </div>
+              </article><!-- /.card -->
+
+              <article class="card mb-4">
+                <header class="card-header">
+                  <div class="card-meta">
+                    <a href="#"><time class="timeago" datetime="2017-10-03 20:00" data-tid="2">1 year ago</time></a> in <a href="page-category.html">Lifestyle</a>
+                  </div>
+                  <a href="post-image.html">
+                    <h4 class="card-title">Oh, I guess they have the blues</h4>
+                  </a>
+                </header>
+                <a href="post-image.html">
+                  <img class="card-img" src="assets/img/articles/18.jpg" alt="">
+                </a>
+                <div class="card-body">
+                  <p class="card-text">Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. </p>
+                </div>
+              </article><!-- /.card -->
+
+              <article class="card mb-4">
+                <header class="card-header">
+                  <div class="card-meta">
+                    <a href="#"><time class="timeago" datetime="2017-07-16 20:00" data-tid="3">1 year ago</time></a> in <a href="page-category.html">Work</a>
+                  </div>
+                  <a href="post-image.html">
+                    <h4 class="card-title">How can we, how can we sing about ourselves?</h4>
+                  </a>
+                </header>
+                <a href="post-image.html">
+                  <img class="card-img" src="assets/img/articles/12.jpg" alt="">
+                </a>
+                <div class="card-body">
+                  <p class="card-text">Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. </p>
+                </div>
+              </article><!-- /.card -->
+
+            </div>
+            <div class="col-md-6">
+
+              <article class="card mb-4">
+                <header class="card-header">
+                  <div class="card-meta">
+                    <a href="#"><time class="timeago" datetime="2017-10-15 20:00" data-tid="4">1 year ago</time></a> in <a href="page-category.html">Lifestyle</a>
+                  </div>
+                  <a href="post-image.html">
+                    <h4 class="card-title">The king is made of paper</h4>
+                  </a>
+                </header>
+                <a href="post-image.html">
+                  <img class="card-img" src="assets/img/articles/5.jpg" alt="">
+                </a>
+                <div class="card-body">
+                  <p class="card-text">Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. </p>
+                </div>
+              </article><!-- /.card -->
+
+              <article class="card mb-4">
+                <header class="card-header">
+                  <div class="card-meta">
+                    <a href="#"><time class="timeago" datetime="2017-08-24 20:00" data-tid="5">1 year ago</time></a> in <a href="page-category.html">Work</a>
+                  </div>
+                  <a href="post-image.html">
+                    <h4 class="card-title">Crying on the news</h4>
+                  </a>
+                </header>
+                <a href="post-image.html">
+                  <img class="card-img" src="assets/img/articles/13.jpg" alt="">
+                </a>
+                <div class="card-body">
+                  <p class="card-text">Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. </p>
+                </div>
+              </article><!-- /.card -->
+
+              <article class="card mb-4">
+                <header class="card-header">
+                  <div class="card-meta">
+                    <a href="#"><time class="timeago" datetime="2017-05-08 20:00" data-tid="6">1 year ago</time></a> in <a href="page-category.html">Journey</a>
+                  </div>
+                  <a href="post-image.html">
+                    <h4 class="card-title">How can you not sing about love?</h4>
+                  </a>
+                </header>
+                <a href="post-image.html">
+                  <img class="card-img" src="assets/img/articles/1.jpg" alt="">
+                </a>
+                <div class="card-body">
+                  <p class="card-text">Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. </p>
+                </div>
+              </article><!-- /.card -->
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 ml-auto">
+  <aside class="sidebar">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h4 class="card-title">About</h4>
+        <p class="card-text">Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam <a href="#">semper libero</a>, sit amet adipiscing sem neque sed ipsum. </p>
+      </div>
+    </div><!-- /.card -->
+  </aside>
+
+  <aside class="sidebar sidebar-sticky">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h4 class="card-title">Tags</h4>
+        <a class="btn btn-light btn-sm mb-1" href="page-category.html">Journey</a>
+        <a class="btn btn-light btn-sm mb-1" href="page-category.html">Work</a>
+        <a class="btn btn-light btn-sm mb-1" href="page-category.html">Lifestype</a>
+        <a class="btn btn-light btn-sm mb-1" href="page-category.html">Photography</a>
+        <a class="btn btn-light btn-sm mb-1" href="page-category.html">Food &amp; Drinks</a>
+      </div>
+    </div><!-- /.card -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <h4 class="card-title">Popular stories</h4>
+
+        <a href="post-image.html" class="d-inline-block">
+          <h4 class="h6">The blind man</h4>
+          <img class="card-img" src="assets/img/articles/2.jpg" alt="">
+        </a>
+        <time class="timeago" datetime="2017-10-03 20:00" data-tid="7">1 year ago</time> in Lifestyle
+
+        <a href="post-image.html" class="d-inline-block mt-3">
+          <h4 class="h6">Crying on the news</h4>
+          <img class="card-img" src="assets/img/articles/3.jpg" alt="">
+        </a>
+        <time class="timeago" datetime="2017-07-16 20:00" data-tid="8">1 year ago</time> in Work
+
+      </div>
+    </div><!-- /.card -->
+  </aside>
+</div> 
+      </div>
+    </div>
+
+  </main>
+
+<div class="site-instagram">
+    <div class="action">
+      <a class="btn btn-light" href="#">
+        Follow us @ Instagram
+      </a>
+    </div>
+    <div class="row no-gutters">
+      <div class="col-sm-6">
+        <div class="row no-gutters">
+          <div class="col-3">
+            <a class="photo" href="#">
+              <img class="img-fluid" src="assets/img/instagram/1.jpg" alt="">
+            </a>
+          </div>
+          <div class="col-3">
+            <a class="photo" href="#">
+              <img class="img-fluid" src="assets/img/instagram/2.jpg" alt="">
+            </a>
+          </div>
+          <div class="col-3">
+            <a class="photo" href="#">
+              <img class="img-fluid" src="assets/img/instagram/3.jpg" alt="">
+            </a>
+          </div>
+          <div class="col-3">
+            <a class="photo" href="#">
+              <img class="img-fluid" src="assets/img/instagram/4.jpg" alt="">
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="row no-gutters">
+          <div class="col-3">
+            <a class="photo" href="#">
+              <img class="img-fluid" src="assets/img/instagram/5.jpg" alt="">
+            </a>
+          </div>
+          <div class="col-3">
+            <a class="photo" href="#">
+              <img class="img-fluid" src="assets/img/instagram/6.jpg" alt="">
+            </a>
+          </div>
+          <div class="col-3">
+            <a class="photo" href="#">
+              <img class="img-fluid" src="assets/img/instagram/7.jpg" alt="">
+            </a>
+          </div>
+          <div class="col-3">
+            <a class="photo" href="#">
+              <img class="img-fluid" src="assets/img/instagram/8.jpg" alt="">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer bg-darkest" role="contentinfo">
+    <div class="container">
+
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo BASE_URL ?>">Privacy policy</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo BASE_URL ?>">Terms</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo BASE_URL ?>">Feedback</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo BASE_URL ?>">Advertise</a>
+        </li>
+      </ul>
+      <div class="copy">
+        © Milo 2018<br>
+        All rights reserved
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+
+
+</body>
+</html>

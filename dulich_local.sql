@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 01, 2019 lúc 04:54 PM
--- Phiên bản máy phục vụ: 10.1.36-MariaDB
--- Phiên bản PHP: 5.6.38
+-- Host: 127.0.0.1
+-- Generation Time: Jun 06, 2019 at 08:03 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 5.6.40
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `dulich_local`
+-- Database: `dulich_local`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
@@ -35,7 +35,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `admin`
+-- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`admin_id`, `taikhoan`, `matkhau`) VALUES
@@ -44,7 +44,7 @@ INSERT INTO `admin` (`admin_id`, `taikhoan`, `matkhau`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `baiviet_diadiem`
+-- Table structure for table `baiviet_diadiem`
 --
 
 CREATE TABLE `baiviet_diadiem` (
@@ -58,7 +58,7 @@ CREATE TABLE `baiviet_diadiem` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `baiviet_diadiem`
+-- Dumping data for table `baiviet_diadiem`
 --
 
 INSERT INTO `baiviet_diadiem` (`baiviet_diadiem_id`, `diadiem_id`, `baiviet_diadiem_ten`, `baiviet_diadiem_anh`, `baiviet_diadiem_noidung`, `baiviet_diadiem_ngaytao`, `baiviet_diadiem_hot`) VALUES
@@ -67,7 +67,7 @@ INSERT INTO `baiviet_diadiem` (`baiviet_diadiem_id`, `diadiem_id`, `baiviet_diad
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `binhluan`
+-- Table structure for table `binhluan`
 --
 
 CREATE TABLE `binhluan` (
@@ -81,7 +81,7 @@ CREATE TABLE `binhluan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `binhluan`
+-- Dumping data for table `binhluan`
 --
 
 INSERT INTO `binhluan` (`binhluan_id`, `foreign_id`, `binhluan_kieu`, `binhluan_tacgia`, `binhluan_email`, `binhluan_noidung`, `binhluan_ngay`) VALUES
@@ -102,7 +102,7 @@ INSERT INTO `binhluan` (`binhluan_id`, `foreign_id`, `binhluan_kieu`, `binhluan_
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `cauchuyen`
+-- Table structure for table `cauchuyen`
 --
 
 CREATE TABLE `cauchuyen` (
@@ -115,7 +115,7 @@ CREATE TABLE `cauchuyen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `cauchuyen`
+-- Dumping data for table `cauchuyen`
 --
 
 INSERT INTO `cauchuyen` (`cauchuyen_id`, `cauchuyen_tieude`, `cauchuyen_tacgia`, `cauchuyen_noidung`, `cauchuyen_ngay`, `cauchuyen_trangthai`) VALUES
@@ -127,7 +127,7 @@ INSERT INTO `cauchuyen` (`cauchuyen_id`, `cauchuyen_tieude`, `cauchuyen_tacgia`,
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `danhmuc`
+-- Table structure for table `danhmuc`
 --
 
 CREATE TABLE `danhmuc` (
@@ -138,7 +138,7 @@ CREATE TABLE `danhmuc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `danhmuc`
+-- Dumping data for table `danhmuc`
 --
 
 INSERT INTO `danhmuc` (`danhmuc_id`, `danhmuc_ten`, `danhmuc_vitri`, `danhmuc_ngaytao`) VALUES
@@ -150,7 +150,7 @@ INSERT INTO `danhmuc` (`danhmuc_id`, `danhmuc_ten`, `danhmuc_vitri`, `danhmuc_ng
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `diadiem`
+-- Table structure for table `diadiem`
 --
 
 CREATE TABLE `diadiem` (
@@ -162,7 +162,7 @@ CREATE TABLE `diadiem` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `diadiem`
+-- Dumping data for table `diadiem`
 --
 
 INSERT INTO `diadiem` (`diadiem_id`, `diadiem_ten`, `diadiem_anh`, `diadiem_ngaytao`, `diadiem_vitri`) VALUES
@@ -172,13 +172,14 @@ INSERT INTO `diadiem` (`diadiem_id`, `diadiem_ten`, `diadiem_anh`, `diadiem_ngay
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tintuc`
+-- Table structure for table `tintuc`
 --
 
 CREATE TABLE `tintuc` (
   `tintuc_id` int(11) NOT NULL,
   `danhmuc_id` int(11) DEFAULT NULL,
   `tintuc_ten` varchar(150) DEFAULT NULL,
+  `tintuc_mota` text NOT NULL,
   `tintuc_noidung` text,
   `tintuc_anh` varchar(100) DEFAULT NULL,
   `tintuc_ngaytao` date DEFAULT NULL,
@@ -186,122 +187,123 @@ CREATE TABLE `tintuc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `tintuc`
+-- Dumping data for table `tintuc`
 --
 
-INSERT INTO `tintuc` (`tintuc_id`, `danhmuc_id`, `tintuc_ten`, `tintuc_noidung`, `tintuc_anh`, `tintuc_ngaytao`, `tintuc_hot`) VALUES
-(9, 15, 'How can we sing about love?112', '<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like</p>', '95365cbf386c835d30.90126118.png', '2019-04-04', 0),
-(12, 17, 'How can we sing about love?99', '<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>', '95325cbf3028957352.60626222.png', '2019-04-04', 1),
-(13, 18, 'Chủ tịch TPHCM thông tin về nhân sự lãnh đạo', '<p>(D&acirc;n tr&iacute;)&nbsp;- Theo Chủ tịch UBND TPHCM Nguyễn Th&agrave;nh Phong, kỳ họp bất thường HĐND TP sắp tới sẽ bầu nh&acirc;n sự HĐND TP v&agrave; UBND TP. Hiện, TP đ&atilde; c&oacute; nh&acirc;n sự bầu 2 Ph&oacute; Chủ tịch UBND TP phụ tr&aacute;ch nội ch&iacute;nh, kinh tế v&agrave; đang chờ &yacute; kiến Trung ương; sắp tới sẽ bổ sung Ph&oacute; Chủ tịch phụ tr&aacute;ch văn h&oacute;a &ndash; x&atilde; hội.&nbsp;</p>', '322565ca626a7b47c49.46948230.jpg', '2019-04-04', 1),
-(14, 15, 'tuyen abcd', '<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.&nbsp;</p>', '91625ca9bfb8ece7c3.14980313.png', '2019-04-07', 1),
-(15, 18, 'efgsdfg', '<p>sdfgsdfg</p>', '164625cbf38e24eb026.80834117.png', '2019-04-23', 1),
-(18, 19, 'How can we sing about love?91', '<p>sdfgsd</p>', NULL, '2019-04-29', 0),
-(19, 15, 'How can we sing about love?8888', '<p>uuuuuuu</p>', '81845cc70affb60b19.57327850.png', '2019-04-29', 1),
-(20, 15, 'How can we sing about love?8888', '<p>uuuuuuu</p>', '237615cc70b2759e318.48051224.png', '2019-04-29', 0),
-(21, 15, 'How can we sing about love?8888', '<p>uuuuuuu</p>', '155795cc70be0991662.21987458.png', '2019-04-29', 0),
-(22, 15, 'How can we sing about love?88881121', '<p>uuuuuuu</p>', NULL, '2019-04-29', 0),
-(23, 15, 'How can we sing about love?88881121', '<p>uuuuuuu</p>', NULL, '2019-04-29', 0),
-(24, 19, 'How can we sing about love?99123', '<p>saaaaaaaaaaaaaaaaaa</p>', '70005cc70d3359dc13.19740101.png', '2019-04-29', 1),
-(25, 19, 'How can we sing about love?9912356789', '<p>saaaaaaaaaaaaaaaaaa</p>', NULL, '2019-04-29', 0),
-(26, 19, 'How can we sing about love?9912356789', '<p>saaaaaaaaaaaaaaaaaa</p>', NULL, '2019-04-29', 0),
-(27, 19, 'How can we sing about love?991235678', '<p>saaaaaaaaaaaaaaaaaa</p>', '213685cc70d7296c590.61370698.png', '2019-04-29', 0),
-(29, 19, 'How can we sing about love?99123567', '<p>saaaaaaaaaaaaaaaaaa</p>', '93935cc70d8bc7a033.74365426.png', '2019-04-29', 0),
-(30, 19, 'How can we sing about love?1123', '<p>sdfasdfasdfasdfffffffffffffff</p>', '157665cc70e50a06a77.22328606.png', '2019-04-29', 1),
-(31, 19, 'How can we sing about love?1123789', '<p>sdfasdfasdfasdfffffffffffffff</p>', '157665cc70e50a06a77.22328606.png', '2019-04-29', 0),
-(36, 19, 'How can we sing about love?11237891211111', '<p>sdfasdfasdfasdfffffffffffffff</p>', '157665cc70e50a06a77.22328606.png', '2019-04-29', 0),
-(37, 19, 'How can we sing about love?11237891211111', '<p>sdfasdfasdfasdfffffffffffffff</p>', '157665cc70e50a06a77.22328606.png', '2019-04-29', 1);
+INSERT INTO `tintuc` (`tintuc_id`, `danhmuc_id`, `tintuc_ten`, `tintuc_mota`, `tintuc_noidung`, `tintuc_anh`, `tintuc_ngaytao`, `tintuc_hot`) VALUES
+(9, 15, 'How can we sing about love?112', '', '<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like</p>', '95365cbf386c835d30.90126118.png', '2019-04-04', 0),
+(12, 17, 'How can we sing about love?99', '', '<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>', '95325cbf3028957352.60626222.png', '2019-04-04', 1),
+(13, 18, 'Chủ tịch TPHCM thông tin về nhân sự lãnh đạo', '', '<p>(D&acirc;n tr&iacute;)&nbsp;- Theo Chủ tịch UBND TPHCM Nguyễn Th&agrave;nh Phong, kỳ họp bất thường HĐND TP sắp tới sẽ bầu nh&acirc;n sự HĐND TP v&agrave; UBND TP. Hiện, TP đ&atilde; c&oacute; nh&acirc;n sự bầu 2 Ph&oacute; Chủ tịch UBND TP phụ tr&aacute;ch nội ch&iacute;nh, kinh tế v&agrave; đang chờ &yacute; kiến Trung ương; sắp tới sẽ bổ sung Ph&oacute; Chủ tịch phụ tr&aacute;ch văn h&oacute;a &ndash; x&atilde; hội.&nbsp;</p>', '322565ca626a7b47c49.46948230.jpg', '2019-04-04', 1),
+(14, 15, 'tuyen abcd', '', '<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.&nbsp;</p>', '91625ca9bfb8ece7c3.14980313.png', '2019-04-07', 1),
+(15, 18, 'efgsdfg', '', '<p>sdfgsdfg</p>', '164625cbf38e24eb026.80834117.png', '2019-04-23', 1),
+(18, 19, 'How can we sing about love?91', '', '<p>sdfgsd</p>', NULL, '2019-04-29', 0),
+(19, 15, 'How can we sing about love?8888', '', '<p>uuuuuuu</p>', '81845cc70affb60b19.57327850.png', '2019-04-29', 1),
+(20, 15, 'How can we sing about love?8888', '', '<p>uuuuuuu</p>', '237615cc70b2759e318.48051224.png', '2019-04-29', 0),
+(21, 15, 'How can we sing about love?8888', '', '<p>uuuuuuu</p>', '155795cc70be0991662.21987458.png', '2019-04-29', 0),
+(22, 15, 'How can we sing about love?88881121', '', '<p>uuuuuuu</p>', NULL, '2019-04-29', 0),
+(23, 15, 'How can we sing about love?88881121', '', '<p>uuuuuuu</p>', NULL, '2019-04-29', 0),
+(24, 19, 'How can we sing about love?99123', '', '<p>saaaaaaaaaaaaaaaaaa</p>', '70005cc70d3359dc13.19740101.png', '2019-04-29', 1),
+(25, 19, 'How can we sing about love?9912356789', '', '<p>saaaaaaaaaaaaaaaaaa</p>', NULL, '2019-04-29', 0),
+(26, 19, 'How can we sing about love?9912356789', '', '<p>saaaaaaaaaaaaaaaaaa</p>', NULL, '2019-04-29', 0),
+(27, 19, 'How can we sing about love?991235678', '', '<p>saaaaaaaaaaaaaaaaaa</p>', '213685cc70d7296c590.61370698.png', '2019-04-29', 0),
+(29, 19, 'How can we sing about love?99123567', '', '<p>saaaaaaaaaaaaaaaaaa</p>', '93935cc70d8bc7a033.74365426.png', '2019-04-29', 0),
+(30, 19, 'How can we sing about love?1123', '', '<p>sdfasdfasdfasdfffffffffffffff</p>', '157665cc70e50a06a77.22328606.png', '2019-04-29', 1),
+(31, 19, 'How can we sing about love?1123789', '', '<p>sdfasdfasdfasdfffffffffffffff</p>', '157665cc70e50a06a77.22328606.png', '2019-04-29', 0),
+(36, 19, 'How can we sing about love?11237891211111', '', '<p>sdfasdfasdfasdfffffffffffffff</p>', '157665cc70e50a06a77.22328606.png', '2019-04-29', 0),
+(37, 19, 'How can we sing about love?11237891211111', '', '<p>sdfasdfasdfasdfffffffffffffff</p>', '157665cc70e50a06a77.22328606.png', '2019-04-29', 1),
+(38, 15, '5 Nhà xe limousine đi Đà Lạt, đặt vé limousine Sài Gòn Đà Lạt nhanh nhất', '<p>Bạn đang t&igrave;m kiếm cho m&igrave;nh xe Limousine đi Đ&agrave; Lạt nhưng vẫn chưa c&oacute; c&acirc;u trả lời h&agrave;i l&ograve;ng cho ch&iacute;nh bản th&acirc;n m&igrave;nh. C&ugrave;ng&nbsp; t&igrave;m kiếm c&acirc;u trả lời xe limousine S&agrave;i G&ograve;n Đ&agrave; Lạt ngay trong b&agrave;i viết dưới đ&acirc;y bạn nh&eacute;!sdfgd</p>', '<p>Một trong những xe limousine đi Đ&agrave; Lạt chất lượng được y&ecirc;u th&iacute;ch nhất hiện nay đ&oacute; ch&iacute;nh l&agrave; Minh Tr&iacute;. H&atilde;ng xe n&agrave;y được đưa v&agrave;o hoạt động cuối năm 2016 với hệ thống xe ngoại nhập cao cấp. Đ&acirc;y l&agrave; h&atilde;ng xe được đ&aacute;nh gi&aacute; cao trong những năm gần đầy v&igrave; đơn vị sở hữu d&ograve;ng xe VIP c&oacute; 9 ghế ngồi massage thượng lưu. Ri&ecirc;ng 4 h&agrave;ng ghế trước được bọc da sang trọng, người d&ugrave;ng c&oacute; thể xoay, ng&atilde;, trượt một c&aacute;ch thoải m&aacute;i. Xe c&ograve;n c&oacute; 3 h&agrave;ng ghế sau được gập th&agrave;nh giường, mang lại cảm gi&aacute;c sang trọng v&agrave; thoải m&aacute;i. Do đ&oacute;, đ&acirc;y được xem l&agrave; một trong số &iacute;t những nh&agrave; xe limousine giường nằm đi Đ&agrave; Lạt. Ngo&agrave;i ra, kh&aacute;ch h&agrave;ng sẽ cảm thấy rất h&agrave;i l&ograve;ng về hệ thống nội thất, đ&egrave;n chiếu s&aacute;ng cũng như tiện nghi hấp dẫn như tivi LCD,wifi, điều h&ograve;a, hệ thống sạc điện thoại</p>', '204935cf940534840e3.01326185.jpg', '2019-06-06', 1);
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `admin`
+-- Indexes for table `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`admin_id`);
 
 --
--- Chỉ mục cho bảng `baiviet_diadiem`
+-- Indexes for table `baiviet_diadiem`
 --
 ALTER TABLE `baiviet_diadiem`
   ADD PRIMARY KEY (`baiviet_diadiem_id`);
 
 --
--- Chỉ mục cho bảng `binhluan`
+-- Indexes for table `binhluan`
 --
 ALTER TABLE `binhluan`
   ADD PRIMARY KEY (`binhluan_id`);
 
 --
--- Chỉ mục cho bảng `cauchuyen`
+-- Indexes for table `cauchuyen`
 --
 ALTER TABLE `cauchuyen`
   ADD PRIMARY KEY (`cauchuyen_id`);
 
 --
--- Chỉ mục cho bảng `danhmuc`
+-- Indexes for table `danhmuc`
 --
 ALTER TABLE `danhmuc`
   ADD PRIMARY KEY (`danhmuc_id`);
 
 --
--- Chỉ mục cho bảng `diadiem`
+-- Indexes for table `diadiem`
 --
 ALTER TABLE `diadiem`
   ADD PRIMARY KEY (`diadiem_id`);
 
 --
--- Chỉ mục cho bảng `tintuc`
+-- Indexes for table `tintuc`
 --
 ALTER TABLE `tintuc`
   ADD PRIMARY KEY (`tintuc_id`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `admin`
+-- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
   MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT cho bảng `baiviet_diadiem`
+-- AUTO_INCREMENT for table `baiviet_diadiem`
 --
 ALTER TABLE `baiviet_diadiem`
   MODIFY `baiviet_diadiem_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT cho bảng `binhluan`
+-- AUTO_INCREMENT for table `binhluan`
 --
 ALTER TABLE `binhluan`
-  MODIFY `binhluan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `binhluan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT cho bảng `cauchuyen`
+-- AUTO_INCREMENT for table `cauchuyen`
 --
 ALTER TABLE `cauchuyen`
   MODIFY `cauchuyen_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
--- AUTO_INCREMENT cho bảng `danhmuc`
+-- AUTO_INCREMENT for table `danhmuc`
 --
 ALTER TABLE `danhmuc`
   MODIFY `danhmuc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT cho bảng `diadiem`
+-- AUTO_INCREMENT for table `diadiem`
 --
 ALTER TABLE `diadiem`
   MODIFY `diadiem_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT cho bảng `tintuc`
+-- AUTO_INCREMENT for table `tintuc`
 --
 ALTER TABLE `tintuc`
-  MODIFY `tintuc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `tintuc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

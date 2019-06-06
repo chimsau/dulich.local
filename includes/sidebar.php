@@ -1,41 +1,30 @@
-<div class="col-md-3 ml-auto">
-  <aside class="sidebar">
-    <div class="card mb-4">
-      <div class="card-body">
-        <h4 class="card-title">About</h4>
-        <p class="card-text">Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam <a href="#">semper libero</a>, sit amet adipiscing sem neque sed ipsum. </p>
-      </div>
-    </div><!-- /.card -->
-  </aside>
-
-  <aside class="sidebar sidebar-sticky">
-    <div class="card mb-4">
-      <div class="card-body">
-        <h4 class="card-title">Tags</h4>
-        <a class="btn btn-light btn-sm mb-1" href="page-category.html">Journey</a>
-        <a class="btn btn-light btn-sm mb-1" href="page-category.html">Work</a>
-        <a class="btn btn-light btn-sm mb-1" href="page-category.html">Lifestype</a>
-        <a class="btn btn-light btn-sm mb-1" href="page-category.html">Photography</a>
-        <a class="btn btn-light btn-sm mb-1" href="page-category.html">Food &amp; Drinks</a>
-      </div>
-    </div><!-- /.card -->
-    <div class="card mb-4">
-      <div class="card-body">
-        <h4 class="card-title">Popular stories</h4>
-
-        <a href="post-image.html" class="d-inline-block">
-          <h4 class="h6">The blind man</h4>
-          <img class="card-img" src="img/articles/2.jpg" alt="">
-        </a>
-        <time class="timeago" datetime="2017-10-03 20:00" data-tid="7">1 year ago</time> in Lifestyle
-
-        <a href="post-image.html" class="d-inline-block mt-3">
-          <h4 class="h6">Crying on the news</h4>
-          <img class="card-img" src="img/articles/3.jpg" alt="">
-        </a>
-        <time class="timeago" datetime="2017-07-16 20:00" data-tid="8">1 year ago</time> in Work
-
-      </div>
-    </div><!-- /.card -->
-  </aside>
-</div>
+<aside id="aside">
+  <div class="wrapper-post-hot">
+    <h3 class="title">
+      Bài viết hot
+    </h3>
+    <ul class="list-post-hot">
+      <li><a href="#">Hướng dẫn du khách cách hoàn thuế tại sân bay Incheon</a></li>
+      <li><a href="#">[Seoul] Chợ Noryangjin: Thiên đường cho tín đồ mê hải sản</a></li>
+      <li><a href="#">[Seoul] Chợ Noryangjin: Thiên đường cho tín đồ mê hải sản</a></li>
+      <li><a href="#">[Seoul] Chợ Noryangjin: Thiên đường cho tín đồ mê hải sản</a></li>
+      <li><a href="#">[Seoul] Chợ Noryangjin: Thiên đường cho tín đồ mê hải sản</a></li>
+    </ul>
+  </div>
+  <hr>
+  <div class="wrapper-categories">
+    <h3 class="title">
+      Chuyên mục
+    </h3>
+    <ul>
+      <li class="cat-item"><a href="#">Cẩm nang phượt</a>
+      </li>
+      <li class="cat-item"><a href="#">Kinh nghiệm phượt</a>
+      </li>
+      <li class="cat-item"><a href="#">Nhật ký phượt</a>
+      </li>
+      <li class="cat-item"><a href="#">Tin tức phượt</a>
+      </li>
+    </ul>
+  </div>
+</aside>

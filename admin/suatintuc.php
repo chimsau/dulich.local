@@ -25,7 +25,9 @@
       } else {
         $errors[] = "danhMuc";
       }
-
+      if($trimmed['tintuc_mota']){
+        $tinTucMoTa = $trimmed['tintuc_mota'];
+      }
       if($trimmed['tintuc_noidung']){
         $tinTucNoiDung = $trimmed['tintuc_noidung'];
       } 
@@ -62,11 +64,11 @@
       
 
       if(empty($errors)){ // kiểm tra nếu không có lỗi xảy ra, thì chèn dữ liệu vào database
-        $query = "UPDATE tintuc SET tintuc_ten = ?, danhmuc_id = ?, tintuc_noidung = ?, tintuc_anh = ?, tintuc_hot = ? WHERE tintuc_id = ? LIMIT 1";
+        $query = "UPDATE tintuc SET tintuc_ten = ?, danhmuc_id = ?, tintuc_mota = ?, tintuc_noidung = ?, tintuc_anh = ?, tintuc_hot = ? WHERE tintuc_id = ? LIMIT 1";
         $stmt = $dbc->prepare($query);
 
         //gan tham so cho cau lenh prepare
-        $stmt->bind_param('sissii', $tinTucTen, $danhMuc, $tinTucNoiDung, $tinTucAnh, $tinTucHot, $tid);
+        $stmt->bind_param('sisssii', $tinTucTen, $danhMuc, $tinTucMoTa, $tinTucNoiDung, $tinTucAnh, $tinTucHot, $tid);
 
         //cho chay cau lenh prepare
         $stmt->execute();
@@ -147,6 +149,12 @@
                           <ul class='parsley-errors-list filled'><li class='parsley-required'>Chưa chọn danh mục</li></ul>
                         ";
                       ?>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-12 col-sm-3 col-form-label text-sm-right">Mô tả</label>
+                  <div class="col-12 col-sm-8 col-lg-6">
+                    <textarea class="form-control" name="tintuc_mota"><?php if(isset($tinTucs['tintuc_mota'])) echo $tinTucs['tintuc_mota']; ?></textarea>
                   </div>
                 </div>
 

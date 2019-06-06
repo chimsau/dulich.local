@@ -1,123 +1,122 @@
+<?php include('includes/mysqli_connect.php');?>
 <?php include('includes/functions.php');?>
 <?php include('includes/header.php');?>
-  <main class="main pt-4" role="main">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-9">
-          <div class="row">
-            <div class="col-md-6">
-              <article class="card mb-4">
-                <header class="card-header">
-                  <div class="card-meta">
-                    <a href="#"><time class="timeago" datetime="2017-10-26 20:00" data-tid="1">1 year ago</time></a> in <a href="page-category.html">Journey</a>
-                  </div>
-                  <a href="post-image.html">
-                    <h4 class="card-title">How can we sing about love?</h4>
-                  </a>
-                </header>
-                <a href="post-image.html">
-                  <img class="card-img" src="img/articles/22.jpg" alt="">
-                </a>
-                <div class="card-body">
-                  <p class="card-text">Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. </p>
-                </div>
-              </article><!-- /.card -->
+<main id="main">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="wrapper-main">
+					<div class="row m-0">
+						<div class="col-md-4 p-0">
+<?php include('includes/sidebar.php');?>
+						</div>
+						<div class="col-md-8 p-0">
+							<div class="wrapper-main-content">
+								<h2 class="title"> DÂN ĐI PHƯỢT <span class="post-subheading">Blog</span></h2>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="box-content">
+											<div class="featured">
+											    <article class="clearfix post">
+											        <div class="post-inner post-hover">
+											            <div class="post-thumbnail featured-img-thumb-large">
+											                <a href="#" title="">
+											                    <img src="assets/img/articles/du-lich-thai-lan-can-mang-theo-gi-thumb-720x340.jpg" class="img-fluid" alt="">
+											                </a>
+											                <a class="post-comments" href=""><span><i class="fa fa-comments-o"></i>0</span></a>
+											            </div>
+											            <!--/.post-thumbnail-->
 
-              <article class="card mb-4">
-                <header class="card-header">
-                  <div class="card-meta">
-                    <a href="#"><time class="timeago" datetime="2017-10-03 20:00" data-tid="2">1 year ago</time></a> in <a href="page-category.html">Lifestyle</a>
-                  </div>
-                  <a href="post-image.html">
-                    <h4 class="card-title">Oh, I guess they have the blues</h4>
-                  </a>
-                </header>
-                <a href="post-image.html">
-                  <img class="card-img" src="img/articles/18.jpg" alt="">
-                </a>
-                <div class="card-body">
-                  <p class="card-text">Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. </p>
-                </div>
-              </article><!-- /.card -->
+											            <div class="post-meta clearfix">
+											                <p class="post-category"><a href="">Cẩm nang phượt</a></p>
+											                <p class="post-date">
+											                    <time class="published" datetime="2019-05-13 15:37:10">13 Tháng Năm, 2019</time>
+											                </p>
+											            </div>
+											            <!--/.post-meta-->
 
-              <article class="card mb-4">
-                <header class="card-header">
-                  <div class="card-meta">
-                    <a href="#"><time class="timeago" datetime="2017-07-16 20:00" data-tid="3">1 year ago</time></a> in <a href="page-category.html">Work</a>
-                  </div>
-                  <a href="post-image.html">
-                    <h4 class="card-title">How can we, how can we sing about ourselves?</h4>
-                  </a>
-                </header>
-                <a href="post-image.html">
-                  <img class="card-img" src="img/articles/12.jpg" alt="">
-                </a>
-                <div class="card-body">
-                  <p class="card-text">Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. </p>
-                </div>
-              </article><!-- /.card -->
+											            <h2 class="post-title">
+        														<a href="" title="">Đi du lịch Thái Lan cần mang theo những gì – chia sẻ từ blogger Liên Phạm</a>
+        													</h2>
+											            <!--/.post-title-->
+											            <div class="excerpt">
+											                <p>Đối với những ai lần đầu tiên đi du lịch nước ngoài thì điểm đến đầu tiên và dễ nhất, phổ biến nhất có thể nói là Thái Lan. Tuy vậy vẫn có nhiều...</p>
+											            </div>
+											            <!--/.entry-->
+											        </div>
+											        <!--/.post-inner-->
+											    </article>
+											    <!--/.post-->
+											</div>
+											<div id="grid-wrapper" class="post-list clearfix">
+												<div class="row">
+                          <?php 
+                          if(isset($_GET['cid']) && filter_var($_GET['cid'], FILTER_VALIDATE_INT, array('min_range' =>1))) {
 
-            </div>
-            <div class="col-md-6">
 
-              <article class="card mb-4">
-                <header class="card-header">
-                  <div class="card-meta">
-                    <a href="#"><time class="timeago" datetime="2017-10-15 20:00" data-tid="4">1 year ago</time></a> in <a href="page-category.html">Lifestyle</a>
-                  </div>
-                  <a href="post-image.html">
-                    <h4 class="card-title">The king is made of paper</h4>
-                  </a>
-                </header>
-                <a href="post-image.html">
-                  <img class="card-img" src="img/articles/5.jpg" alt="">
-                </a>
-                <div class="card-body">
-                  <p class="card-text">Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. </p>
-                </div>
-              </article><!-- /.card -->
+                          } elseif (isset($_GET['nid']) && filter_var($_GET['nid'], FILTER_VALIDATE_INT, array('min_range' =>1))) {
 
-              <article class="card mb-4">
-                <header class="card-header">
-                  <div class="card-meta">
-                    <a href="#"><time class="timeago" datetime="2017-08-24 20:00" data-tid="5">1 year ago</time></a> in <a href="page-category.html">Work</a>
-                  </div>
-                  <a href="post-image.html">
-                    <h4 class="card-title">Crying on the news</h4>
-                  </a>
-                </header>
-                <a href="post-image.html">
-                  <img class="card-img" src="img/articles/13.jpg" alt="">
-                </a>
-                <div class="card-body">
-                  <p class="card-text">Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. </p>
-                </div>
-              </article><!-- /.card -->
-
-              <article class="card mb-4">
-                <header class="card-header">
-                  <div class="card-meta">
-                    <a href="#"><time class="timeago" datetime="2017-05-08 20:00" data-tid="6">1 year ago</time></a> in <a href="page-category.html">Journey</a>
-                  </div>
-                  <a href="post-image.html">
-                    <h4 class="card-title">How can you not sing about love?</h4>
-                  </a>
-                </header>
-                <a href="post-image.html">
-                  <img class="card-img" src="img/articles/1.jpg" alt="">
-                </a>
-                <div class="card-body">
-                  <p class="card-text">Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. </p>
-                </div>
-              </article><!-- /.card -->
-
-            </div>
-          </div>
-        </div>
-<?php include('includes/sidebar.php');?>  
-      </div>
-    </div>
-
-  </main>
-<?php include('includes/section-instagram.php');?>
+                          } else{ 
+                            $query = "SELECT n.tintuc_id ,n.tintuc_ten, n.tintuc_mota, n.tintuc_noidung, n.tintuc_anh, DATE_FORMAT(n.tintuc_ngaytao, '%d Tháng %m, %y') AS date, c.danhmuc_ten, c.danhmuc_id ";
+                            $query .= " FROM tintuc AS n "; 
+                            $query .= " INNER JOIN danhmuc AS c "; 
+                            $query .= " USING (danhmuc_id) ORDER BY date ASC ";
+                            if($result = $dbc->query($query)){
+                              while ($tintucs = $result->fetch_array(MYSQLI_ASSOC)) {
+                                echo "
+                                  <div class='col-md-6'>
+                                    <article class='clearfix post'>
+                                      <div class='post-inner post-hover'>
+                                          <div class='post-thumbnail featured-img-thumb-large'>
+                                              <a href='single.php?nid={$tintucs['tintuc_id']}' title=''>
+                                                  <img src='".BASE_URL."/admin/uploads/images/{$tintucs['tintuc_anh']}' class='img-fluid' alt=''>
+                                              </a>
+                                              <a class='post-comments' href=''><span><i class='fa fa-comments-o'></i>0</span></a>
+                                          </div>
+                                          <div class='post-meta clearfix'>
+                                              <p class='post-category'><a href='single.php?cid={$tintucs['danhmuc_id']}'>{$tintucs['danhmuc_ten']}</a></p>
+                                              <p class='post-date'>
+                                                  <time class='published'>{$tintucs['date']}</time>
+                                              </p>
+                                          </div>
+                                          <h2 class='post-title'>
+                                            <a href='single.php?nid={$tintucs['tintuc_id']}' title='{$tintucs['tintuc_ten']}'>{$tintucs['tintuc_ten']}</a>
+                                          </h2>
+                                          <div class='excerpt'>
+                                              <p>{$tintucs['tintuc_mota']}</p>
+                                          </div>
+                                      </div>
+                                    </article>
+                                  </div>
+                                ";
+                              }
+                            }
+                          }?>
+												</div>
+											</div>
+											<nav class="pagination clearfix">
+											    <div class="wp-pagenavi">
+											        <span class="current">1</span>
+											        <a class="page larger" href="">2</a>
+											        <a class="page larger" href="">3</a>
+											        <a class="page larger" href="">4</a>
+											        <a class="page larger" href="">5</a>
+											        <span class="extend">...</span>
+											        <a class="larger page" href="">10</a>
+											        <span class="extend">...</span>
+											        <a class="nextpostslink" rel="next" href="http://dandiphuot.com/page/2">»</a>
+											        <a class="last" href="http://dandiphuot.com/page/15">Trang cuối »</a>
+											    </div>
+											</nav>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
 <?php include('includes/footer.php');?>

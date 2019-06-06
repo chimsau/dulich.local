@@ -43,8 +43,31 @@ body{font-family: 'Roboto Condensed', Arial, sans-serif;}
 /* CSS MAIN */
 h3.title{font-size: 16px;font-weight: 300;}
 .list-post-hot li a{font-weight: 300;color: red;}
-.wrapper-post-hot{
+.wrapper-post-hot,.wrapper-categories{
 	padding:30px 30px 20px;
+}
+.wrapper-categories .cat-item{
+	padding: 10px 0;
+    border-bottom: 1px solid #e4e4e4;
+}
+.wrapper-categories .cat-item a{
+	color: #777;
+}
+.wrapper-categories .cat-item a:hover{
+	color: #444;
+}
+.wrapper-categories .cat-item a:hover:before{
+	color: #999;
+}
+.wrapper-categories .cat-item a::before{
+	content: "\f07c";
+	font-family: FontAwesome;
+    font-size: 12px;
+    margin-right: 6px;
+    color: #ccc;
+    display: inline-block!important;
+    width: 1em;
+    text-align: center;
 }
 h2.title{
 	color: #666;
@@ -128,7 +151,7 @@ h2.title{
 }
 .post-title a,.post-category a{color: #444;}
 .excerpt{font-size: 1em;color: #aaa;}
-.post-list .post-title{font-size: 1.375em;line-height: 1.5em;}
+.post-list .post-title{font-size: 1.375em;}
 .featured{
 	padding-bottom: 30px;
     margin-bottom: 30px;
@@ -139,7 +162,7 @@ h2.title{
 	margin-bottom: 30px;
 	padding-bottom: 30px;
 }
-
+.list-post-hot li{margin-bottom: 10px;}
 /*PAGINATION*/
 .pagination{
 	margin-bottom: 15px;
