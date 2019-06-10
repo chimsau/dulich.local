@@ -99,6 +99,7 @@ h2.title{
     transition: all 1s ease;
     position: relative;
     margin-bottom: 1em;
+    padding-top: 69%;
 }
 .post-hover:hover .post-thumbnail{
     opacity: .75;
@@ -223,3 +224,19 @@ h2.title{
     color:#fff !important;
     background:#ec8608
 }
+.location-layout .item_wrap{margin-bottom:15px;padding-bottom:15px;border-bottom:1px solid #eee;}
+.location-layout .image_wrap{width: 48%;float:left;position: relative;}
+.location-layout .details_wrap{margin-left: 50%;}
+.location-layout .image_wrap .location-icon{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #38414ca3;
+    color: #fff;
+    padding: 7px 15px;
+}
+.location-layout .name a{color: #444;}
+.location-layout .name{font-size: 1.375em}
+.location-layout .description{color:#aaa;font-size:1em;}
+.post-thumbnail img{position:absolute;top: 0;bottom: 0;left: 0;right: 0;height: 100%;width: 100%;object-fit: cover;}

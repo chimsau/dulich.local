@@ -8,7 +8,7 @@
 				<div class="wrapper-main">
 					<div class="row m-0">
 						<div class="col-md-4 p-0">
-<?php include('includes/sidebar.php');?>
+							<?php include('includes/sidebar.php');?>
 						</div>
 						<div class="col-md-8 p-0">
 							<div class="wrapper-main-content">
@@ -16,82 +16,88 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="box-content">
+				                          <?php 
+				                          if(isset($_GET['cid']) && filter_var($_GET['cid'], FILTER_VALIDATE_INT, array('min_range' =>1))) {
+
+
+				                          } elseif (isset($_GET['nid']) && filter_var($_GET['nid'], FILTER_VALIDATE_INT, array('min_range' =>1))) {
+
+				                          } else { ?>
 											<div class="featured">
 											    <article class="clearfix post">
-											        <div class="post-inner post-hover">
-											            <div class="post-thumbnail featured-img-thumb-large">
-											                <a href="#" title="">
-											                    <img src="assets/img/articles/du-lich-thai-lan-can-mang-theo-gi-thumb-720x340.jpg" class="img-fluid" alt="">
-											                </a>
-											                <a class="post-comments" href=""><span><i class="fa fa-comments-o"></i>0</span></a>
-											            </div>
-											            <!--/.post-thumbnail-->
+											    	<?php 
+											    		$posts = fetch_news();
+											    		$items = $posts[0];
 
-											            <div class="post-meta clearfix">
-											                <p class="post-category"><a href="">Cẩm nang phượt</a></p>
-											                <p class="post-date">
-											                    <time class="published" datetime="2019-05-13 15:37:10">13 Tháng Năm, 2019</time>
-											                </p>
-											            </div>
-											            <!--/.post-meta-->
+										    			echo"
+												        <div class='post-inner post-hover'>
+												            <div class='post-thumbnail featured-img-thumb-large'>
+												                <a href='single.php?nid={$items['tintuc_id']}'>
+												                    <img src='".BASE_URL."/admin/uploads/images/{$items['tintuc_anh']}' class='img-fluid' alt=''>
+												                </a>
+												                <a class='post-comments' href=''><span><i class='fa fa-comments-o'></i>0</span></a>
+												            </div>
+												         
 
-											            <h2 class="post-title">
-        														<a href="" title="">Đi du lịch Thái Lan cần mang theo những gì – chia sẻ từ blogger Liên Phạm</a>
+												            <div class='post-meta clearfix'>
+												                <p class='post-category'><a href='single.php?cid={$items['danhmuc_id']}'>{$items['danhmuc_ten']}</a></p>
+												                <p class='post-date'>
+												                    <time class='published' datetime=''>{$items['date']}</time>
+												                </p>
+												            </div>
+												           
+
+												            <h2 class='post-title'>
+        														<a href='single.php?nid={$items['tintuc_id']}' title='{$items['tintuc_ten']}'>{$items['tintuc_ten']}</a>
         													</h2>
-											            <!--/.post-title-->
-											            <div class="excerpt">
-											                <p>Đối với những ai lần đầu tiên đi du lịch nước ngoài thì điểm đến đầu tiên và dễ nhất, phổ biến nhất có thể nói là Thái Lan. Tuy vậy vẫn có nhiều...</p>
-											            </div>
-											            <!--/.entry-->
-											        </div>
+												           
+												            <div class='excerpt'>
+												                <p>{$items['tintuc_mota']}</p>
+												            </div>
+												            
+												        </div>
+												        ";
+											    	 ?>
 											        <!--/.post-inner-->
 											    </article>
 											    <!--/.post-->
 											</div>
 											<div id="grid-wrapper" class="post-list clearfix">
 												<div class="row">
-                          <?php 
-                          if(isset($_GET['cid']) && filter_var($_GET['cid'], FILTER_VALIDATE_INT, array('min_range' =>1))) {
-
-
-                          } elseif (isset($_GET['nid']) && filter_var($_GET['nid'], FILTER_VALIDATE_INT, array('min_range' =>1))) {
-
-                          } else{ 
-                            $query = "SELECT n.tintuc_id ,n.tintuc_ten, n.tintuc_mota, n.tintuc_noidung, n.tintuc_anh, DATE_FORMAT(n.tintuc_ngaytao, '%d Tháng %m, %y') AS date, c.danhmuc_ten, c.danhmuc_id ";
-                            $query .= " FROM tintuc AS n "; 
-                            $query .= " INNER JOIN danhmuc AS c "; 
-                            $query .= " USING (danhmuc_id) ORDER BY date ASC ";
-                            if($result = $dbc->query($query)){
-                              while ($tintucs = $result->fetch_array(MYSQLI_ASSOC)) {
-                                echo "
-                                  <div class='col-md-6'>
-                                    <article class='clearfix post'>
-                                      <div class='post-inner post-hover'>
-                                          <div class='post-thumbnail featured-img-thumb-large'>
-                                              <a href='single.php?nid={$tintucs['tintuc_id']}' title=''>
-                                                  <img src='".BASE_URL."/admin/uploads/images/{$tintucs['tintuc_anh']}' class='img-fluid' alt=''>
-                                              </a>
-                                              <a class='post-comments' href=''><span><i class='fa fa-comments-o'></i>0</span></a>
-                                          </div>
-                                          <div class='post-meta clearfix'>
-                                              <p class='post-category'><a href='single.php?cid={$tintucs['danhmuc_id']}'>{$tintucs['danhmuc_ten']}</a></p>
-                                              <p class='post-date'>
-                                                  <time class='published'>{$tintucs['date']}</time>
-                                              </p>
-                                          </div>
-                                          <h2 class='post-title'>
-                                            <a href='single.php?nid={$tintucs['tintuc_id']}' title='{$tintucs['tintuc_ten']}'>{$tintucs['tintuc_ten']}</a>
-                                          </h2>
-                                          <div class='excerpt'>
-                                              <p>{$tintucs['tintuc_mota']}</p>
-                                          </div>
-                                      </div>
-                                    </article>
-                                  </div>
-                                ";
-                              }
-                            }
-                          }?>
+												<?php  
+						                        $posts = fetch_news();
+						                        unset($posts[0]);
+						                        foreach ($posts as $post) {
+										            echo "
+										                <div class='col-md-6'>
+						                                    <article class='clearfix post'>
+						                                      <div class='post-inner post-hover'>
+						                                          <div class='post-thumbnail featured-img-thumb-large'>
+						                                              <a href='single.php?nid={$post['tintuc_id']}' title=''>
+						                                                  <img src='".BASE_URL."/admin/uploads/images/{$post['tintuc_anh']}' class='img-fluid' alt=''>
+						                                              </a>
+						                                              <a class='post-comments' href=''><span><i class='fa fa-comments-o'></i>0</span></a>
+						                                          </div>
+						                                          <div class='post-meta clearfix'>
+						                                              <p class='post-category'><a href='single.php?cid={$post['danhmuc_id']}'>{$post['danhmuc_ten']}</a></p>
+						                                              <p class='post-date'>
+						                                                  <time class='published'>{$post['date']}</time>
+						                                              </p>
+						                                          </div>
+						                                          <h2 class='post-title'>
+						                                            <a href='single.php?nid={$post['tintuc_id']}' title='{$post['tintuc_ten']}'>{$post['tintuc_ten']}</a>
+						                                          </h2>
+						                                          <div class='excerpt'>
+						                                              <p>{$post['tintuc_mota']}</p>
+						                                          </div>
+						                                      </div>
+						                                    </article>
+						                                </div>
+										            ";
+										        }
+											    ?>
+						            
+						                        <?php } ?>
 												</div>
 											</div>
 											<nav class="pagination clearfix">

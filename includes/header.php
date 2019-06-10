@@ -14,6 +14,31 @@ session_start(); ?>
 		<link href="assets/css/style.css" rel="stylesheet">
 		<link rel="stylesheet" href="assets/lib/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="assets/roboto-condensed/roboto-condensed.css">
+		<script type="text/javascript" src="assets/lib/tinymce/tinymce.min.js"></script>
+	    <script type="text/javascript">
+	        tinymce.init({
+	          selector: 'textarea',
+	          height: 300,
+	          theme: 'modern',
+	          plugins: [
+	            'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+	            'searchreplace wordcount visualblocks visualchars code fullscreen',
+	            'insertdatetime media nonbreaking save table contextmenu directionality',
+	            'emoticons template paste textcolor colorpicker textpattern imagetools'
+	          ],
+	          toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+	          toolbar2: 'print preview media | forecolor backcolor emoticons',
+	          image_advtab: true,
+	          templates: [
+	            { title: 'Test template 1', content: 'Test 1' },
+	            { title: 'Test template 2', content: 'Test 2' }
+	          ],
+	          content_css: [
+	            'assets/lib/tinymce/css/codepen.min.css'
+	          ]
+	            
+	         });
+	    </script>
 	</head>
 
 	<body>
@@ -41,7 +66,7 @@ session_start(); ?>
 											<a class="nav-link" href="#">Địa điểm du lịch</a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" href="#">Câu chuyện</a>
+											<a class="nav-link" href='post-story.php'>Chia Sẻ câu chuyện</a>
 										</li>
 									</ul>
 									<form class="form-inline my-2 my-md-0">
@@ -58,7 +83,7 @@ session_start(); ?>
 					<div class="row">
 						<div class="col-md-12">
 							<div class="box-logo clearfix">
-								<p class="site-title"><a href="#">Du lịch</a></p>
+								<p class="site-title"><a href="<?php echo '".BASE_URL."';  ?>">Du lịch</a></p>
 								<p class="site-description">Cẩm nang phượt dành cho người Việt</p>
 							</div>
 						</div>
