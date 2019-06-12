@@ -86,7 +86,7 @@
   <?php if(isset($messages)) {echo $messages;} ?>
   <form action="" method="post">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 form-group">
       
       <input type="text" class="form-control" id="name" name="binhluan_tacgia" placeholder="Nhập tên ..." value="<?php if(isset($_POST['binhluan_tacgia'])) echo strip_tags($_POST['binhluan_tacgia']); ?>">
       <?php 
@@ -96,7 +96,7 @@
         ";
       ?>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 form-group">
       
       <input type="email" class="form-control" id="email" name="binhluan_email" placeholder="Nhập địa chỉ email ..." value="<?php if(isset($_POST['binhluan_email'])) echo strip_tags($_POST['binhluan_email']); ?>">
       <?php 

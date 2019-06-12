@@ -55,7 +55,7 @@
                         // truy vấn CSDL
                         $query = "SELECT t.tintuc_id, t.tintuc_ten, t.tintuc_noidung, t.tintuc_anh, DATE_FORMAT(t.tintuc_ngaytao, '%d/%m/%y') AS date, t.tintuc_hot, d.danhmuc_ten ";
                         $query .= " FROM tintuc AS t";
-                        $query .= " JOIN danhmuc AS d";
+                        $query .= " LEFT JOIN danhmuc AS d";
                         $query .= " USING (danhmuc_id)";
                         $query .= " ORDER BY {$order_by} ASC";
                           if ($result = $dbc->query($query)) {

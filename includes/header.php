@@ -1,6 +1,7 @@
 <?php 
 ini_set('session.use_only_cookies', true);
 session_start(); ?>
+<?php ob_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -83,7 +84,7 @@ session_start(); ?>
 					<div class="row">
 						<div class="col-md-12">
 							<div class="box-logo clearfix">
-								<p class="site-title"><a href="<?php echo '".BASE_URL."';  ?>">Du lịch</a></p>
+								<p class="site-title"><a href="index.php">Du lịch</a></p>
 								<p class="site-description">Cẩm nang phượt dành cho người Việt</p>
 							</div>
 						</div>

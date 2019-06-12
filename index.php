@@ -65,55 +65,47 @@
 											<div id="grid-wrapper" class="post-list clearfix">
 												<div class="row">
 												<?php  
-						                        $posts = fetch_news();
+												$display = 5;
+												// Xác định vị trí bắt đầu.    
+                								$start = (isset($_GET['s']) && filter_var($_GET['s'], FILTER_VALIDATE_INT, array('min_range' => 1))) ? $_GET['s'] : 0;
+						                        $posts = fetch_news($display);
 						                        unset($posts[0]);
-						                        foreach ($posts as $post) {
-										            echo "
-										                <div class='col-md-6'>
-						                                    <article class='clearfix post'>
-						                                      <div class='post-inner post-hover'>
-						                                          <div class='post-thumbnail featured-img-thumb-large'>
-						                                              <a href='single.php?nid={$post['tintuc_id']}' title=''>
-						                                                  <img src='".BASE_URL."/admin/uploads/images/{$post['tintuc_anh']}' class='img-fluid' alt=''>
-						                                              </a>
-						                                              <a class='post-comments' href=''><span><i class='fa fa-comments-o'></i>0</span></a>
-						                                          </div>
-						                                          <div class='post-meta clearfix'>
-						                                              <p class='post-category'><a href='single.php?cid={$post['danhmuc_id']}'>{$post['danhmuc_ten']}</a></p>
-						                                              <p class='post-date'>
-						                                                  <time class='published'>{$post['date']}</time>
-						                                              </p>
-						                                          </div>
-						                                          <h2 class='post-title'>
-						                                            <a href='single.php?nid={$post['tintuc_id']}' title='{$post['tintuc_ten']}'>{$post['tintuc_ten']}</a>
-						                                          </h2>
-						                                          <div class='excerpt'>
-						                                              <p>{$post['tintuc_mota']}</p>
-						                                          </div>
-						                                      </div>
-						                                    </article>
-						                                </div>
-										            ";
-										        }
+						                        if(!empty($posts[1])) {
+							                        foreach ($posts as $post) {
+											            echo "
+											                <div class='col-md-6'>
+							                                    <article class='clearfix post'>
+							                                      <div class='post-inner post-hover'>
+							                                          <div class='post-thumbnail featured-img-thumb-large'>
+							                                              <a href='single.php?nid={$post['tintuc_id']}' title=''>
+							                                                  <img src='".BASE_URL."/admin/uploads/images/{$post['tintuc_anh']}' class='img-fluid' alt=''>
+							                                              </a>
+							                                              <a class='post-comments' href=''><span><i class='fa fa-comments-o'></i>0</span></a>
+							                                          </div>
+							                                          <div class='post-meta clearfix'>
+							                                              <p class='post-category'><a href='single.php?cid={$post['danhmuc_id']}'>{$post['danhmuc_ten']}</a></p>
+							                                              <p class='post-date'>
+							                                                  <time class='published'>{$post['date']}</time>
+							                                              </p>
+							                                          </div>
+							                                          <h2 class='post-title'>
+							                                            <a href='single.php?nid={$post['tintuc_id']}' title='{$post['tintuc_ten']}'>{$post['tintuc_ten']}</a>
+							                                          </h2>
+							                                          <div class='excerpt'>
+							                                              <p>{$post['tintuc_mota']}</p>
+							                                          </div>
+							                                      </div>
+							                                    </article>
+							                                </div>
+											            ";
+											        }
+
+						                        }
 											    ?>
-						            
-						                        <?php } ?>
 												</div>
 											</div>
-											<nav class="pagination clearfix">
-											    <div class="wp-pagenavi">
-											        <span class="current">1</span>
-											        <a class="page larger" href="">2</a>
-											        <a class="page larger" href="">3</a>
-											        <a class="page larger" href="">4</a>
-											        <a class="page larger" href="">5</a>
-											        <span class="extend">...</span>
-											        <a class="larger page" href="">10</a>
-											        <span class="extend">...</span>
-											        <a class="nextpostslink" rel="next" href="http://dandiphuot.com/page/2">»</a>
-											        <a class="last" href="http://dandiphuot.com/page/15">Trang cuối »</a>
-											    </div>
-											</nav>
+											<?php echo pagination_news($display);  ?>
+									        <?php } ?>
 										</div>
 									</div>
 								</div>

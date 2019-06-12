@@ -1,71 +1,81 @@
 <?php include('includes/mysqli_connect.php');?>
 <?php include('includes/functions.php');?>
 <?php include('includes/header.php');?>
-  <main class="main pt-4" role="main">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-9">
+<?php 
+if($nid = validate_id($_GET['nid'])) {
+      $set = get_news_by_id($nid);
+      $posts = array(); 
+  if($set->num_rows > 0) {
+    $news = mysqli_fetch_array($set, MYSQLI_ASSOC); 
+    $title = $news['tintuc_ten'];
+    $posts[] = array(
+      'tintuc_ten' => $news['tintuc_ten'], 
+      'tintuc_noidung' => $news['tintuc_noidung'], 
+      'tintuc_mota' => $news['tintuc_mota'],
+      'tintuc_anh' => $news['tintuc_anh'],
+      'tintuc_ngaytao' => $news['tintuc_ngaytao'],
+      'danhmuc_ten' => $news['danhmuc_ten'],
+      'danhmuc_id' => $news['danhmuc_id'],
+    );
 
-          <article class="card mb-4">
-            <header class="card-header text-center">
-              <div class="card-meta">
-                <a href="#"><time class="timeago" datetime="2017-10-26 20:00" data-tid="1">1 year ago</time></a> in <a href="page-category.html">Journey</a>
-              </div>
-              <a href="post-image.html">
-                <h1 class="card-title">How can we sing about love?</h1>
-              </a>
-            </header>
-            <a href="post-image.html">
-              <img class="card-img" src="img/articles/1.jpg" alt="">
-            </a>
-            <div class="card-body">
-
-              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque <a href="#">penatibus</a> et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, <strong>pretium quis, sem.</strong></p>
-
-              <p>Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.</p>
-
-              <p><strong>Aliquam lorem ante</strong>, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. <strong>Etiam rhoncus</strong>. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante <a href="#">tincidunt tempus</a>.</p>
-
-              <blockquote>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-              </blockquote>
-
-              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, <a href="#">nascetur ridiculus</a> mus. Donec quam felis, ultricies nec, pellentesque eu, <strong>pretium quis, sem.</strong></p>
-
-              <div class="row">
-                <div class="col-md-4">
-                  <ul>
-                    <li>Donec quam felis</li>
-                    <li>Consectetuer adipiscing</li>
-                  </ul>
-                </div>
-                <div class="col-md-4">
-                  <ul>
-                    <li>Donec quam felis</li>
-                    <li>Consectetuer adipiscing</li>
-                  </ul>
-                </div>
-                <div class="col-md-4">
-                  <ul>
-                    <li>Donec quam felis</li>
-                    <li>Consectetuer adipiscing</li>
-                  </ul>
-                </div>
-              </div>
-
-              <p>Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. <strong>Etiam rhoncus</strong>. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante <a href="#">tincidunt tempus</a>.</p>
-
-              <?php include('includes/comment_form.php');?>
-              
-
+  } else {
+      echo "<p>Không có bài viết nào.</p>";
+  }
+} else {
+    redirect_to();
+}
+             
+ ?>
+<main id="main">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="wrapper-main">
+          <div class="row m-0">
+            <div class="col-md-4 p-0">
+              <?php include('includes/sidebar.php'); ?>
             </div>
-          </article><!-- /.card -->
-
+            <div class="col-md-8 p-0">
+              <div class="wrapper-main-content">
+                <div class="page-title pad clearfix">
+                  <ul class="meta-single clearfix">
+                    <?php 
+                      foreach($posts as $post){
+                        echo "
+                        <li class='category'><a href='danhmuc-tintuc.php?cid={$post['danhmuc_id']}' rel='category tag'>{$post['danhmuc_ten']}</a></li>
+                        ";
+                      }
+                     ?>
+                    <li class="comments"><a href=""><i class="fa fa-comments-o"></i>0</a></li>
+                  </ul>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="box-content">
+                      <div class="detail-content">
+                        <?php
+                            foreach($posts as $post) {
+                            echo "
+                              <h3>{$post['tintuc_ten']}</h3>
+                              <p class='post-date'>
+                                <time class='published'>{$post['tintuc_ngaytao']}</time>
+                              </p>
+                              <p class='entry-detail-description'>{$post['tintuc_mota']}</p>
+                              <p class='entry-detail-content'>{$post['tintuc_noidung']}</p>
+                            ";
+                          } // End foreach.
+                        ?>
+                      </div>
+                      <?php include('includes/comment_form.php'); ?>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <?php include('includes/sidebar.php');?>  
       </div>
     </div>
-
-  </main>
-<?php include('includes/section-instagram.php');?>
+  </div>
+</main>
 <?php include('includes/footer.php');?>

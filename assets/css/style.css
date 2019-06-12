@@ -7,10 +7,11 @@ a, a:after, a:before{
     -o-transition: all .2s ease;
     transition: all .2s ease;
 }
-p{font-weight:300;margin-bottom: 0}
+p{font-weight:300;}
+.post-date{margin-bottom:0;}
 #header{background: #579442;}
 body{background:#eaeaea}
-ul{list-style: none;padding: 0;}
+ul{list-style: none;padding: 0;margin-bottom: 0;}
 #aside{background: #f0f0f0;height: 100%;}
 .wrapper-main{
     background: #fff;
@@ -43,6 +44,11 @@ body{font-family: 'Roboto Condensed', Arial, sans-serif;}
 /* CSS MAIN */
 h3.title{font-size: 16px;font-weight: 300;}
 .list-post-hot li a{font-weight: 300;color: red;}
+.sidebar-sticky{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
 .wrapper-post-hot,.wrapper-categories{
     padding:30px 30px 20px;
 }
@@ -151,7 +157,7 @@ h2.title{
     margin-right: 6px;
 }
 .post-title a,.post-category a{color: #444;}
-.excerpt{font-size: 1em;color: #aaa;}
+.excerpt{font-size: 1em;color: #aaa;margin-bottom: 0;}
 .post-list .post-title{font-size: 1.375em;}
 .featured{
     padding-bottom: 30px;
@@ -192,18 +198,18 @@ h2.title{
     border-bottom: 3px solid #ddd;
     border-top: 1px solid #f1f1f1;
 }
-.wp-pagenavi a, .wp-pagenavi span{
+.wp-pagenavi a{
     color: #aaa;
     font-size: 1em;
     padding: 7px 8px;
     display: inline;
     margin: 0 2px;
 }
-.wp-pagenavi a:active, .wp-pagenavi a:hover, .wp-pagenavi span.current{
+.wp-pagenavi a:active, .wp-pagenavi a:hover, .wp-pagenavi .current{
     border-top: 1px solid #f1f1f1;
     border-bottom: 3px solid #4b7e37;
 }
-.wp-pagenavi a:hover, .wp-pagenavi a:active, .wp-pagenavi span.current{
+.wp-pagenavi a:hover, .wp-pagenavi a:active, .wp-pagenavi .current{
     border-bottom-color: #4b7e37 !important;
 }
 /* CSS FOOTER */
@@ -216,6 +222,7 @@ h2.title{
     font-size:14px;
     padding: 15px;
 }
+.address p{margin-bottom:0;}
 .social li{display:inline-block;padding: 0 3px;}
 .social li a{width:40px;height:40px;line-height:40px;color:#fff;display: inline-block;text-align: center;background:#4f5e6f;border-radius: 3px;}
 .social{float:right;margin: 5px 15px;}
@@ -240,3 +247,36 @@ h2.title{
 .location-layout .name{font-size: 1.375em}
 .location-layout .description{color:#aaa;font-size:1em;}
 .post-thumbnail img{position:absolute;top: 0;bottom: 0;left: 0;right: 0;height: 100%;width: 100%;object-fit: cover;}
+.page-title{
+    background: #fff;
+    position: relative;
+    padding-top: 18px;
+    padding-bottom: 17px;
+    border-bottom: 1px solid #eee;
+    color: #666;
+    font-size: 1.2em;
+    font-weight: 600;
+    line-height: 1.5rem;
+}
+.pad{padding: 18px 30px 16px;}
+.page-title .meta-single li{
+    float: left;
+    margin-right: 14px;
+}
+.page-title a{color:#aaa}
+.page-title .meta-single li.comments{
+    float: right;
+    margin-right: 0;
+}
+.detail-content h3{
+    font-size: 2.62em;
+    line-height: 1.3em;
+    color:#444;
+}
+.published{
+    font-size: 1em;
+    font-weight: 400;
+    color: #aaa;
+    margin-bottom: 1em;
+    display: inline-block;
+}
