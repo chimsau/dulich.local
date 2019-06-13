@@ -23,11 +23,12 @@
 
     if(empty($errors)){ // kiểm tra nếu không có lỗi xảy ra, thì chèn dữ liệu vào database
 
-      $query = "INSERT INTO binhluan (tintuc_id, binhluan_tacgia, binhluan_email, binhluan_noidung, binhluan_ngay) VALUES ( ?, ?, ?, ?,NOW())";
+      $query = "INSERT INTO binhluan (foreign_id, binhluan_kieu, binhluan_tacgia, binhluan_email, binhluan_noidung, binhluan_ngay) VALUES ( ?, ?, ?, ?, ?,NOW())";
       $stmt = $dbc->prepare($query);
+      confirm_query($stmt, $query);
 
       //gan tham so cho cau lenh prepare
-      $stmt->bind_param('isss', $id, $binhLuanTacGia, $binhLuanEmail, $binhLuanNoiDung);
+      $stmt->bind_param('issss', $id, $type, $binhLuanTacGia, $binhLuanEmail, $binhLuanNoiDung);
 
       //cho chay cau lenh prepare
       $stmt->execute();
@@ -48,26 +49,24 @@
 ?>
 
 <hr>
+<div id="disscuss">
 <?php 
-  $query = "SELECT count(binhluan_id) FROM binhluan";
-  if($stmt = $dbc->query($query)){
-    if($stmt->num_rows == 1) {
-      list($count) = $stmt->fetch_array(MYSQLI_NUM);
-      echo "<h3>{$count} bình luận</h3>";
-    } else{
-      echo "<h3>0 bình luận</h3>";
-    }
+  $countComment = countComment($type, $id);
+  if($countComment > 0) {
+      echo "<h3><strong style='text-decoration: underline;'>{$countComment} Bình luận</strong></h3>";
+  } else {
+    echo "<h3><strong style='text-decoration: underline;'>0 Bình luận</strong></h3>";
   }
 ?>
 <?php 
 //hien thi comment
-  $query = "SELECT binhluan_id, binhluan_tacgia, binhluan_noidung, DATE_FORMAT(binhluan_ngay,  '%b %d, %y') AS date FROM binhluan";
+  $query = "SELECT binhluan_id, binhluan_tacgia, binhluan_noidung, DATE_FORMAT(binhluan_ngay,  '%b %d, %y') AS date FROM binhluan WHERE binhluan_kieu = '{$type}' AND foreign_id = {$id}";
   if($stmt = $dbc->query($query)){
     if($stmt->num_rows > 0) {
       //neu co comment thi hien thi 
       while (list($id, $tacgia, $noidung, $ngay) = $stmt->fetch_array(MYSQLI_NUM)) {
         echo "
-          <div class='media mb-3'>
+          <div class='media mb-3 comment-form'>
             <div class='media-body'>
               <h4 class='mt-1 mb-0 mr-3'>{$tacgia}</h4>
               <p class='mt-3 mb-2'>{$noidung}</p>
@@ -76,11 +75,11 @@
           </div>
         ";
       }
+      
     }
   }
-
-
  ?>
+</div>
 <div class="mt-5">
   <h5>Để lại bình luận</h5>
   <?php if(isset($messages)) {echo $messages;} ?>

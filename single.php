@@ -2,12 +2,17 @@
 <?php include('includes/functions.php');?>
 <?php include('includes/header.php');?>
 <?php 
-if($nid = validate_id($_GET['nid'])) {
-      $set = get_news_by_id($nid);
+$type = 'tintuc';
+if($id = validate_id($_GET['id'])) {
+      $set = get_news_by_id($id);
       $posts = array(); 
+
   if($set->num_rows > 0) {
     $news = mysqli_fetch_array($set, MYSQLI_ASSOC); 
-    $title = $news['tintuc_ten'];
+    $title = isset($news['tintuc_ten']) ? $news['tintuc_ten'] : '' ;
+    $danhMucTen = isset($news['danhmuc_ten']) ? $news['danhmuc_ten'] : '' ;
+    $danhMucId =  isset($news['danhmuc_id']) ? $news['danhmuc_id'] : '' ;
+
     $posts[] = array(
       'tintuc_ten' => $news['tintuc_ten'], 
       'tintuc_noidung' => $news['tintuc_noidung'], 
@@ -40,13 +45,7 @@ if($nid = validate_id($_GET['nid'])) {
                 <div class="page-title pad clearfix">
                   <ul class="meta-single clearfix">
                     <?php 
-                      foreach($posts as $post){
-                        echo "
-                        <li class='category'><a href='danhmuc-tintuc.php?cid={$post['danhmuc_id']}' rel='category tag'>{$post['danhmuc_ten']}</a></li>
-                        ";
-                      }
-                     ?>
-                    <li class="comments"><a href=""><i class="fa fa-comments-o"></i>0</a></li>
+                    echo "<li class='category'><a href='danhmuctintuc.php?id={$danhMucId}' rel='category tag'>{$danhMucTen}</a></li>"; ?>
                   </ul>
                 </div>
                 <div class="row">

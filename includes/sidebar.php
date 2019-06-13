@@ -11,7 +11,7 @@
           confirm_query($result,$query);
 
           while ($news = $result->fetch_array(MYSQLI_ASSOC)) {
-              echo "<li><a href='single.php?nid={$news['tintuc_id']}'";
+              echo "<li><a href='single.php?id={$news['tintuc_id']}'";
               echo ">".$news['tintuc_ten']. "</a></li>";
           }
          ?>
@@ -29,7 +29,7 @@
           confirm_query($result,$query);
 
           while ($cats = $result->fetch_array(MYSQLI_ASSOC)) {
-              echo "<li class='cat-item'><a href='index.php?cid={$cats['danhmuc_id']}'";
+              echo "<li class='cat-item'><a href='danhmuctintuc.php?id={$cats['danhmuc_id']}'";
               echo ">".$cats['danhmuc_ten']. "</a></li>";
           }
          ?>
