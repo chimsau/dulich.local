@@ -21,6 +21,10 @@
         $errors[] = "ten";
       }
 
+      if($trimmed['diadiem_mota']){
+        $diadiemmota = $trimmed['diadiem_mota'];
+      }
+
       if(filter_var($trimmed['diadiem'], FILTER_VALIDATE_INT, array('min_range'=>1))) {
         $diadiem = $trimmed['diadiem'];
       } else {
@@ -63,11 +67,11 @@
       
 
       if(empty($errors)){ // kiểm tra nếu không có lỗi xảy ra, thì chèn dữ liệu vào database
-        $query = "UPDATE baiviet_diadiem SET baiviet_diadiem_ten = ?, diadiem_id = ?, baiviet_diadiem_noidung = ?, baiviet_diadiem_anh = ?, baiviet_diadiem_hot = ? WHERE baiviet_diadiem_id = ? LIMIT 1";
+        $query = "UPDATE baiviet_diadiem SET baiviet_diadiem_ten = ?, baiviet_diadiem_mota = ?, diadiem_id = ?, baiviet_diadiem_noidung = ?, baiviet_diadiem_anh = ?, baiviet_diadiem_hot = ? WHERE baiviet_diadiem_id = ? LIMIT 1";
         $stmt = $dbc->prepare($query);
 
         //gan tham so cho cau lenh prepare
-        $stmt->bind_param('sissii', $ten, $diadiem, $noidung, $anh, $hot, $id);
+        $stmt->bind_param('ssissii', $ten, $diadiemmota, $diadiem, $noidung, $anh, $hot, $id);
 
         //cho chay cau lenh prepare
         $stmt->execute();
@@ -148,6 +152,13 @@
                           <ul class='parsley-errors-list filled'><li class='parsley-required'>Chưa chọn địa điểm</li></ul>
                         ";
                       ?>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-12 col-sm-3 col-form-label text-sm-right">Mô tả</label>
+                  <div class="col-12 col-sm-8 col-lg-6">
+                    <textarea class="form-control" name="diadiem_mota"><?php if(isset($baivietdiadiem['baiviet_diadiem_mota'])) echo $baivietdiadiem['baiviet_diadiem_mota']; ?></textarea>
                   </div>
                 </div>
 

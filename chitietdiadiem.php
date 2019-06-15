@@ -2,25 +2,25 @@
 <?php include('includes/functions.php');?>
 <?php include('includes/header.php');?>
 <?php 
-$type = 'tintuc';
+$type = 'diadiem';
 if($id = validate_id($_GET['id'])) {
-      $set = get_news_by_id($id);
+      $set = get_location_by_id($id);
       $posts = array(); 
 
   if($set->num_rows > 0) {
-    $news = mysqli_fetch_array($set, MYSQLI_ASSOC); 
-    $title = isset($news['tintuc_ten']) ? $news['tintuc_ten'] : '' ;
-    $danhMucTen = isset($news['danhmuc_ten']) ? $news['danhmuc_ten'] : '' ;
-    $danhMucId =  isset($news['danhmuc_id']) ? $news['danhmuc_id'] : '' ;
+    $location = mysqli_fetch_array($set, MYSQLI_ASSOC); 
+    $title = $location['baiviet_diadiem_ten'];
+    $diadiemten = $location['diadiem_ten'];
+    $diadiemid = $location['diadiem_id'];
 
     $posts[] = array(
-      'tintuc_ten' => $news['tintuc_ten'], 
-      'tintuc_noidung' => $news['tintuc_noidung'], 
-      'tintuc_mota' => $news['tintuc_mota'],
-      'tintuc_anh' => $news['tintuc_anh'],
-      'tintuc_ngaytao' => $news['tintuc_ngaytao'],
-      'danhmuc_ten' => $news['danhmuc_ten'],
-      'danhmuc_id' => $news['danhmuc_id'],
+      'baiviet_diadiem_ten' => $location['baiviet_diadiem_ten'], 
+      'baiviet_diadiem_noidung' => $location['baiviet_diadiem_noidung'], 
+      'baiviet_diadiem_mota' => $location['baiviet_diadiem_mota'],
+      'baiviet_diadiem_anh' => $location['baiviet_diadiem_anh'],
+      'baiviet_diadiem_ngaytao' => $location['baiviet_diadiem_ngaytao'],
+      'diadiem_ten' => $location['diadiem_ten'],
+      'diadiem_id' => $location['diadiem_id'],
     );
 
   } else {
@@ -45,7 +45,7 @@ if($id = validate_id($_GET['id'])) {
                 <div class="page-title pad clearfix">
                   <ul class="meta-single clearfix">
                     <?php 
-                    echo "<li class='category'><a href='danhmuctintuc.php?id={$danhMucId}' rel='category tag'>{$danhMucTen}</a></li>"; ?>
+                    echo "<li class='category'><a href='diadiem.php?id={$diadiemid}' rel='category tag'>{$diadiemten}</a></li>"; ?>
                   </ul>
                 </div>
                 <div class="row">
@@ -55,12 +55,12 @@ if($id = validate_id($_GET['id'])) {
                         <?php
                             foreach($posts as $post) {
                             echo "
-                              <h3>{$post['tintuc_ten']}</h3>
+                              <h3>{$post['baiviet_diadiem_ten']}</h3>
                               <p class='post-date'>
-                                <time class='published'>{$post['tintuc_ngaytao']}</time>
+                                <time class='published'>{$post['baiviet_diadiem_ngaytao']}</time>
                               </p>
-                              <p class='entry-detail-description'>{$post['tintuc_mota']}</p>
-                              <p class='entry-detail-content'>{$post['tintuc_noidung']}</p>
+                              <p class='entry-detail-description'>{$post['baiviet_diadiem_mota']}</p>
+                              <p class='entry-detail-content'>{$post['baiviet_diadiem_noidung']}</p>
                             ";
                           } // End foreach.
                         ?>

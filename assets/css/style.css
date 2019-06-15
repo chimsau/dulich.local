@@ -283,3 +283,4 @@ h2.title{
     display: inline-block;
 }
 .comment-form{padding-bottom:15px;border-bottom:1px dashed #ddd}
+.image_wrap img{max-height:215px;object-fit: cover;width: 100%;}

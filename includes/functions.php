@@ -83,19 +83,45 @@
         $query .= " USING (danhmuc_id) WHERE c.danhmuc_id = '{$id}' ORDER BY n.tintuc_hot DESC LIMIT {$start}, {$display}";
         $result = $dbc->query($query);
         confirm_query($result, $query);
+
         if($result->num_rows > 0) {
+            // Tao ra array de luu lai ket qua
             $posts = array();
+            // Neu co gia tri de tra ve
             while($results = $result->fetch_array(MYSQLI_ASSOC)) {
                 $posts[] = $results;
-            }
+            } // End while
             return $posts;
         } else {
-            return FALSE;
+            return FALSE; // Neu khong co thong tin nguoi dung trong CSDL
         }
-
     }
 
-    // Truy van CSDL de lay post va thong tin nguoi dung.
+    function fetch_categories_location($display = 5, $id) {
+        global $dbc;
+        $start = (isset($_GET['s']) && filter_var($_GET['s'], FILTER_VALIDATE_INT, array('min_range' => 1))) ? $_GET['s'] : 0;
+        
+        $query = "SELECT l.baiviet_diadiem_hot ,l.baiviet_diadiem_id ,l.baiviet_diadiem_ten, l.baiviet_diadiem_mota, l.baiviet_diadiem_noidung, l.baiviet_diadiem_anh, DATE_FORMAT(l.baiviet_diadiem_ngaytao, '%d Tháng %m, %y') AS date, c.diadiem_ten, c.diadiem_id";
+        $query .= " FROM baiviet_diadiem AS l "; 
+        $query .= " INNER JOIN diadiem AS c "; 
+        $query .= " USING (diadiem_id) WHERE c.diadiem_id = '{$id}' ORDER BY l.baiviet_diadiem_hot DESC LIMIT {$start}, {$display}";
+        $result = $dbc->query($query);
+        confirm_query($result, $query);
+
+        if($result->num_rows > 0) {
+            // Tao ra array de luu lai ket qua
+            $posts = array();
+            // Neu co gia tri de tra ve
+            while($results = $result->fetch_array(MYSQLI_ASSOC)) {
+                $posts[] = $results;
+            } // End while
+            return $posts;
+        } else {
+            return FALSE; // Neu khong co thong tin nguoi dung trong CSDL
+        }
+    }
+
+
     function get_news_by_id($id) {
         global $dbc;
         $query = " SELECT n.tintuc_ten, n.tintuc_mota, n.tintuc_noidung, n.tintuc_anh, n.tintuc_ngaytao, c.danhmuc_ten, c.danhmuc_id, "; 
@@ -108,7 +134,21 @@
         $result = $dbc->query($query);
         confirm_query($result, $query);
         return $result;
-    } // End get_page_by_id
+    } 
+
+    function get_location_by_id($id) {
+        global $dbc;
+        $query = " SELECT l.baiviet_diadiem_ten, l.baiviet_diadiem_mota, l.baiviet_diadiem_noidung, l.baiviet_diadiem_anh, l.baiviet_diadiem_ngaytao, c.diadiem_ten, c.diadiem_id, "; 
+        $query .= " DATE_FORMAT(l.baiviet_diadiem_ngaytao, '%d Tháng %m, %y') AS date ";
+        $query .= " FROM baiviet_diadiem AS l ";
+        $query .= " LEFT JOIN diadiem AS c ";
+        $query .= " USING (diadiem_id) ";
+        $query .= " WHERE l.baiviet_diadiem_id = {$id}";
+        $query .= " LIMIT 1";
+        $result = $dbc->query($query);
+        confirm_query($result, $query);
+        return $result;
+    } 
 
 
     // Count Comment
