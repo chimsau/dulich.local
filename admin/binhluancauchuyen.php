@@ -28,7 +28,7 @@
                       if(isset($_GET['sort'])) {
                         switch ($_GET['sort']) {
                           case 'title':
-                            $order_by = 'cauchuyen_ten';
+                            $order_by = 'cauchuyen_tieude';
                             break;
 
                           case 'name':
@@ -61,7 +61,7 @@
                             while ($binhluan = $result->fetch_array(MYSQLI_ASSOC)) {
                               echo "
                                 <tr>
-                                  <td>".the_excerpt($binhluan['cauchuyen_tieude'], 50)."</td>
+                                  <td><a href='".BASE_URL."/chitietcauchuyen.php?id={$binhluan['cauchuyen_id']}'>".the_excerpt($binhluan['cauchuyen_tieude'], 50)."</a></td>
                                   <td>".the_excerpt($binhluan['binhluan_tacgia'], 100)."</td>
                                   <td>".the_excerpt($binhluan['binhluan_email'], 100)."</td>
                                   <td>{$binhluan['binhluan_noidung']}</td>

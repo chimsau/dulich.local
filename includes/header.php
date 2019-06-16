@@ -7,6 +7,11 @@ session_start(); ?>
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta property="og:url"                content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html" />
+		<meta property="og:type"               content="article" />
+		<meta property="og:title"              content="When Great Minds Don’t Think Alike" />
+		<meta property="og:description"        content="How much does culture influence creative thinking?" />
+		<meta property="og:image"              content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
 
 		<title>Du lịch</title>
 
@@ -40,6 +45,7 @@ session_start(); ?>
 	            
 	         });
 	    </script>
+	    
 	</head>
 
 	<body>
@@ -55,24 +61,21 @@ session_start(); ?>
 								<div class="collapse navbar-collapse" id="navbarsExample04">
 									<ul class="navbar-nav mr-auto">
 										<li class="nav-item active">
-											<a class="nav-link" href="#">Trang chủ</a>
+											<a class="nav-link" href="index.php">Trang chủ</a>
+										</li>						
+										<li class="nav-item">
+											<a class="nav-link" href="diadiemdulich.php">Địa điểm du lịch</a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" href="#">Cẩm năng du lịch</a>
+											<a class="nav-link" href='post-story.php'>Chia sẻ câu chuyện</a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" href="#">Blog du lịch</a>
-										</li>
-										<li class="nav-item">
-											<a class="nav-link" href="#">Địa điểm du lịch</a>
-										</li>
-										<li class="nav-item">
-											<a class="nav-link" href='post-story.php'>Chia Sẻ câu chuyện</a>
+											<a class="nav-link" href="cauchuyen.php">Câu chuyện</a>
 										</li>
 									</ul>
-									<form class="form-inline my-2 my-md-0">
-										<input class="form-control" type="text" placeholder="Search">
-									</form>
+									<div class="clock fl">
+									    <span id="digclock" style="font-weight: 700;"></span>
+									</div>
 								</div>
 							</nav>
 						</div>

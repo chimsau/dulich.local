@@ -28,7 +28,7 @@
                       if(isset($_GET['sort'])) {
                         switch ($_GET['sort']) {
                           case 'title':
-                            $order_by = 'diadiem_ten';
+                            $order_by = 'baiviet_diadiem_ten';
                             break;
 
                           case 'name':
@@ -51,17 +51,17 @@
                         $order_by = 'binhluan_id';
                       }
 
-                      $query = "SELECT b.binhluan_id, t.diadiem_id, t.diadiem_ten, b.binhluan_tacgia, b.binhluan_email, b.binhluan_noidung, DATE_FORMAT(b.binhluan_ngay, '%d/%m/%y') AS date ";
+                      $query = "SELECT b.binhluan_id, t.baiviet_diadiem_id, t.baiviet_diadiem_ten, b.binhluan_tacgia, b.binhluan_email, b.binhluan_noidung, DATE_FORMAT(b.binhluan_ngay, '%d/%m/%y') AS date ";
                       $query .= " FROM binhluan AS b";
-                      $query .= " INNER JOIN diadiem AS t";
-                      $query .= " ON (foreign_id = diadiem_id)";
+                      $query .= " INNER JOIN baiviet_diadiem AS t";
+                      $query .= " ON (foreign_id = baiviet_diadiem_id)";
                       $query .= " WHERE binhluan_kieu = 'diadiem'";
                       $query .= " ORDER BY {$order_by} ASC";
                           if ($result = $dbc->query($query)) {
                             while ($binhluan = $result->fetch_array(MYSQLI_ASSOC)) {
                               echo "
                                 <tr>
-                                  <td>".the_excerpt($binhluan['diadiem_ten'], 50)."</td>
+                                  <td><a href='".BASE_URL."/chitietdiadiem.php?id={$binhluan['baiviet_diadiem_id']}'>".the_excerpt($binhluan['baiviet_diadiem_ten'], 50)."</a></td>
                                   <td>".the_excerpt($binhluan['binhluan_tacgia'], 100)."</td>
                                   <td>".the_excerpt($binhluan['binhluan_email'], 100)."</td>
                                   <td>{$binhluan['binhluan_noidung']}</td>

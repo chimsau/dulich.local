@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2019 at 07:48 AM
+-- Generation Time: Jun 16, 2019 at 02:08 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 5.6.40
 
@@ -117,8 +117,7 @@ INSERT INTO `binhluan` (`binhluan_id`, `foreign_id`, `binhluan_kieu`, `binhluan_
 (30, 9, 'tintuc', 'ttttt', 'hoangtuyen@gmail.com', '<p>sdfgsdf</p>', '2019-06-13'),
 (31, 21, 'tintuc', 'jjjjj', 'hoangtuyen@gmail.com', '<p>fgjfgj</p>', '2019-06-13'),
 (32, 9, 'tintuc', 'llllllll', 'hoangtuyen@gmail.com', '<p>hjk</p>', '2019-06-13'),
-(33, 2, 'diadiem', 'hú hà', 'abc@gmail.com', '<p>Th&ocirc;ng tin tr&ecirc;n được tiết lộ giữa l&uacute;c một cuộc tranh c&atilde;i ng&agrave;y c&agrave;ng leo thang giữa Mỹ v&agrave; tập đo&agrave;n c&ocirc;ng ty khổng lồ của Trung Quốc l&agrave; Huawei. Washington c&aacute;o buộc Huawei đ&aacute;nh cắp dữ liệu cơ sở hạ tầng kh&ocirc;ng gian mạng cho ch&iacute;nh phủ Trung Quốc, điều m&agrave; c&ocirc;ng ty c&oacute; trụ sở tại Th&acirc;m Quyến b&aacute;c bỏ mạnh mẽ.Th&ocirc;ng tin tr&ecirc;n được tiết lộ giữa l&uacute;c một cuộc tranh c&atilde;i ng&agrave;y c&agrave;ng leo thang giữa Mỹ v&agrave; tập đo&agrave;n c&ocirc;ng ty khổng lồ của Trung Quốc l&agrave; Huawei. Washington c&aacute;o buộc Huawei đ&aacute;nh cắp dữ liệu cơ sở hạ tầng kh&ocirc;ng gian mạng cho ch&iacute;nh phủ Trung Quốc, điều m&agrave; c&ocirc;ng ty c&oacute; trụ sở tại Th&acirc;m Quyến b&aacute;c bỏ mạnh mẽ.Th&ocirc;ng tin tr&ecirc;n được tiết lộ giữa l&uacute;c một cuộc tranh c&atilde;i ng&agrave;y c&agrave;ng leo thang giữa Mỹ v&agrave; tập đo&agrave;n c&ocirc;ng ty khổng lồ của Trung Quốc l&agrave; Huawei. Washington c&aacute;o buộc Huawei đ&aacute;nh cắp dữ liệu cơ sở hạ tầng kh&ocirc;ng gian mạng cho ch&iacute;nh phủ Trung Quốc, điều m&agrave; c&ocirc;ng ty c&oacute; trụ sở tại Th&acirc;m Quyến b&aacute;c bỏ mạnh mẽ.</p>', '2019-06-16'),
-(34, 30, 'cauchuyen', 'Tuyen1', 'abc@gmail.com', '<p>ghjfgjgjgjhfg</p>', '2019-06-16');
+(36, 2, 'diadiem', 'fghfgh', 'abc@gmail.com', '<p>fdghdfgh</p>', '2019-06-16');
 
 -- --------------------------------------------------------
 
@@ -169,10 +168,11 @@ CREATE TABLE `danhmuc` (
 --
 
 INSERT INTO `danhmuc` (`danhmuc_id`, `danhmuc_ten`, `danhmuc_vitri`, `danhmuc_ngaytao`) VALUES
-(15, 'Đi phượt', 3, '2019-03-29'),
-(16, 'Đồ ăn & Đồ uống', 1, '2019-03-31'),
+(15, 'Đi phượt', 5, '2019-03-29'),
+(16, 'Đồ ăn & Đồ uống', 2, '2019-03-31'),
 (19, 'Phong cách cuộc sống', 1, '2019-04-29'),
-(20, 'Công việc', 3, '2019-04-29');
+(20, 'Công việc', 3, '2019-04-29'),
+(21, 'Cẩm năng du lịch', 4, '2019-06-16');
 
 -- --------------------------------------------------------
 
@@ -299,7 +299,7 @@ ALTER TABLE `baiviet_diadiem`
 -- AUTO_INCREMENT for table `binhluan`
 --
 ALTER TABLE `binhluan`
-  MODIFY `binhluan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `binhluan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `cauchuyen`
@@ -311,7 +311,7 @@ ALTER TABLE `cauchuyen`
 -- AUTO_INCREMENT for table `danhmuc`
 --
 ALTER TABLE `danhmuc`
-  MODIFY `danhmuc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `danhmuc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `diadiem`

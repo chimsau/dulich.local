@@ -18,7 +18,7 @@ if($id = validate_id($_GET['id'])) {
       'baiviet_diadiem_noidung' => $location['baiviet_diadiem_noidung'], 
       'baiviet_diadiem_mota' => $location['baiviet_diadiem_mota'],
       'baiviet_diadiem_anh' => $location['baiviet_diadiem_anh'],
-      'baiviet_diadiem_ngaytao' => $location['baiviet_diadiem_ngaytao'],
+      'date' => $location['date'],
       'diadiem_ten' => $location['diadiem_ten'],
       'diadiem_id' => $location['diadiem_id'],
     );
@@ -57,7 +57,7 @@ if($id = validate_id($_GET['id'])) {
                             echo "
                               <h3>{$post['baiviet_diadiem_ten']}</h3>
                               <p class='post-date'>
-                                <time class='published'>{$post['baiviet_diadiem_ngaytao']}</time>
+                                <time class='published'>{$post['date']}</time>
                               </p>
                               <p class='entry-detail-description'>{$post['baiviet_diadiem_mota']}</p>
                               <p class='entry-detail-content'>{$post['baiviet_diadiem_noidung']}</p>

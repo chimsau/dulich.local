@@ -284,3 +284,4 @@ h2.title{
 }
 .comment-form{padding-bottom:15px;border-bottom:1px dashed #ddd}
 .image_wrap img{max-height:215px;object-fit: cover;width: 100%;}
+#digclock{color: rgba(255,255,255,.5);}

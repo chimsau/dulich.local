@@ -18,7 +18,7 @@ if($id = validate_id($_GET['id'])) {
       'tintuc_noidung' => $news['tintuc_noidung'], 
       'tintuc_mota' => $news['tintuc_mota'],
       'tintuc_anh' => $news['tintuc_anh'],
-      'tintuc_ngaytao' => $news['tintuc_ngaytao'],
+      'date' => $news['date'],
       'danhmuc_ten' => $news['danhmuc_ten'],
       'danhmuc_id' => $news['danhmuc_id'],
     );
@@ -57,7 +57,7 @@ if($id = validate_id($_GET['id'])) {
                             echo "
                               <h3>{$post['tintuc_ten']}</h3>
                               <p class='post-date'>
-                                <time class='published'>{$post['tintuc_ngaytao']}</time>
+                                <time class='published'>{$post['date']}</time>
                               </p>
                               <p class='entry-detail-description'>{$post['tintuc_mota']}</p>
                               <p class='entry-detail-content'>{$post['tintuc_noidung']}</p>
