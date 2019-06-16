@@ -36,14 +36,14 @@
 
     $trangthai = $trimmed['cauchuyen_trangthai'];
 
-
+    $hot = isset($trimmed['hot']) ? 1 : 0;
 
     if(empty($errors)){ // kiểm tra nếu không có lỗi xảy ra, thì chèn dữ liệu vào database
-      $query = "UPDATE cauchuyen SET cauchuyen_tieude = ?, cauchuyen_tacgia = ?, cauchuyen_noidung = ?, cauchuyen_trangthai = ? WHERE cauchuyen_id = ? LIMIT 1";
+      $query = "UPDATE cauchuyen SET cauchuyen_tieude = ?, cauchuyen_tacgia = ?, cauchuyen_noidung = ?, cauchuyen_trangthai = ?, cauchuyen_hot = ? WHERE cauchuyen_id = ? LIMIT 1";
       $stmt = $dbc->prepare($query);
 
       //gan tham so cho cau lenh prepare
-      $stmt->bind_param('sssii', $tieude, $tacgia, $noidung, $trangthai, $id);
+      $stmt->bind_param('sssiii', $tieude, $tacgia, $noidung, $trangthai, $hot, $id);
 
       //cho chay cau lenh prepare
       $stmt->execute();
@@ -141,6 +141,15 @@
                         } 
                        ?>
                     </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-12 col-sm-8 col-lg-6 offset-sm-3">
+                      <div class="be-checkbox custom-control custom-checkbox">
+                          <input class="custom-control-input" type="checkbox" id="check1" name="hot" <?php  if(isset($cauchuyens['cauchuyen_hot']) && $cauchuyens['cauchuyen_hot'] == 1) echo 'checked'; ?>>
+                          <label class="custom-control-label" for="check1">Câu chuyện nổi bật</label>
+                      </div>
                   </div>
                 </div>
                 <div class="form-group row text-right">

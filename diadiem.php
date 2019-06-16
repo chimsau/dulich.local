@@ -24,7 +24,7 @@ if($id = validate_id($_GET['id'])) {
             </div>
             <div class="col-md-8 p-0">
               <div class="wrapper-main-content">
-                <h2 class="title"> ĐỊA ĐIỂM </h2>
+                <h2 class="title"><?php echo isset($posts[0]["diadiem_ten"]) ? $posts[0]["diadiem_ten"] : "ĐỊA ĐIỂM"; ?></h2>
                 <div class="row">
                   <div class="col-md-12">
                     <div class="box-content">

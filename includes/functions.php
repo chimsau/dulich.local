@@ -73,6 +73,52 @@
 
     }
 
+    function fetch_location($display = 5) {
+        global $dbc;
+        $start = (isset($_GET['s']) && filter_var($_GET['s'], FILTER_VALIDATE_INT, array('min_range' => 1))) ? $_GET['s'] : 0;
+        
+        $query = "SELECT l.baiviet_diadiem_hot ,l.baiviet_diadiem_id, l.baiviet_diadiem_ten, l.baiviet_diadiem_mota, l.baiviet_diadiem_noidung, l.baiviet_diadiem_anh, DATE_FORMAT(l.baiviet_diadiem_ngaytao, '%d Tháng %m, %y') AS date, c.diadiem_ten, c.diadiem_id ";
+        $query .= " FROM baiviet_diadiem AS l "; 
+        $query .= " LEFT JOIN diadiem AS c "; 
+        $query .= " USING (diadiem_id) ORDER BY l.baiviet_diadiem_hot DESC LIMIT {$start}, {$display}";
+        $result = $dbc->query($query);
+        confirm_query($result, $query);
+        
+        if($result->num_rows > 1) {
+            $posts = array();
+            while($results = $result->fetch_array(MYSQLI_ASSOC)) {
+                $posts[] = $results;
+            }
+            return $posts;
+        } else {
+            return FALSE;
+        }
+
+    }
+
+    function fetch_story($display = 5) {
+        global $dbc;
+        $start = (isset($_GET['s']) && filter_var($_GET['s'], FILTER_VALIDATE_INT, array('min_range' => 1))) ? $_GET['s'] : 0;
+        
+        $query = "SELECT cauchuyen_id ,cauchuyen_tieude, cauchuyen_tacgia, cauchuyen_noidung, DATE_FORMAT(cauchuyen_ngay, '%d Tháng %m, %y') AS date ";
+        $query .= " FROM cauchuyen ";  
+        $query .= " WHERE cauchuyen_trangthai = 1 ";  
+        $query .= " ORDER BY cauchuyen_hot DESC LIMIT {$start}, {$display}";
+        $result = $dbc->query($query);
+        confirm_query($result, $query);
+        
+        if($result->num_rows > 1) {
+            $posts = array();
+            while($results = $result->fetch_array(MYSQLI_ASSOC)) {
+                $posts[] = $results;
+            }
+            return $posts;
+        } else {
+            return FALSE;
+        }
+
+    }
+
     function fetch_categories_news($display = 5, $id) {
         global $dbc;
         $start = (isset($_GET['s']) && filter_var($_GET['s'], FILTER_VALIDATE_INT, array('min_range' => 1))) ? $_GET['s'] : 0;
@@ -130,6 +176,18 @@
         $query .= " LEFT JOIN danhmuc AS c ";
         $query .= " USING (danhmuc_id) ";
         $query .= " WHERE n.tintuc_id = {$id}";
+        $query .= " LIMIT 1";
+        $result = $dbc->query($query);
+        confirm_query($result, $query);
+        return $result;
+    } 
+
+    function get_story_by_id($id) {
+        global $dbc;
+        $query = " SELECT cauchuyen_id ,cauchuyen_tieude, cauchuyen_tacgia, cauchuyen_noidung, "; 
+        $query .= " DATE_FORMAT(cauchuyen_ngay, '%d Tháng %m, %y') AS date ";
+        $query .= " FROM cauchuyen ";
+        $query .= " WHERE cauchuyen_id = {$id}";
         $query .= " LIMIT 1";
         $result = $dbc->query($query);
         confirm_query($result, $query);
@@ -210,6 +268,53 @@
             
             return $output;
     } // END pagination  
+
+    // Phan trang
+    function pagination_story($id = NULL ,$display = 5, $table){
+        global $dbc; global $start;
+        if(isset($_GET['p']) && filter_var($_GET['p'], FILTER_VALIDATE_INT, array('min_range' => 1))) {
+            $page = $_GET['p'];
+        } else {
+          
+            $query = "SELECT COUNT({$table}_id) FROM {$table} WHERE cauchuyen_trangthai = 1 ";
+            $result = $dbc->query($query);
+            confirm_query($result, $query);
+            list($record) = $result->fetch_array(MYSQLI_NUM);
+            
+            if($record > $display) {
+                $page = ceil($record/$display);
+            } else {
+                $page = 1;
+            }
+        }
+        
+        $output = "<nav class='pagination clearfix'><div class='wp-pagenavi'>";
+        if($page > 1) {
+            $current_page = ($start/$display) + 1;
+            
+            // Nếu không phải ở trang đầu (hoặc 1) thì sẽ hiển thị Trang trước.
+            if($current_page != 1) {
+                $output .= "<a class='previouspostslink' rel='prev' href='?id={$id}&s=".($start - $display)."&p={$page}'>«</a>";
+            }
+            
+            // Hiển thị những phần số còn lại của trang
+            for($i = 1; $i <= $page; $i++) {
+                if($i != $current_page) {
+                    $output .= "<a class='page larger' href='?id={$id}&s=".($display * ($i - 1))."&p={$page}'>{$i}</a>";
+                } else {
+                    $output .= "<a class='page larger current'>{$i}</a>";
+                }
+            }// END FOR LOOP
+            
+            // Nếu không phải trang cuối, thì hiển thị trang kế.
+            if($current_page != $page) {
+                $output .= "<a class='nextpostslink ".$current_page."' rel='next' href='?id={$id}&s=".($start + $display)."&p={$page}'>»</a>";
+            }
+        } // END pagination section
+            $output .= "</div></nav>";
+            
+            return $output;
+    } // END pagination 
 
     function pagination_category($id = NULL ,$display = 5, $table, $cat){
         global $dbc; global $start;

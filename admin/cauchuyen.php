@@ -18,6 +18,7 @@
                             <th style="width:10%;"><a href="cauchuyen.php?sort=name">Tác giả</a></th>
                             <th>Nội dung</th>
                             <th style="width:95px;" class="actions"><a href="cauchuyen.php?sort=status">Trạng thái</a></th>
+                            <th style="width:95px;" class="actions"><a href="cauchuyen.php?sort=hot">Nổi bật</a></th>
                             <th style="width:80px;" class="actions"><a href="cauchuyen.php?sort=by">Ngày tạo</a></th>
                             <th style="width:75px;" class="actions"></th>
                         </tr>
@@ -39,6 +40,10 @@
                             $order_by = 'cauchuyen_trangthai';
                             break;
 
+                          case 'hot':
+                            $order_by = 'cauchuyen_hot';
+                            break;
+
                           case 'by':
                             $order_by = 'date';
                             break;
@@ -52,11 +57,12 @@
                       }
 
                         // truy vấn CSDL
-                        $query = "SELECT cauchuyen_id, cauchuyen_tieude, cauchuyen_tacgia, cauchuyen_noidung, DATE_FORMAT(cauchuyen_ngay, '%d/%m/%y') AS date , cauchuyen_trangthai ";
+                        $query = "SELECT cauchuyen_id, cauchuyen_tieude, cauchuyen_tacgia, cauchuyen_noidung, DATE_FORMAT(cauchuyen_ngay, '%d/%m/%y') AS date , cauchuyen_trangthai, cauchuyen_hot ";
                         $query .= " FROM cauchuyen";
                         $query .= " ORDER BY {$order_by} ASC";
                           if ($result = $dbc->query($query)) {
                             $status = array(0 => 'Chưa kiểm duyệt', 1 => 'kiểm duyệt');
+                            $hot = array(0 => 'Không', 1 => 'có');
                             while ($cauchuyens = $result->fetch_array(MYSQLI_ASSOC)) {
                               echo "
                                 <tr>
@@ -64,6 +70,7 @@
                                   <td>".the_excerpt($cauchuyens['cauchuyen_tacgia'], 50)."</td>
                                   <td>".the_excerpt($cauchuyens['cauchuyen_noidung'], 200)."</td>
                                   <td class='actions'>".$status[($cauchuyens['cauchuyen_trangthai'])]."</td>
+                                  <td class='actions'>".$hot[($cauchuyens['cauchuyen_hot'])]."</td>
                                   <td class='actions'>{$cauchuyens['date']}</td>
                                   <td class='actions'>
                                     <span style='padding:0 3px'>

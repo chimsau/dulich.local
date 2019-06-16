@@ -27,7 +27,7 @@
 
     if(empty($errors)){ // kiểm tra nếu không có lỗi xảy ra, thì chèn dữ liệu vào database
 
-      $query = "INSERT INTO cauchuyen (cauchuyen_tieude, cauchuyen_tacgia, cauchuyen_noidung, cauchuyen_ngay, cauchuyen_trangthai) VALUES ( ?, ?, ?,NOW(), 0)";
+      $query = "INSERT INTO cauchuyen (cauchuyen_tieude, cauchuyen_tacgia, cauchuyen_noidung, cauchuyen_ngay, cauchuyen_trangthai, cauchuyen_hot) VALUES ( ?, ?, ?,NOW(), 0 ,0)";
       $stmt = $dbc->prepare($query);
 
       //gan tham so cho cau lenh prepare
