@@ -39,7 +39,7 @@
                                         <a href='chitietcauchuyen.php?id={$post['cauchuyen_id']}' title='{$post['cauchuyen_tieude']}'>{$post['cauchuyen_tieude']}</a>
                                       </h2>
                                       <div class='excerpt'>
-                                          <p>".the_excerpt($post['cauchuyen_noidung'], 500)."</p>
+                                          <p>".the_excerpt($post['cauchuyen_noidung'], 200)."</p>
                                       </div>
                                     </div>
                                   </article>

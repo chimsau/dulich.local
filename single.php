@@ -8,7 +8,7 @@ if($id = validate_id($_GET['id'])) {
       $posts = array(); 
 
   if($set->num_rows > 0) {
-    $news = mysqli_fetch_array($set, MYSQLI_ASSOC); 
+    $news = $set->fetch_array(MYSQLI_ASSOC);
     $title = isset($news['tintuc_ten']) ? $news['tintuc_ten'] : '' ;
     $danhMucTen = isset($news['danhmuc_ten']) ? $news['danhmuc_ten'] : '' ;
     $danhMucId =  isset($news['danhmuc_id']) ? $news['danhmuc_id'] : '' ;

@@ -61,7 +61,7 @@
         $result = $dbc->query($query);
         confirm_query($result, $query);
         
-        if($result->num_rows > 1) {
+        if($result->num_rows > 0) {
             $posts = array();
             while($results = $result->fetch_array(MYSQLI_ASSOC)) {
                 $posts[] = $results;
@@ -84,7 +84,7 @@
         $result = $dbc->query($query);
         confirm_query($result, $query);
         
-        if($result->num_rows > 1) {
+        if($result->num_rows > 0) {
             $posts = array();
             while($results = $result->fetch_array(MYSQLI_ASSOC)) {
                 $posts[] = $results;
@@ -107,7 +107,7 @@
         $result = $dbc->query($query);
         confirm_query($result, $query);
         
-        if($result->num_rows > 1) {
+        if($result->num_rows > 0) {
             $posts = array();
             while($results = $result->fetch_array(MYSQLI_ASSOC)) {
                 $posts[] = $results;

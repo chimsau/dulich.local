@@ -61,7 +61,7 @@
                             while ($binhluan = $result->fetch_array(MYSQLI_ASSOC)) {
                               echo "
                                 <tr>
-                                  <td><a href='".BASE_URL."/chitietdiadiem.php?id={$binhluan['baiviet_diadiem_id']}'>".the_excerpt($binhluan['baiviet_diadiem_ten'], 50)."</a></td>
+                                  <td><a target='_blank' href='".BASE_URL."/chitietdiadiem.php?id={$binhluan['baiviet_diadiem_id']}'>".the_excerpt($binhluan['baiviet_diadiem_ten'], 50)."</a></td>
                                   <td>".the_excerpt($binhluan['binhluan_tacgia'], 100)."</td>
                                   <td>".the_excerpt($binhluan['binhluan_email'], 100)."</td>
                                   <td>{$binhluan['binhluan_noidung']}</td>

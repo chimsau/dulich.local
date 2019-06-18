@@ -20,42 +20,44 @@
 											    <article class="clearfix post">
 											    	<?php 
 											    		$posts = fetch_news();
-											    		$items = $posts[0];
-											    		$type = 'tintuc';
-														$countComment = countComment($type, $items['tintuc_id']);
-														if($countComment > 0) {
-															$count = $countComment;
-														} else {
-															$count = 0;
-														}
-										    			echo"
-												        <div class='post-inner post-hover'>
-												            <div class='post-thumbnail featured-img-thumb-large'>
-												                <a href='single.php?id={$items['tintuc_id']}'>
-												                    <img src='".BASE_URL."/admin/uploads/images/{$items['tintuc_anh']}' class='img-fluid' alt=''>
-												                </a>
-												                <a class='post-comments' href='single.php?id={$items['tintuc_id']}#disscuss'><span><i class='fa fa-comments-o'></i>{$count}</span></a>
-												            </div>
-												         
+											    		if(!empty($posts[0])) {
+												    		$items = $posts[0];
+												    		$type = 'tintuc';
+															$countComment = countComment($type, $items['tintuc_id']);
+															if($countComment > 0) {
+																$count = $countComment;
+															} else {
+																$count = 0;
+															}
+											    			echo"
+													        <div class='post-inner post-hover'>
+													            <div class='post-thumbnail featured-img-thumb-large'>
+													                <a href='single.php?id={$items['tintuc_id']}'>
+													                    <img src='".BASE_URL."/admin/uploads/images/{$items['tintuc_anh']}' class='img-fluid' alt=''>
+													                </a>
+													                <a class='post-comments' href='single.php?id={$items['tintuc_id']}#disscuss'><span><i class='fa fa-comments-o'></i>{$count}</span></a>
+													            </div>
+													         
 
-												            <div class='post-meta clearfix'>
-												                <p class='post-category'><a href='danhmuctintuc.php?id={$items['danhmuc_id']}'>{$items['danhmuc_ten']}</a></p>
-												                <p class='post-date'>
-												                    <time class='published' datetime=''>{$items['date']}</time>
-												                </p>
-												            </div>
-												           
+													            <div class='post-meta clearfix'>
+													                <p class='post-category'><a href='danhmuctintuc.php?id={$items['danhmuc_id']}'>{$items['danhmuc_ten']}</a></p>
+													                <p class='post-date'>
+													                    <time class='published' datetime=''>{$items['date']}</time>
+													                </p>
+													            </div>
+													           
 
-												            <h2 class='post-title'>
-        														<a href='single.php?id={$items['tintuc_id']}' title='{$items['tintuc_ten']}'>{$items['tintuc_ten']}</a>
-        													</h2>
-												           
-												            <div class='excerpt'>
-												                <p>{$items['tintuc_mota']}</p>
-												            </div>
-												            
-												        </div>
-												        ";
+													            <h2 class='post-title'>
+	        														<a href='single.php?id={$items['tintuc_id']}' title='{$items['tintuc_ten']}'>{$items['tintuc_ten']}</a>
+	        													</h2>
+													           
+													            <div class='excerpt'>
+													                <p>{$items['tintuc_mota']}</p>
+													            </div>
+													            
+													        </div>
+													        ";
+											    		}
 											    	 ?>
 											        <!--/.post-inner-->
 											    </article>

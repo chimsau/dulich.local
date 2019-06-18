@@ -9,7 +9,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="card card-table">
-            <div class="card-header">Bình luận về tin tức</div>
+            <div class="card-header">Bình luận về câu chuyện</div>
             <div class="card-body table-responsive">
                 <table class="table table-striped table-hover" style="font-size: 13px">
                     <thead>
@@ -61,7 +61,7 @@
                             while ($binhluan = $result->fetch_array(MYSQLI_ASSOC)) {
                               echo "
                                 <tr>
-                                  <td><a href='".BASE_URL."/chitietcauchuyen.php?id={$binhluan['cauchuyen_id']}'>".the_excerpt($binhluan['cauchuyen_tieude'], 50)."</a></td>
+                                  <td><a target='_blank' href='".BASE_URL."/chitietcauchuyen.php?id={$binhluan['cauchuyen_id']}'>".the_excerpt($binhluan['cauchuyen_tieude'], 50)."</a></td>
                                   <td>".the_excerpt($binhluan['binhluan_tacgia'], 100)."</td>
                                   <td>".the_excerpt($binhluan['binhluan_email'], 100)."</td>
                                   <td>{$binhluan['binhluan_noidung']}</td>
