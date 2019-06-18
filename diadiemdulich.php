@@ -42,7 +42,7 @@
                                     <div class='details_wrap'>
                                       <div class='information_wrapper'>
                                           <h2 class='name'><a href='chitietdiadiem.php?id={$post['baiviet_diadiem_id']}'>{$post['baiviet_diadiem_ten']}</a></h2>
-                                          <div class='description'>{$post['baiviet_diadiem_mota']}</div>
+                                          <div class='description'>".the_excerpt($post['baiviet_diadiem_mota'], 250)."</div>
                                       </div>
                                     </div>
                                   </div>

@@ -52,7 +52,7 @@
 	        													</h2>
 													           
 													            <div class='excerpt'>
-													                <p>{$items['tintuc_mota']}</p>
+													                <p>".the_excerpt($items['tintuc_mota'], 350)."</p>
 													            </div>
 													            
 													        </div>
@@ -103,7 +103,7 @@
 							                                            <a href='single.php?id={$post['tintuc_id']}' title='{$post['tintuc_ten']}'>{$post['tintuc_ten']}</a>
 							                                          </h2>
 							                                          <div class='excerpt'>
-							                                              <p>{$post['tintuc_mota']}</p>
+							                                              <p>".the_excerpt($post['tintuc_mota'], 250)."</p>
 							                                          </div>
 							                                      </div>
 							                                    </article>

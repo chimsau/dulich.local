@@ -19,15 +19,17 @@
     } // End validate_id
 
     function the_excerpt($text, $string = 400) {
-        if(strlen($text) > $string) {
-            $cutString = substr($text,0,$string);
-            $words = substr($text, 0, strrpos($cutString, ' '));
+        $sanitized = strip_tags($text);
+        if(strlen($sanitized) > $string) {
+            $cutString = substr($sanitized,0,$string);
+            $words = substr($sanitized, 0, strrpos($cutString, ' '));
             return $words .'...';
         } else {
-            return $text;
+            return $sanitized;
         }
        
-    }
+    } // End the_excerpt
+    
     // Ham tao ra de kiem tra xem co phai la admin hay khong
     function is_admin() {
 
