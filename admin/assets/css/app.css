@@ -5,6 +5,8 @@
  * Copyright (c) 2019 Foxy Themes
  */
 
+@import url('https://fonts.googleapis.com/css?family=Lobster&display=swap&subset=vietnamese');
+
 @media print {
     *,
     ::after,
@@ -13226,6 +13228,16 @@ html {
     overflow-x: hidden;
     font-size: 13px
 }
+body::-webkit-scrollbar {
+    width: 10px;
+} 
+body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #333;
+  outline: 1px solid #333;
+}
 
 body {
     padding: 0;
@@ -13493,13 +13505,15 @@ canvas {
 }
 
 .be-top-header .be-navbar-header {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
+    /* display: -webkit-box; */
+    /* display: -ms-flexbox; */
+    /* display: flex; */    
+    /* -webkit-box-flex: 0; */
+    /*-ms-flex: 0 0 230px; */
+    /* flex: 0 0 230px; */
+    text-align: center;
     width: 230px;
-    -webkit-box-flex: 0;
-    -ms-flex: 0 0 230px;
-    flex: 0 0 230px
+    
 }
 
 .be-collapsible-sidebar .be-top-header .be-navbar-header {
@@ -14910,12 +14924,12 @@ canvas {
 }
 
 .be-left-sidebar .sidebar-elements .divider {
-    padding: 20px 20px 0;
-    color: #7b7b7b;
+    padding: 5px 20px;
+    color: #fff;
     line-height: 30px;
     font-weight: 600;
     text-transform: uppercase;
-    font-size: .8462rem
+    font-size: 17px;
 }
 
 @media (min-width:768px) {
@@ -14931,18 +14945,22 @@ canvas {
 }
 
 .be-left-sidebar .sidebar-elements>li {
-    list-style: none
+    list-style: none;
+    border-bottom: 1px solid #313c42;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
 }
 
 .be-left-sidebar .sidebar-elements>li>a {
     display: block;
     padding: 0 20px;
-    color: #696969;
+    color: #a3afb7e6;
     font-size: 1.077rem;
     line-height: 38px;
     text-overflow: ellipsis;
     overflow: hidden;
-    white-space: nowrap
+    white-space: nowrap;
 }
 
 .be-collapsible-sidebar-collapsed .be-left-sidebar .sidebar-elements>li>a {
@@ -14969,16 +14987,17 @@ canvas {
 }
 
 .be-left-sidebar .sidebar-elements>li>a:hover {
-    background-color: #f0f0f0
+    background: #202b30;
+    color: #fff;
 }
 
 .be-left-sidebar .sidebar-elements>li>a:hover>span {
-    color: #3d3d3d
+    color: #fff;
 }
 
 .be-left-sidebar .sidebar-elements>li>ul {
-    border-top: 1px solid #e6e6e6;
-    border-bottom: 1px solid #e6e6e6
+    border-top: 1px solid #313c42;
+    border-bottom: 1px solid #313c42;
 }
 
 .be-collapsible-sidebar .be-left-sidebar .sidebar-elements>li>ul .nav-items .content>ul {
@@ -14995,9 +15014,9 @@ canvas {
 .be-left-sidebar .sidebar-elements>li ul {
     display: none;
     background-color: #eee;
-    padding: 10px 0;
+    padding: 0;
     list-style: none;
-    line-height: 20px
+    line-height: 20px;
 }
 
 .be-left-sidebar .sidebar-elements>li ul .title {
@@ -15066,12 +15085,13 @@ canvas {
 
 .be-left-sidebar .sidebar-elements>li ul li>a {
     padding: 8px 15px 8px 49px;
-    color: #696969;
-    font-size: 13px;
+    color: #a3afb7e6;
+    font-size: 14px;
     display: block;
     text-overflow: ellipsis;
     overflow: hidden;
-    white-space: nowrap
+    white-space: nowrap;
+    border-bottom: 1px solid #313c42;
 }
 
 .be-left-sidebar .sidebar-elements>li ul li>a .badge {
@@ -15085,7 +15105,8 @@ canvas {
 }
 
 .be-left-sidebar .sidebar-elements>li ul li>a:hover {
-    background-color: #e7e7e7
+    background: #202b30;
+    color: #fff;
 }
 
 .be-left-sidebar .sidebar-elements>li ul li.active>a {
@@ -15169,7 +15190,8 @@ canvas {
 }
 
 .be-left-sidebar .sidebar-elements li.open>ul {
-    display: block
+    display: block;
+    background: #263238;
 }
 
 @media (min-width:768px) {
@@ -15293,7 +15315,8 @@ canvas {
     position: fixed;
     top: 0;
     bottom: 0;
-    z-index: 1029
+    z-index: 1029;
+    background: #263238;
 }
 
 .be-fixed-sidebar .be-left-sidebar .left-sidebar-content {
@@ -16678,7 +16701,9 @@ canvas {
 }
 
 .be-splash-screen {
-    background-color: #eee
+    background: url(http://localhost/dulich/admin/uploads/images/login_v2.png) no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 .be-splash-screen .be-wrapper {
@@ -16690,8 +16715,8 @@ canvas {
 }
 
 .splash-container {
-    max-width: 401px;
-    margin: 50px auto
+    max-width: 400px;
+    margin: 135px auto 50px 100px;
 }
 
 .splash-container .card {
@@ -16701,8 +16726,7 @@ canvas {
 .splash-container .card .card-header {
     text-align: center;
     margin-bottom: 20px;
-    padding-top: 40px;
-    padding-bottom: 0
+    background: #fff;
 }
 
 .splash-container .card .card-body {
@@ -17076,7 +17100,7 @@ canvas {
     }
     .be-mega-menu-section.parent>.nav-link:after {
         position: absolute;
-        content: "";
+        content: "ï‹²";
         font-family: "Material Icons";
         font-size: 1.615rem;
         vertical-align: middle;
@@ -17088,7 +17112,7 @@ canvas {
         color: #4285f4
     }
     .be-mega-menu-section.open>.nav-link:after {
-        content: "";
+        content: "ï‹¸";
         color: #4285f4
     }
 }
@@ -17359,7 +17383,7 @@ canvas {
 @media (max-width:767.98px) {
     .be-sub-header .navbar-nav>.nav-item.parent>.nav-link:after {
         position: absolute;
-        content: "";
+        content: "ï‹²";
         font-family: "Material Icons";
         font-size: 1.615rem;
         vertical-align: middle;
@@ -17367,7 +17391,7 @@ canvas {
         margin-top: 2px
     }
     .be-sub-header .navbar-nav>.nav-item.parent.open>.nav-link:after {
-        content: ""
+        content: "ï‹¸"
     }
 }
 
@@ -17501,7 +17525,7 @@ canvas {
 
 .be-nav-tabs-sub>.nav-item.parent>.nav-link:after {
     position: absolute;
-    content: "";
+    content: "ï‹²";
     font-family: "Material Icons";
     font-size: 1.615rem;
     vertical-align: middle;
@@ -17520,7 +17544,7 @@ canvas {
 
 @media (max-width:767.98px) {
     .be-nav-tabs-sub>.nav-item.parent.open>.nav-link:after {
-        content: "";
+        content: "ï‹¸";
         color: #4285f4
     }
 }
@@ -23307,13 +23331,13 @@ fieldset[disabled] .btn-color.btn-evernote:hover {
 }
 
 .card {
-    background-color: #fff;
+    background: #fff;
     margin-bottom: 25px;
-    -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, .04);
-    box-shadow: 0 0 4px 0 rgba(0, 0, 0, .04);
+    -webkit-box-shadow: 1px 1px 15px #aaa !important;
+    box-shadow: 1px 1px 15px #aaa !important;
     border-width: 0;
     border-radius: 3px;
-    display: block
+    display: block;
 }
 
 .card-group .card {
@@ -23367,14 +23391,16 @@ fieldset[disabled] .btn-color.btn-evernote:hover {
 
 .card-header {
     font-size: 18px;
-    font-weight: 300;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 1.5384rem;
-    margin: 0 1.538rem;
-    border-bottom-width: 0;
+    font-weight: 500;
+    padding: 15px;
     border-radius: 3px 3px 0 0;
-    background-color: transparent
+    border-bottom: 1px solid #bcbcbc;
+    background: repeat-x #F2F2F2;
+    background-image: -webkit-linear-gradient(top, #f8f8f8 0, #ececec 100%);
+    background-image: -o-linear-gradient(top, #f8f8f8 0, #ececec 100%);
+    background-image: linear-gradient(to bottom, #f8f8f8 0, #ececec 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#fff8f8f8', endColorstr='#ffececec', GradientType=0);
+    color: #000;
 }
 
 .card-header .tools {
@@ -23422,10 +23448,6 @@ fieldset[disabled] .btn-color.btn-evernote:hover {
 
 .card-header-divider {
     border-bottom: 1px solid #d9d9d9;
-    margin: 0 1.538rem 8px;
-    padding-left: 0;
-    padding-right: 0;
-    padding-bottom: 1.2307rem
 }
 
 .card-header-divider .card-subtitle {
@@ -25841,8 +25863,8 @@ fieldset[disabled] .btn-color.btn-evernote:hover {
 }
 
 .card-table thead tr th {
-    padding-top: 15px;
-    padding-bottom: 10px
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .badge {
@@ -32102,4 +32124,17 @@ fieldset[disabled] .swal2-shown .colored-header-dark.swal2-popup .swal2-actions 
 
 .user-timeline-compact>li.latest:before {
     background-color: #f6c163
+}
+.logo a {
+    font-family: 'Lobster', cursive;
+    font-size: 30px;
+    color: #000;
+}
+.logo a span {
+    font-size: 40px;
+}
+.be-top-header .logo a {
+    color: #263238 !important;
+    display: block;
+    border-right: 1px solid #cacaca;
 }

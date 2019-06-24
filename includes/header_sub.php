@@ -48,7 +48,7 @@ session_start(); ?>
 	</head>
 
 	<body>
-		<header id="header">
+		<header id="header" class="sub-header">
 			<div class="wrapper-nav">
 				<div class="container">
 					<div class="row">
@@ -92,7 +92,7 @@ session_start(); ?>
 							</div>
 							<div class="box-logo clearfix">
 								<p class="site-title"><a class="buzz" href="index.php">Phượt</a></p>
-								<p class="site-description">Đi xa không phải là để đến, mà là để trở về!</p>
+								<p class="site-description">Một cuộc hành trình thực sự được tính không phải bằng dặm, mà bằng những người bạn!</p>
 							</div>
 						</div>
 					</div>

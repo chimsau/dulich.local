@@ -1,8 +1,8 @@
 <aside id="aside">
   <div class="sidebar-sticky">
     <div class="wrapper-post-hot">
-      <h3 class="title">
-        Bài viết hot
+      <h3 class="title-side">
+        <span>Bài viết hot</span>
       </h3>
       <ul class="list-post-hot">
         <?php 
@@ -18,8 +18,8 @@
     </div>
     <hr>
     <div class="wrapper-categories">
-      <h3 class="title">
-        Chuyên mục
+      <h3 class="title-side">
+        <span>Chuyên mục</span>
       </h3>
       <ul>
         <?php 
@@ -35,8 +35,8 @@
       </ul>
     </div>
     <div class="wrapper-categories">
-      <h3 class="title">
-        Địa điểm
+      <h3 class="title-side">
+        <span>Địa điểm</span>
       </h3>
       <ul>
         <?php 

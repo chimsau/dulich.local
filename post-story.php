@@ -1,6 +1,6 @@
 <?php include('includes/mysqli_connect.php');?>
 <?php include('includes/functions.php');?>
-<?php include('includes/header.php');?>
+<?php include('includes/header_sub.php');?>
 
 <?php 
   if($_SERVER['REQUEST_METHOD'] == "POST"){ //Giá trị tồn tại, xử lý form

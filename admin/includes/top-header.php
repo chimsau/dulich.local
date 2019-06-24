@@ -1,6 +1,10 @@
 <nav class="navbar navbar-expand fixed-top be-top-header">
   <div class="container-fluid">
-    <div class="be-navbar-header"><a class="navbar-brand" href="<?php echo BASE_URL ?>"></a>
+    <div class="be-navbar-header">      
+        <div class="logo">
+          <a href="<?php echo BASE_URL ?>"><span>LA</span>-adventure</a>
+        </div>
+      </a>
     </div>
     <div class="page-title"><span>Dashboard</span></div>
     <div class="be-right-navbar">

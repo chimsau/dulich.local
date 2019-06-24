@@ -57,7 +57,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="main-content container-fluid">
           <div class="splash-container">
             <div class="card card-border-color card-border-color-primary">
-              <div class="card-header"><img class="logo-img" src="assets/img/logo-xx.png" alt="logo" width="102" height="27"></div>
+              <div class="card-header">
+                <!-- <img class="logo-img" src="assets/img/logo-xx.png" alt="logo" width="102" height="27"> -->
+                  <div class="logo">
+                    <a href="index.php"><span>LA</span>-adventure</a>
+                  </div>
+                </div>
               <div class="card-body">
                 <?php if(isset($messages)) {echo $messages;} ?>
                 <form action="" method="post">

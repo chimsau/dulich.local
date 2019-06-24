@@ -72,5 +72,13 @@
          setTimeout('nv_DigitalClock("'+div_id+'")', (60 - intSeconds) * 1000);
       }
       nv_DigitalClock('digclock');
+
+      $( document ).ready( function()
+      {
+         $( '.buzz' ).each( function()
+         {
+            $( this ).attr( 'data-buzz' , $( this ).text() );
+         } );
+      } );
    });
 

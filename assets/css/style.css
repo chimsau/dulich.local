@@ -1,4 +1,6 @@
 /* CSS LAYOUT */
+@import url('https://fonts.googleapis.com/css?family=Lobster&display=swap&subset=vietnamese');
+
 a:hover{color:#4b7e37 !important;}
 a{text-decoration: none !important;}
 a, a:after, a:before{
@@ -9,14 +11,52 @@ a, a:after, a:before{
 }
 p{font-weight:300;}
 .post-date{margin-bottom:0;}
-#header{background: #579442;}
-body{background:#eaeaea}
+#header {
+    background: url(http://localhost/dulich/admin/uploads/images/bg1.png)no-repeat;
+    position: relative;
+}
+#header:before {
+    content: "";
+    display: block;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.28);
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.logo a {
+    font-family: 'Lobster', cursive;
+    font-size: 30px;
+    color: #fff;
+}
+.logo a:hover {
+    color: #fff !important;
+}
+.logo a span {
+    font-size: 40px;
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+} 
+body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #333;
+  outline: 1px solid #333;
+}
+body{background: #fff;max-width: 1920px;margin: 0 auto;-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.1);box-shadow: 0 1px 1px rgba(0, 0, 0, 0.21);}
 ul{list-style: none;padding: 0;margin-bottom: 0;}
-#aside{background: #f0f0f0;height: 100%;}
+#aside{background: #fff;height: 100%;border-right: 1px solid #eee;margin: 0 15px;}
 .wrapper-main{
     background: #fff;
     -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.1);
-    box-shadow: 0 1px 1px rgba(0,0,0,.1);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.21);
 }
 body{font-family: 'Roboto Condensed', Arial, sans-serif;}
 
@@ -24,11 +64,15 @@ body{font-family: 'Roboto Condensed', Arial, sans-serif;}
 .site-title a{
     color:#fff;
     display: inline-block;
-    font-size: 45px;
+    font-size: 130px;
     font-weight: bold;
     text-decoration: none;
+    text-transform: uppercase;
 }
-.wrapper-logo{padding: 25px 0 60px;}
+.site-title {
+    line-height: 1.1;
+}
+.wrapper-logo{min-height: 655px;-webkit-box-align: center;-webkit-align-items: center;-ms-flex-align: center;align-items: center;display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;margin-right: auto;margin-left: auto;position: relative;}
 .wrapper-nav{
     -webkit-box-shadow: 0 0 5px rgba(0,0,0,.2), 0 1px 0 rgba(255,255,255,.15);
     box-shadow: 0 0 5px rgba(0,0,0,.2), 0 1px 0 rgba(255,255,255,.15);
@@ -36,28 +80,55 @@ body{font-family: 'Roboto Condensed', Arial, sans-serif;}
     -moz-transition: -moz-transform .35s ease-in-out,height .25s ease-in-out,background-color .45s ease-in-out;
     -o-transition: -o-transform .35s ease-in-out,height .25s ease-in-out,background-color .45s ease-in-out;
     transition: transform .35s ease-in-out,height .25s ease-in-out,background-color .45s ease-in-out;
+    padding: 15px 0;
 }
-.site-title{float: left;}
-.site-description{font-size: 1em;line-height: 67px;margin-left: 20px;float: left;color: rgba(255,255,255,.5);font-style: italic;}
-.box-logo{padding: .5rem 3rem;}
+.navbar {
+    padding: 0;
+    float: right;
+    margin: 10px 0;
+}
+.navbar-nav li.nav-item>a:hover {
+    color: #fff !important;
+}
+.site-description{font-size: 18px;color: #fff;font-style: italic;}
+.box-logo{text-align: center;}
 
 /* CSS MAIN */
-h3.title{font-size: 16px;font-weight: 300;}
-.list-post-hot li a{font-weight: 300;color: red;}
+.title-side {font-size: 20px;font-weight: 500;text-transform: uppercase;margin-bottom: 15px;border-bottom: 1px solid #eee;padding: 0px 0 15px 0;}
+.title-side span {position: relative;}
+.title-side span:before {
+    content: "";
+    height: 2px;
+    width: 100%;
+    display: block;
+    background: #000;
+    position: absolute;
+    bottom: -16px;
+}
+.list-post-hot li a{font-weight: 500;color: red;}
+.list-post-hot li:before {
+    content: "\f101";
+    font-family: FontAwesome;
+    margin-right: 6px;
+    color: red;
+    display: inline-block!important;
+    width: 1em;
+    text-align: center;
+}
 .sidebar-sticky{
     position: -webkit-sticky;
     position: sticky;
     top: 0;
 }
 .wrapper-post-hot,.wrapper-categories{
-    padding:30px 30px 20px;
+    padding: 15px;
 }
 .wrapper-categories .cat-item{
     padding: 10px 0;
     border-bottom: 1px solid #e4e4e4;
 }
 .wrapper-categories .cat-item a{
-    color: #777;
+    color: #333;
 }
 .wrapper-categories .cat-item a:hover{
     color: #444;
@@ -70,23 +141,27 @@ h3.title{font-size: 16px;font-weight: 300;}
     font-family: FontAwesome;
     font-size: 12px;
     margin-right: 6px;
-    color: #ccc;
+    color: #333;
     display: inline-block!important;
     width: 1em;
     text-align: center;
 }
 h2.title{
-    color: #666;
-    font-size: 16px;
-    padding: 18px 30px 21px;
+    color: #333;
+    font-size: 20px;
+    padding: 15px 0 15px;
     border-bottom: 1px solid #eee;
     margin-bottom: 0;
-    min-height: 59px;
 }
-.post-subheading{color:#aaa}
-.wrapper-main-content{margin-top: -58px;background:#fff;}
+.title-home {
+    text-align: center;
+    font-family: 'Lobster', cursive;
+    margin-bottom: 15px;
+}
+.title-home .post-subheading{color: #000;display: block;margin-bottom: 10px;font-size: 60px;position: relative;max-width: 300px;margin: 0 auto;}
+.wrapper-main-content{/*margin-top: -58px*/background:#fff;margin-right: 15px;}
 .box-content{
-    padding: 30px 30px 20px;
+    padding: 15px;
 }
 .wrapper-post{border-top:1px solid #eee;}
 .post{
@@ -94,7 +169,7 @@ h2.title{
     overflow: hidden;
 }
 .post-hover, .post-hover .post-thumbnail{
-    webkit-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     perspective: 1000px;
     transform-style: preserve-3d;
@@ -157,9 +232,9 @@ h2.title{
     float: left;
     margin-right: 6px;
 }
-.post-title a,.post-category a{color: #444;}
-.excerpt{font-size: 1em;color: #aaa;margin-bottom: 0;}
-.post-list .post-title{font-size: 1.375em;}
+.post-title a,.post-category a{color: #000;}
+.excerpt{font-size: 1em;color: #333;margin-bottom: 0;}
+.post-list .post-title{font-size: 20px;}
 .featured{
     padding-bottom: 30px;
     margin-bottom: 30px;
@@ -244,9 +319,9 @@ h2.title{
     color: #fff;
     padding: 7px 15px;
 }
-.location-layout .name a{color: #444;}
+.location-layout .name a{color: #000;}
 .location-layout .name{font-size: 1.375em}
-.location-layout .description{color:#aaa;font-size:1em;}
+.location-layout .description{color: #333;font-size:1em;}
 .post-thumbnail img{position:absolute;top: 0;bottom: 0;left: 0;right: 0;height: 100%;width: 100%;object-fit: cover;}
 .page-title{
     background: #fff;
@@ -254,26 +329,25 @@ h2.title{
     padding-top: 18px;
     padding-bottom: 17px;
     border-bottom: 1px solid #eee;
-    color: #666;
-    font-size: 1.2em;
-    font-weight: 600;
+    color: #333;
+    font-size: 20px;
     line-height: 1.5rem;
     min-height: 59px;
 }
-.pad{padding: 18px 30px 16px;}
+.pad{padding: 15px 0 15px;}
 .page-title .meta-single li{
     float: left;
     margin-right: 14px;
 }
-.page-title a{color:#aaa}
+.page-title a{color: #333;}
 .page-title .meta-single li.comments{
     float: right;
     margin-right: 0;
 }
 .detail-content h3{
-    font-size: 2.62em;
+    font-size: 25px;
     line-height: 1.3em;
-    color:#444;
+    color: #333;
 }
 .published{
     font-size: 1em;
@@ -284,5 +358,146 @@ h2.title{
 }
 .comment-form{padding-bottom:15px;border-bottom:1px dashed #ddd}
 .image_wrap img{max-height:215px;object-fit: cover;width: 100%;}
-#digclock{color: rgba(255,255,255,.5);}
+#digclock{color: rgba(255, 255, 255, 0.78);}
+.clock.fl {
+    text-align: center;
+}
 .detail-content img{max-width:100% !important;height:auto !important;}
+
+/*  */
+.buzz{
+    background-image:  url(http://localhost/dulich/admin/uploads/images/detail-header.jpg);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    color:  #FFFFFF;
+    font-size: 170px;
+    animation: filling 3s ease forwards;
+}
+@keyframes filling {
+  from{
+    background-position: center 0%;
+  }
+  to {
+    background-position: center 60%;
+  }
+}
+/* */
+
+.sub-header {background: url(http://localhost/dulich/admin/uploads/images/home2.jpg)no-repeat !important;background-position-y: 80% !important;}
+
+.sub-header .wrapper-logo {
+    min-height: 300px;
+}
+.sub-header .site-title a {
+    font-size: 90px;
+}
+
+.service .box-sv .image {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    overflow: hidden;
+}
+.service .box-sv .image img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.service {
+    margin: 15px 0 25px 0;
+}
+.service .box-sv {
+    position: relative;
+    margin-bottom: 15px;
+}
+.service .box-sv>a:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.42);
+    display: block;
+    position: absolute;
+    z-index: 1;
+}
+.service .box-sv .des {
+    position: absolute;
+    top: 35%;
+    text-align: center;
+    color: #fff;
+    z-index: 2;
+    padding: 0 15px;
+}
+.service .box-sv .des h2 {
+    position: relative;
+    top: 30px;
+    -moz-transition: all 500ms ease;
+    -webkit-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transition-duration: 0.8s;
+    -webkit-transition-duration: 0.8s;
+    /* text-transform: uppercase; */
+    text-shadow: 2px 2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, -2px -2px 0 #fff, 2px 0px 0 #fff, 0px 2px 0 #fff, -2px 0px 0 #fff, 0px -2px 0 #fff;
+    color: #000;
+    font-family: 'Lobster', cursive;
+}
+.service .box-sv .des p {
+    opacity: 0;
+    -moz-transition: all 500ms ease;
+    -webkit-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transition-duration: 0.8s;
+    -webkit-transition-duration: 0.8s;
+}
+.service .box-sv:hover .des p {
+    opacity: 1;
+}
+.service .box-sv:hover .des h2 {
+    top: 0;
+}
+
+.title-home .post-subheading:before, .title-home .post-subheading:after {
+    content: "";
+    width: 60px;
+    height: 2px;
+    background: #000;
+    display: block;
+    bottom: 30%;
+    position: absolute;
+}
+
+.title-home .post-subheading:before {
+    left: 0;
+}
+
+.title-home .post-subheading:after {
+    right: 0;
+}
+
+.detail-content {
+    margin: 0 -15px;
+}
+
+.collapse.show .mr-auto {
+    background: #fff;
+    position: absolute;
+    width: 300px;
+    right: 0;
+    top: 100%;
+    padding: 0 15px;
+}
+.collapse.show .mr-auto li a {
+    color: #333 !important;
+}

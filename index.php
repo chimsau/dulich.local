@@ -6,18 +6,60 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="wrapper-main">
-					<div class="row m-0">
-						<div class="col-md-4 p-0">
-							<?php include('includes/sidebar.php');?>
-						</div>
-						<div class="col-md-8 p-0">
+					<div class="row m-0">						
+						<div class="col-md-12 p-0">
+							<div class="service">
+								<h2 class="title-home"><span class="post-subheading">Vi Vu</span> chung một niềm đam mê </h2>
+								<div class="row m-0">
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<div class="box-sv">
+											<a href="diadiemdulich.php">
+												<div class="image">
+													<img src="/dulich//admin/uploads/images/sev1.jpg" class="img-fluid" alt="">
+												</div>
+												<div class="des">
+													<h2>Địa điểm</h2>
+													<p>Vùng đất mới những cung đường đang còn xanh và chờ các bạn khám phá!</p>
+												</div>
+											</a>
+										</div>
+									</div>
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<div class="box-sv">
+											<a href="post-story.php">
+												<div class="image">
+													<img src="/dulich//admin/uploads/images/sev2.png" class="img-fluid" alt="">
+												</div>
+												<div class="des">
+													<h2>Chia sẻ</h2>
+													<p>Những cảm nhận tuyệt vời nhất những vùng miền mà bạn đã đi!</p>
+												</div>
+											</a>
+										</div>
+									</div>
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<div class="box-sv">
+											<a href="cauchuyen.php">
+												<div class="image">
+													<img src="/dulich//admin/uploads/images/sev3.jpg" class="img-fluid" alt="">
+												</div>
+												<div class="des">
+													<h2>Câu chuyện</h2>
+													<p>Hãy nói cho chúng tôi nghe những thứ tuyệt vời nhất mà bạn đã khám phá!</p>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							
 							<div class="wrapper-main-content">
-								<h2 class="title"> DÂN ĐI PHƯỢT <span class="post-subheading">Blog</span></h2>
+								<h2 class="title-home"><span class="post-subheading">Blog</span> dân đi phượt </h2>
 								<div class="row">
 									<div class="col-md-12">
 										<div class="box-content">
 											<div class="featured">
-											    <article class="clearfix post">
+											    <article class="row clearfix post">
 											    	<?php 
 											    		$posts = fetch_news();
 											    		if(!empty($posts[0])) {
@@ -30,31 +72,33 @@
 																$count = 0;
 															}
 											    			echo"
-													        <div class='post-inner post-hover'>
-													            <div class='post-thumbnail featured-img-thumb-large'>
-													                <a href='single.php?id={$items['tintuc_id']}'>
-													                    <img src='".BASE_URL."/admin/uploads/images/{$items['tintuc_anh']}' class='img-fluid' alt=''>
-													                </a>
-													                <a class='post-comments' href='single.php?id={$items['tintuc_id']}#disscuss'><span><i class='fa fa-comments-o'></i>{$count}</span></a>
-													            </div>
-													         
+											    			<div class='col-md-6'>
+														        <div class='post-inner post-hover'>
+														            <div class='post-thumbnail featured-img-thumb-large'>
+														                <a href='single.php?id={$items['tintuc_id']}'>
+														                    <img src='".BASE_URL."/admin/uploads/images/{$items['tintuc_anh']}' class='img-fluid' alt=''>
+														                </a>
+														                <a class='post-comments' href='single.php?id={$items['tintuc_id']}#disscuss'><span><i class='fa fa-comments-o'></i>{$count}</span></a>
+														            </div>
+														         
 
-													            <div class='post-meta clearfix'>
-													                <p class='post-category'><a href='danhmuctintuc.php?id={$items['danhmuc_id']}'>{$items['danhmuc_ten']}</a></p>
-													                <p class='post-date'>
-													                    <time class='published' datetime=''>{$items['date']}</time>
-													                </p>
-													            </div>
-													           
+														            <div class='post-meta clearfix'>
+														                <p class='post-category'><a href='danhmuctintuc.php?id={$items['danhmuc_id']}'>{$items['danhmuc_ten']}</a></p>
+														                <p class='post-date'>
+														                    <time class='published' datetime=''>{$items['date']}</time>
+														                </p>
+														            </div>
+														           
 
-													            <h2 class='post-title'>
-	        														<a href='single.php?id={$items['tintuc_id']}' title='{$items['tintuc_ten']}'>{$items['tintuc_ten']}</a>
-	        													</h2>
-													           
-													            <div class='excerpt'>
-													                <p>".the_excerpt($items['tintuc_mota'], 350)."</p>
-													            </div>
-													            
+														            <h2 class='post-title'>
+		        														<a href='single.php?id={$items['tintuc_id']}' title='{$items['tintuc_ten']}'>{$items['tintuc_ten']}</a>
+		        													</h2>
+														           
+														            <div class='excerpt'>
+														                <p>".the_excerpt($items['tintuc_mota'], 350)."</p>
+														            </div>
+														            
+														        </div>
 													        </div>
 													        ";
 											    		}
@@ -84,7 +128,7 @@
 															$count = 0;
 														}
 											            echo "
-											                <div class='col-md-6'>
+											                <div class='col-md-3'>
 							                                    <article class='clearfix post'>
 							                                      <div class='post-inner post-hover'>
 							                                          <div class='post-thumbnail featured-img-thumb-large'>
