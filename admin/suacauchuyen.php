@@ -3,7 +3,7 @@
 <?php include('includes/header.php');?>
 <?php include('includes/top-header.php');?>
 <?php include('includes/left-sidebar.php');?>
-<?php admin_access();?>
+<?php editor_access();?>
 
 <?php 
   // Kiem tra gia tri cua bien tid tu $_GET
@@ -22,12 +22,6 @@
       $errors[] = "tieude";
     }
 
-    if($trimmed['cauchuyen_tacgia']){
-      $tacgia = $trimmed['cauchuyen_tacgia'];
-    } else {
-      $errors[] = "tacgia";
-    }
-
     if($trimmed['cauchuyen_noidung']){
       $noidung = $trimmed['cauchuyen_noidung'];
     } else {
@@ -39,11 +33,11 @@
     $hot = isset($trimmed['hot']) ? 1 : 0;
 
     if(empty($errors)){ // kiểm tra nếu không có lỗi xảy ra, thì chèn dữ liệu vào database
-      $query = "UPDATE cauchuyen SET cauchuyen_tieude = ?, cauchuyen_tacgia = ?, cauchuyen_noidung = ?, cauchuyen_trangthai = ?, cauchuyen_hot = ? WHERE cauchuyen_id = ? LIMIT 1";
+      $query = "UPDATE cauchuyen SET cauchuyen_tieude = ?, cauchuyen_noidung = ?, cauchuyen_trangthai = ?, cauchuyen_hot = ? WHERE id = ? LIMIT 1";
       $stmt = $dbc->prepare($query);
 
       //gan tham so cho cau lenh prepare
-      $stmt->bind_param('sssiii', $tieude, $tacgia, $noidung, $trangthai, $hot, $id);
+      $stmt->bind_param('ssiii', $tieude, $noidung, $trangthai, $hot, $id);
 
       //cho chay cau lenh prepare
       $stmt->execute();
@@ -69,7 +63,7 @@
   <?php 
 
   //truy van csdl lieu de do du lieu ra
-    $query = "SELECT * FROM cauchuyen WHERE cauchuyen_id = {$id}";
+    $query = "SELECT * FROM cauchuyen WHERE id = {$id}";
     if($stmt = $dbc->query($query)){
       if($stmt->num_rows == 1) {
         //neu du lieu ton tai trong database, dua du lieu thong qua TID vao, xuat du lieu ra ngoai trinh duyet
@@ -103,20 +97,6 @@
                 </div>
 
                 <div class="form-group row">
-
-                  <label class="col-12 col-sm-3 col-form-label text-sm-right">Tác giả *</label>
-                  <div class="col-12 col-sm-8 col-lg-6">
-                    <input name="cauchuyen_tacgia" tabindex="1" class="form-control" type="text" value="<?php if(isset($cauchuyens['cauchuyen_tacgia'])) echo strip_tags($cauchuyens['cauchuyen_tacgia']); ?>">
-                    <?php 
-                      if(isset($errors) && in_array('tacgia',$errors)) 
-                      echo "
-                        <ul class='parsley-errors-list filled'><li class='parsley-required'>Chưa nhập tác giả</li></ul>
-                      ";
-                    ?>
-                  </div>
-                </div>
-
-                <div class="form-group row">
                   <label class="col-12 col-sm-3 col-form-label text-sm-right">Nội dung *</label>
                   <div class="col-12 col-sm-8 col-lg-6">
                       <textarea class="form-control" name="cauchuyen_noidung"><?php if(isset($cauchuyens['cauchuyen_noidung'])) echo $cauchuyens['cauchuyen_noidung']; ?></textarea>
@@ -128,7 +108,7 @@
                   <div class="col-12 col-sm-8 col-lg-6">
                     <select class="form-control" name="cauchuyen_trangthai">
                       <?php 
-                        $query = "SELECT cauchuyen_trangthai FROM cauchuyen WHERE cauchuyen_id = {$id} ORDER BY cauchuyen_trangthai ASC";
+                        $query = "SELECT cauchuyen_trangthai FROM cauchuyen WHERE id = {$id} ORDER BY cauchuyen_trangthai ASC";
                         $stmt = $dbc->query($query);
                         if($stmt->num_rows == 1) {
                           $trangthais = $stmt->fetch_array(MYSQLI_NUM);

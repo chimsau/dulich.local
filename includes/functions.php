@@ -29,11 +29,24 @@
         }
        
     } // End the_excerpt
-    
+
+    function is_logged_in() {
+        if(!isset($_SESSION['id'])) {
+            redirect_to('login.php');
+        }
+    } 
+
     // Ham tao ra de kiem tra xem co phai la admin hay khong
     function is_admin() {
+        return isset($_SESSION['role']) && ($_SESSION['role'] == 2);
+    }
 
-        return isset($_SESSION['name']);
+    function is_editor() {
+        return isset($_SESSION['role']) && (($_SESSION['role'] == 1) || ($_SESSION['role'] == 2));
+    }
+
+    function is_user() {
+        return isset($_SESSION['role']) && (($_SESSION['role'] == 2) || ($_SESSION['role'] == 1) || ($_SESSION['role'] == 0));
     }
     
     // Kiem tra xem nguoi dung co the vao trang admin hay khong?
@@ -43,6 +56,17 @@
         }
     }
 
+    function editor_access() {
+        if(!is_editor()) {
+            redirect_to('admin/login.php');
+        }
+    }
+
+    function user_access() {
+        if(!is_user()) {
+            redirect_to('admin/login.php');
+        }
+    }
 
     function confirm_query($result, $query) {
         global $dbc;
@@ -56,13 +80,13 @@
         global $dbc;
         $start = (isset($_GET['s']) && filter_var($_GET['s'], FILTER_VALIDATE_INT, array('min_range' => 1))) ? $_GET['s'] : 0;
         
-        $query = "SELECT n.tintuc_hot ,n.tintuc_id ,n.tintuc_ten, n.tintuc_mota, n.tintuc_noidung, n.tintuc_anh, DATE_FORMAT(n.tintuc_ngaytao, '%d Tháng %m, %y') AS date, c.danhmuc_ten, c.danhmuc_id ";
+        $query = "SELECT n.tintuc_hot ,n.id ,n.tintuc_ten, n.tintuc_mota, n.tintuc_noidung, n.tintuc_anh, DATE_FORMAT(n.tintuc_ngaytao, '%d Tháng %m, %y') AS date, c.danhmuc_ten, c.id AS catid ";
         $query .= " FROM tintuc AS n "; 
         $query .= " LEFT JOIN danhmuc AS c "; 
-        $query .= " USING (danhmuc_id) ORDER BY n.tintuc_hot DESC LIMIT {$start}, {$display}";
+        $query .= " ON n.danhmuc_id = c.id ORDER BY n.tintuc_hot DESC LIMIT {$start}, {$display}";
         $result = $dbc->query($query);
         confirm_query($result, $query);
-        
+
         if($result->num_rows > 0) {
             $posts = array();
             while($results = $result->fetch_array(MYSQLI_ASSOC)) {
@@ -79,10 +103,10 @@
         global $dbc;
         $start = (isset($_GET['s']) && filter_var($_GET['s'], FILTER_VALIDATE_INT, array('min_range' => 1))) ? $_GET['s'] : 0;
         
-        $query = "SELECT l.baiviet_diadiem_hot ,l.baiviet_diadiem_id, l.baiviet_diadiem_ten, l.baiviet_diadiem_mota, l.baiviet_diadiem_noidung, l.baiviet_diadiem_anh, DATE_FORMAT(l.baiviet_diadiem_ngaytao, '%d Tháng %m, %y') AS date, c.diadiem_ten, c.diadiem_id ";
+        $query = "SELECT l.baiviet_diadiem_hot ,l.id, l.baiviet_diadiem_ten, l.baiviet_diadiem_mota, l.baiviet_diadiem_noidung, l.baiviet_diadiem_anh, DATE_FORMAT(l.baiviet_diadiem_ngaytao, '%d Tháng %m, %y') AS date, c.diadiem_ten, c.id AS catid ";
         $query .= " FROM baiviet_diadiem AS l "; 
         $query .= " LEFT JOIN diadiem AS c "; 
-        $query .= " USING (diadiem_id) ORDER BY l.baiviet_diadiem_hot DESC LIMIT {$start}, {$display}";
+        $query .= " ON l.diadiem_id = c.id ORDER BY l.baiviet_diadiem_hot DESC LIMIT {$start}, {$display}";
         $result = $dbc->query($query);
         confirm_query($result, $query);
         
@@ -102,8 +126,9 @@
         global $dbc;
         $start = (isset($_GET['s']) && filter_var($_GET['s'], FILTER_VALIDATE_INT, array('min_range' => 1))) ? $_GET['s'] : 0;
         
-        $query = "SELECT cauchuyen_id ,cauchuyen_tieude, cauchuyen_tacgia, cauchuyen_noidung, DATE_FORMAT(cauchuyen_ngay, '%d Tháng %m, %y') AS date ";
-        $query .= " FROM cauchuyen ";  
+        $query = "SELECT s.id, s.user_id ,s.cauchuyen_tieude, s.cauchuyen_noidung, DATE_FORMAT(s.cauchuyen_ngay, '%d Tháng %m, %y') AS date, u.name AS uname, u.id AS uid ";
+        $query .= " FROM cauchuyen AS s ";  
+        $query .= " LEFT JOIN user AS u ON s.user_id = u.id ";  
         $query .= " WHERE cauchuyen_trangthai = 1 ";  
         $query .= " ORDER BY cauchuyen_hot DESC LIMIT {$start}, {$display}";
         $result = $dbc->query($query);
@@ -125,10 +150,10 @@
         global $dbc;
         $start = (isset($_GET['s']) && filter_var($_GET['s'], FILTER_VALIDATE_INT, array('min_range' => 1))) ? $_GET['s'] : 0;
         
-        $query = "SELECT n.tintuc_hot ,n.tintuc_id ,n.tintuc_ten, n.tintuc_mota, n.tintuc_noidung, n.tintuc_anh, DATE_FORMAT(n.tintuc_ngaytao, '%d Tháng %m, %y') AS date, c.danhmuc_ten, c.danhmuc_id ";
+        $query = "SELECT n.tintuc_hot ,n.id ,n.tintuc_ten, n.tintuc_mota, n.tintuc_noidung, n.tintuc_anh, DATE_FORMAT(n.tintuc_ngaytao, '%d Tháng %m, %y') AS date, c.danhmuc_ten, c.id AS catid ";
         $query .= " FROM tintuc AS n "; 
         $query .= " INNER JOIN danhmuc AS c "; 
-        $query .= " USING (danhmuc_id) WHERE c.danhmuc_id = '{$id}' ORDER BY n.tintuc_hot DESC LIMIT {$start}, {$display}";
+        $query .= " ON n.danhmuc_id = c.id WHERE c.id = '{$id}' ORDER BY n.tintuc_hot DESC LIMIT {$start}, {$display}";
         $result = $dbc->query($query);
         confirm_query($result, $query);
 
@@ -149,10 +174,10 @@
         global $dbc;
         $start = (isset($_GET['s']) && filter_var($_GET['s'], FILTER_VALIDATE_INT, array('min_range' => 1))) ? $_GET['s'] : 0;
         
-        $query = "SELECT l.baiviet_diadiem_hot ,l.baiviet_diadiem_id ,l.baiviet_diadiem_ten, l.baiviet_diadiem_mota, l.baiviet_diadiem_noidung, l.baiviet_diadiem_anh, DATE_FORMAT(l.baiviet_diadiem_ngaytao, '%d Tháng %m, %y') AS date, c.diadiem_ten, c.diadiem_id";
+        $query = "SELECT l.baiviet_diadiem_hot ,l.id ,l.baiviet_diadiem_ten, l.baiviet_diadiem_mota, l.baiviet_diadiem_noidung, l.baiviet_diadiem_anh, DATE_FORMAT(l.baiviet_diadiem_ngaytao, '%d Tháng %m, %y') AS date, c.diadiem_ten, c.id AS catid";
         $query .= " FROM baiviet_diadiem AS l "; 
         $query .= " INNER JOIN diadiem AS c "; 
-        $query .= " USING (diadiem_id) WHERE c.diadiem_id = '{$id}' ORDER BY l.baiviet_diadiem_hot DESC LIMIT {$start}, {$display}";
+        $query .= " ON l.diadiem_id = c.id WHERE c.id = '{$id}' ORDER BY l.baiviet_diadiem_hot DESC LIMIT {$start}, {$display}";
         $result = $dbc->query($query);
         confirm_query($result, $query);
 
@@ -172,12 +197,12 @@
 
     function get_news_by_id($id) {
         global $dbc;
-        $query = " SELECT n.tintuc_ten, n.tintuc_mota, n.tintuc_noidung, n.tintuc_anh, n.tintuc_ngaytao, c.danhmuc_ten, c.danhmuc_id, "; 
+        $query = " SELECT n.tintuc_ten, n.tintuc_mota, n.tintuc_noidung, n.tintuc_anh, n.tintuc_ngaytao, c.danhmuc_ten, c.id AS catid, "; 
         $query .= " DATE_FORMAT(n.tintuc_ngaytao, '%d Tháng %m, %y') AS date ";
         $query .= " FROM tintuc AS n ";
         $query .= " LEFT JOIN danhmuc AS c ";
-        $query .= " USING (danhmuc_id) ";
-        $query .= " WHERE n.tintuc_id = {$id}";
+        $query .= " ON n.danhmuc_id = c.id ";
+        $query .= " WHERE n.id = {$id}";
         $query .= " LIMIT 1";
         $result = $dbc->query($query);
         confirm_query($result, $query);
@@ -186,10 +211,11 @@
 
     function get_story_by_id($id) {
         global $dbc;
-        $query = " SELECT cauchuyen_id ,cauchuyen_tieude, cauchuyen_tacgia, cauchuyen_noidung, "; 
-        $query .= " DATE_FORMAT(cauchuyen_ngay, '%d Tháng %m, %y') AS date ";
-        $query .= " FROM cauchuyen ";
-        $query .= " WHERE cauchuyen_id = {$id}";
+        $query = " SELECT s.id , s.cauchuyen_tieude, u.name AS uname, u.id AS uid, s.cauchuyen_noidung, "; 
+        $query .= " DATE_FORMAT(s.cauchuyen_ngay, '%d Tháng %m, %y') AS date ";
+        $query .= " FROM cauchuyen AS s ";
+        $query .= " LEFT JOIN user AS u ON s.user_id = u.id ";
+        $query .= " WHERE s.id = {$id}";
         $query .= " LIMIT 1";
         $result = $dbc->query($query);
         confirm_query($result, $query);
@@ -198,12 +224,12 @@
 
     function get_location_by_id($id) {
         global $dbc;
-        $query = " SELECT l.baiviet_diadiem_ten, l.baiviet_diadiem_mota, l.baiviet_diadiem_noidung, l.baiviet_diadiem_anh, l.baiviet_diadiem_ngaytao, c.diadiem_ten, c.diadiem_id, "; 
+        $query = " SELECT l.baiviet_diadiem_ten, l.baiviet_diadiem_mota, l.baiviet_diadiem_noidung, l.baiviet_diadiem_anh, l.baiviet_diadiem_ngaytao, c.diadiem_ten, c.id AS catid, "; 
         $query .= " DATE_FORMAT(l.baiviet_diadiem_ngaytao, '%d Tháng %m, %y') AS date ";
         $query .= " FROM baiviet_diadiem AS l ";
         $query .= " LEFT JOIN diadiem AS c ";
-        $query .= " USING (diadiem_id) ";
-        $query .= " WHERE l.baiviet_diadiem_id = {$id}";
+        $query .= " ON l.diadiem_id = c.id ";
+        $query .= " WHERE l.id = {$id}";
         $query .= " LIMIT 1";
         $result = $dbc->query($query);
         confirm_query($result, $query);
@@ -214,13 +240,64 @@
     // Count Comment
     function countComment($type, $id) {
         global $dbc;
-        $query = "SELECT count(binhluan_id) FROM binhluan WHERE binhluan_kieu = '{$type}' AND foreign_id = {$id}";
+        $query = "SELECT count(id) FROM binhluan WHERE binhluan_kieu = '{$type}' AND foreign_id = {$id}";
         $result = $dbc->query($query);
         if($result->num_rows > 0) {
             list($count) = $result->fetch_array(MYSQLI_NUM);
           return $count;
         } else{
           return FALSE;
+        }
+    }
+
+    function statistic($table) {
+        global $dbc;
+        $query = "SELECT count(id) FROM {$table}";
+        $result = $dbc->query($query);
+        confirm_query($result, $query);
+        if($result->num_rows > 0) {
+            list($count) = $result->fetch_array(MYSQLI_NUM);
+            return $count;
+        } else{
+            return FALSE;
+        }
+    }
+
+    function statisticComment($type) {
+        global $dbc;
+        $query = "SELECT count(id) FROM binhluan WHERE binhluan_kieu = '{$type}'";
+        $result = $dbc->query($query);
+        confirm_query($result, $query);
+        if($result->num_rows > 0) {
+            list($count) = $result->fetch_array(MYSQLI_NUM);
+            return $count;
+        } else{
+            return FALSE;
+        }
+    }
+    function statisticUser() {
+        global $dbc;
+        $query = "SELECT count(id) FROM user WHERE role = 0";
+        $result = $dbc->query($query);
+        confirm_query($result, $query);
+        if($result->num_rows > 0) {
+            list($count) = $result->fetch_array(MYSQLI_NUM);
+            return $count;
+        } else{
+            return FALSE;
+        }
+    }
+
+    function statisticUserApproval() {
+        global $dbc;
+        $query = "SELECT count(id) FROM user WHERE role = 0 AND active IS NULL";
+        $result = $dbc->query($query);
+        confirm_query($result, $query);
+        if($result->num_rows > 0) {
+            list($count) = $result->fetch_array(MYSQLI_NUM);
+            return $count;
+        } else{
+            return FALSE;
         }
     }
 
@@ -231,7 +308,7 @@
             $page = $_GET['p'];
         } else {
           
-            $query = "SELECT COUNT({$table}_id) FROM {$table}";
+            $query = "SELECT COUNT(id) FROM {$table}";
             $result = $dbc->query($query);
             confirm_query($result, $query);
             list($record) = $result->fetch_array(MYSQLI_NUM);
@@ -278,7 +355,7 @@
             $page = $_GET['p'];
         } else {
           
-            $query = "SELECT COUNT({$table}_id) FROM {$table} WHERE cauchuyen_trangthai = 1 ";
+            $query = "SELECT COUNT(id) FROM {$table} WHERE cauchuyen_trangthai = 1 ";
             $result = $dbc->query($query);
             confirm_query($result, $query);
             list($record) = $result->fetch_array(MYSQLI_NUM);
@@ -324,7 +401,7 @@
             $page = $_GET['p'];
         } else {
           
-            $query = "SELECT COUNT({$table}_id) FROM {$table} WHERE {$cat}_id = $id";
+            $query = "SELECT COUNT(id) FROM {$table} WHERE {$cat}_id = $id";
             $result = $dbc->query($query);
             confirm_query($result, $query);
             list($record) = $result->fetch_array(MYSQLI_NUM);

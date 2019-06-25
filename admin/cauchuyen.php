@@ -3,7 +3,7 @@
 <?php include('includes/header.php');?>
 <?php include('includes/top-header.php');?>
 <?php include('includes/left-sidebar.php');?>
-<?php admin_access();?>
+<?php editor_access();?>
 <div class="be-content">
     <div class="main-content container-fluid">
       <div class="row">
@@ -33,7 +33,7 @@
                             break;
 
                           case 'name':
-                            $order_by = 'cauchuyen_tacgia';
+                            $order_by = 'uname';
                             break;
 
                           case 'status':
@@ -49,16 +49,18 @@
                             break;
                           
                           default:
-                            $order_by = 'cauchuyen_id';
+                            $order_by = 'id';
                             break;
                         }
                       } else {
-                        $order_by = 'cauchuyen_id';
+                        $order_by = 'id';
                       }
 
                         // truy vấn CSDL
-                        $query = "SELECT cauchuyen_id, cauchuyen_tieude, cauchuyen_tacgia, cauchuyen_noidung, DATE_FORMAT(cauchuyen_ngay, '%d/%m/%y') AS date , cauchuyen_trangthai, cauchuyen_hot ";
-                        $query .= " FROM cauchuyen";
+                        $query = "SELECT s.id, s.cauchuyen_tieude, u.name AS uname, u.id AS uid, s.cauchuyen_noidung, DATE_FORMAT(s.cauchuyen_ngay, '%d/%m/%y') AS date , s.cauchuyen_trangthai, s.cauchuyen_hot ";
+                        $query .= " FROM cauchuyen AS s ";
+                        $query .= " LEFT JOIN user AS u ";
+                        $query .= " ON s.user_id = u.id ";
                         $query .= " ORDER BY {$order_by} ASC";
                           if ($result = $dbc->query($query)) {
                             $status = array(0 => 'Chưa kiểm duyệt', 1 => 'kiểm duyệt');
@@ -67,17 +69,17 @@
                               echo "
                                 <tr>
                                   <td>".the_excerpt($cauchuyens['cauchuyen_tieude'], 50)."</td>
-                                  <td>".the_excerpt($cauchuyens['cauchuyen_tacgia'], 50)."</td>
+                                  <td>".the_excerpt($cauchuyens['uname'], 50)."</td>
                                   <td>".the_excerpt($cauchuyens['cauchuyen_noidung'], 200)."</td>
                                   <td class='actions'>".$status[($cauchuyens['cauchuyen_trangthai'])]."</td>
                                   <td class='actions'>".$hot[($cauchuyens['cauchuyen_hot'])]."</td>
                                   <td class='actions'>{$cauchuyens['date']}</td>
                                   <td class='actions'>
                                     <span style='padding:0 3px'>
-                                    <a href='suacauchuyen.php?id={$cauchuyens['cauchuyen_id']}' class='icon' href='#'><i class='mdi mdi-edit'></i></a>
+                                    <a href='suacauchuyen.php?id={$cauchuyens['id']}' class='icon' href='#'><i class='mdi mdi-edit'></i></a>
                                     </span>
                                     <span style='padding:0 3px'>
-                                    <a id='{$cauchuyens['cauchuyen_id']}' class='icon remove'><i class='mdi mdi-delete'></i>
+                                    <a id='{$cauchuyens['id']}' class='icon remove'><i class='mdi mdi-delete'></i>
                                     </a>
                                     </span>
                                   </td>

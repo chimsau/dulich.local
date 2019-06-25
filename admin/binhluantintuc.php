@@ -3,7 +3,7 @@
 <?php include('includes/header.php');?>
 <?php include('includes/top-header.php');?>
 <?php include('includes/left-sidebar.php');?>
-<?php admin_access();?>
+<?php editor_access();?>
 <div class="be-content">
     <div class="main-content container-fluid">
       <div class="row">
@@ -16,7 +16,6 @@
                         <tr>
                             <th style="width:20%;"><a href="binhluantintuc.php?sort=title">Bài viết</a></th>
                             <th style="width:10%;"><a href="binhluantintuc.php?sort=name">Tên tác giả</a></th>
-                            <th style="width:10%;"><a href="binhluantintuc.php?sort=email">Email</a></th>
                             <th>Nội dung</th>
                             <th style="width:80px;" class="actions"><a href="binhluantintuc.php?sort=by">Ngày tạo</a></th>
                             <th style="width:75px;" class="actions"></th>
@@ -32,11 +31,7 @@
                             break;
 
                           case 'name':
-                            $order_by = 'binhluan_tacgia';
-                            break;
-
-                          case 'email':
-                            $order_by = 'binhluan_email';
+                            $order_by = 'uname';
                             break;
 
                           case 'by':
@@ -44,31 +39,32 @@
                             break;
                           
                           default:
-                            $order_by = 'binhluan_id';
+                            $order_by = 'bid';
                             break;
                         }
                       } else {
-                        $order_by = 'binhluan_id';
+                        $order_by = 'bid';
                       }
 
-                      $query = "SELECT b.binhluan_id, t.tintuc_id, t.tintuc_ten, b.binhluan_tacgia, b.binhluan_email, b.binhluan_noidung, DATE_FORMAT(b.binhluan_ngay, '%d/%m/%y') AS date ";
-                      $query .= " FROM binhluan AS b";
-                      $query .= " INNER JOIN tintuc AS t";
-                      $query .= " ON (foreign_id = tintuc_id)";
-                      $query .= " WHERE binhluan_kieu = 'tintuc'";
+                      $query = "SELECT b.id AS bid, t.id AS tid, t.tintuc_ten, u.name AS uname, b.binhluan_noidung, DATE_FORMAT(b.binhluan_ngay, '%d/%m/%y') AS date ";
+                      $query .= " FROM binhluan AS b ";
+                      $query .= " INNER JOIN tintuc AS t ";
+                      $query .= " ON b.foreign_id = t.id ";
+                      $query .= " INNER JOIN user AS u ";
+                      $query .= " ON (b.user_id = u.id) ";
+                      $query .= " WHERE binhluan_kieu = 'tintuc' ";
                       $query .= " ORDER BY {$order_by} ASC";
                           if ($result = $dbc->query($query)) {
                             while ($binhluan = $result->fetch_array(MYSQLI_ASSOC)) {
                               echo "
                                 <tr>
-                                  <td><a target='_blank' href='".BASE_URL."/single.php?id={$binhluan['tintuc_id']}'>".the_excerpt($binhluan['tintuc_ten'], 50)."</a></td>
-                                  <td>".the_excerpt($binhluan['binhluan_tacgia'], 100)."</td>
-                                  <td>".the_excerpt($binhluan['binhluan_email'], 100)."</td>
+                                  <td><a target='_blank' href='".BASE_URL."/single.php?id={$binhluan['tid']}'>".the_excerpt($binhluan['tintuc_ten'], 50)."</a></td>
+                                  <td>".the_excerpt($binhluan['uname'], 100)."</td>
                                   <td>{$binhluan['binhluan_noidung']}</td>
                                   <td class='actions'>{$binhluan['date']}</td>
                                   <td class='actions'>
                                     <span style='padding:0 3px'>
-                                    <a id='{$binhluan['binhluan_id']}' class='icon remove'><i class='mdi mdi-delete'></i>
+                                    <a id='{$binhluan['bid']}' class='icon remove'><i class='mdi mdi-delete'></i>
                                     </a>
                                     </span>
                                   </td>

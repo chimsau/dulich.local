@@ -10,7 +10,7 @@ session_start(); ?>
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="assets/img/logo-fav.png">
-    <title>Beagle</title>
+    <title>Đăng nhập</title>
     <link rel="stylesheet" href="assets/css/app.css" type="text/css">
   </head>
   <body class="be-splash-screen">
@@ -22,10 +22,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
   $errors = array();
   $trimmed = array_map('trim', $_POST);
 
-  if($trimmed['username']){
-    $username = $trimmed['username'];
+  if($trimmed['email']){
+    $email = $trimmed['email'];
   } else {
-    $errors[] = "username";
+    $errors[] = "email";
   }
   
   if($trimmed['password']){
@@ -36,16 +36,23 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   if(empty($errors)) {
       // Bat dau truy van CSDL de lay thong tin nguoi dung
-      $query = "SELECT taikhoan FROM admin WHERE (taikhoan = '{$username}' AND matkhau = '$password') LIMIT 1";
+      $query = "SELECT id, name, email, role FROM user WHERE (email = '{$email}' AND password = '$password') AND active IS NULL LIMIT 1";
       $stmt = $dbc->query($query);
       if($stmt->num_rows == 1) {
           session_regenerate_id();
           // Neu tim thay thong tin nguoi dung trong CSDL, se chuyen huong nguoi dung ve trang thich hop.
-          list($name) = $stmt->fetch_array(MYSQLI_NUM);
+          list($id, $name, $email, $role) = $stmt->fetch_array(MYSQLI_NUM);
+          $_SESSION['id'] = $id;
           $_SESSION['name'] = $name;
-          redirect_to('admin/index.php');
+          $_SESSION['email'] = $email;
+          $_SESSION['role'] = $role;
+          if($_SESSION['role'] == 0) {
+            redirect_to('index.php');
+          } else {
+            redirect_to('admin/index.php');
+          }
       } else {
-          $messages = "<div class='alert alert-danger alert-icon alert-dismissible' role='alert'><div class='icon'><span class='mdi mdi-close-circle-o'></span></div><div class='message'>Tài khoản và mật khẩu không đúng</div></div>";
+          $messages = "<div class='alert alert-danger alert-icon alert-dismissible' role='alert'><div class='icon'><span class='mdi mdi-close-circle-o'></span></div><div class='message'>Tài khoản và mật khẩu không đúng hoặc tài khoản chưa được kích hoạt</div></div>";
       }
   } else {
     $messages = "<div class='alert alert-danger alert-icon alert-dismissible' role='alert'><div class='icon'><span class='mdi mdi-close-circle-o'></span></div><div class='message'>Nhập thông tin</div></div>";
@@ -67,11 +74,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <?php if(isset($messages)) {echo $messages;} ?>
                 <form action="" method="post">
                   <div class="form-group">
-                    <input class="form-control" id="username" name="username" type="text" placeholder="Tài khoản" autocomplete="off" value="<?php if(isset($_POST['username'])) echo strip_tags($_POST['username']); ?>">
+                    <input class="form-control" id="email" name="email" type="text" placeholder="Email" autocomplete="off" value="<?php if(isset($_POST['username'])) echo strip_tags($_POST['email']); ?>">
                     <?php 
-                      if(isset($errors) && in_array('username',$errors)) 
+                      if(isset($errors) && in_array('email',$errors)) 
                       echo "
-                        <ul class='parsley-errors-list filled'><li class='parsley-required'>Chưa nhập tài khoản</li></ul>
+                        <ul class='parsley-errors-list filled'><li class='parsley-required'>Chưa nhập email</li></ul>
                       ";
                     ?>
                   </div>
@@ -85,8 +92,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     ?>
                   </div>
                   <div class="form-group row login-tools">
+                    <div class="col-12 login-forgot-password"><a href="pages-forgot-password.html">Quên mật khẩu?</a></div>
                   </div>
-                  <div class="form-group login-submit"><button class="btn btn-primary btn-xl" type="submit" >Đăng nhập</a></button>
+                  <div class="form-group row login-submit">
+                    <div class="col-6"><a class="btn btn-secondary btn-xl" href="signup.php">Đăng ký</a></div>
+                    <div class="col-6"><button class="btn btn-primary btn-xl" type="submit" >Đăng nhập</button></div>
+                  </div>
                 </form>
               </div>
             </div>

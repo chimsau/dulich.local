@@ -30,13 +30,13 @@
                                   <article class='clearfix post'>
                                     <div class='post-inner post-hover'>
                                       <div class='post-meta clearfix'>
-                                        <p class='post-category'><a>{$post['cauchuyen_tacgia']}</a></p>
+                                        <p class='post-category'><a>{$post['uname']}</a></p>
                                         <p class='post-date'>
                                             <time class='published'>{$post['date']}</time>
                                         </p>
                                       </div>
                                       <h2 class='post-title'>
-                                        <a href='chitietcauchuyen.php?id={$post['cauchuyen_id']}' title='{$post['cauchuyen_tieude']}'>{$post['cauchuyen_tieude']}</a>
+                                        <a href='chitietcauchuyen.php?id={$post['id']}' title='{$post['cauchuyen_tieude']}'>{$post['cauchuyen_tieude']}</a>
                                       </h2>
                                       <div class='excerpt'>
                                           <p>".the_excerpt($post['cauchuyen_noidung'], 200)."</p>

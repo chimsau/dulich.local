@@ -20,7 +20,7 @@ if($id = validate_id($_GET['id'])) {
       'tintuc_anh' => $news['tintuc_anh'],
       'date' => $news['date'],
       'danhmuc_ten' => $news['danhmuc_ten'],
-      'danhmuc_id' => $news['danhmuc_id'],
+      'danhmuc_id' => $news['catid'],
     );
 
   } else {

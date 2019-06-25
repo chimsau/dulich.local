@@ -3,7 +3,7 @@
 <?php include('includes/header.php');?>
 <?php include('includes/top-header.php');?>
 <?php include('includes/left-sidebar.php');?>
-<?php admin_access();?>
+<?php editor_access();?>
 
 <?php 
   if($_SERVER['REQUEST_METHOD'] == "POST"){ //Giá trị tồn tại, xử lý form
@@ -111,7 +111,7 @@
                     <select class="form-control" name="diadiem">
                       <option>Chọn địa điểm</option>
                       <?php 
-                        $query = "SELECT diadiem_id, diadiem_ten FROM diadiem ORDER BY diadiem_vitri ASC";
+                        $query = "SELECT id, diadiem_ten FROM diadiem ORDER BY diadiem_vitri ASC";
                         $stmt = $dbc->query($query);
                         if($stmt->num_rows > 0) {
                           while($diadiem = $stmt->fetch_array(MYSQLI_NUM)) {

@@ -6,7 +6,7 @@
   //xac nhan bien GET ton tai va thuoc loai du lieu cho phep
   if(isset($_POST['id']) && filter_var($_POST['id'], FILTER_VALIDATE_INT, array('min_range' =>1))){
     $id = $_POST['id'];
-    $query = "DELETE FROM diadiem WHERE id = ?";
+    $query = "DELETE FROM user WHERE id = ?";
     $stmt = $dbc->prepare($query);
 
     //Gan tham so cho prepare

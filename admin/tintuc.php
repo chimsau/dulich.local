@@ -3,13 +3,13 @@
 <?php include('includes/header.php');?>
 <?php include('includes/top-header.php');?>
 <?php include('includes/left-sidebar.php');?>
-<?php admin_access();?>
+<?php editor_access();?>
 <div class="be-content">
     <div class="main-content container-fluid">
       <div class="row">
         <div class="col-md-12">
           <div class="card card-table">
-            <div class="card-header">Tin tức</div>
+            <div class="card-header">Tin tức <span style="margin-left:10px"><a href="themtintuc.php" class="btn btn-space btn-primary btn-lg"><i class="icon icon-left mdi mdi-plus-circle-o"></i>Thêm mới</a></span></div>
             <div class="card-body table-responsive">
                 <table class="table table-striped table-hover" style="font-size: 13px">
                     <thead>
@@ -45,18 +45,18 @@
                             break;
                           
                           default:
-                            $order_by = 'tintuc_id';
+                            $order_by = 'id';
                             break;
                         }
                       } else {
-                        $order_by = 'tintuc_id';
+                        $order_by = 'id';
                       }
 
                         // truy vấn CSDL
-                        $query = "SELECT t.tintuc_id, t.tintuc_ten, t.tintuc_noidung, t.tintuc_anh, DATE_FORMAT(t.tintuc_ngaytao, '%d/%m/%y') AS date, t.tintuc_hot, d.danhmuc_ten ";
+                        $query = "SELECT t.id, t.tintuc_ten, t.tintuc_noidung, t.tintuc_anh, DATE_FORMAT(t.tintuc_ngaytao, '%d/%m/%y') AS date, t.tintuc_hot, d.danhmuc_ten ";
                         $query .= " FROM tintuc AS t";
                         $query .= " LEFT JOIN danhmuc AS d";
-                        $query .= " USING (danhmuc_id)";
+                        $query .= " ON t.danhmuc_id = d.id";
                         $query .= " ORDER BY {$order_by} ASC";
                           if ($result = $dbc->query($query)) {
                             $status = array(0 => 'Không', 1 => 'có');
@@ -71,10 +71,10 @@
                                   <td class='actions'>{$tintucs['date']}</td>
                                   <td class='actions'>
                                     <span style='padding:0 3px'>
-                                    <a href='suatintuc.php?tid={$tintucs['tintuc_id']}' class='icon' href='#'><i class='mdi mdi-edit'></i></a>
+                                    <a href='suatintuc.php?tid={$tintucs['id']}' class='icon' href='#'><i class='mdi mdi-edit'></i></a>
                                     </span>
                                     <span style='padding:0 3px'>
-                                    <a id='{$tintucs['tintuc_id']}' class='icon remove'><i class='mdi mdi-delete'></i>
+                                    <a id='{$tintucs['id']}' class='icon remove'><i class='mdi mdi-delete'></i>
                                     </a>
                                     </span>
                                   </td>

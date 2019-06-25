@@ -3,7 +3,7 @@
 <?php include('includes/header.php');?>
 <?php include('includes/top-header.php');?>
 <?php include('includes/left-sidebar.php');?>
-<?php admin_access();?>
+<?php editor_access();?>
 <?php 
   if($_SERVER['REQUEST_METHOD'] == "POST"){ //Giá trị tồn tại, xử lý form
     $errors = array();
@@ -110,7 +110,7 @@
                     <select class="form-control" name="danhmuc">
                       <option>Chọn danh mục</option>
                       <?php 
-                        $query = "SELECT danhmuc_id, danhmuc_ten FROM danhmuc ORDER BY danhmuc_vitri ASC";
+                        $query = "SELECT id, danhmuc_ten FROM danhmuc ORDER BY danhmuc_vitri ASC";
                         $stmt = $dbc->query($query) or die("Mysqli Error: $query ". $stmt->error());
                         if($stmt->num_rows > 0) {
                           while($danhmucs = $stmt->fetch_array(MYSQLI_NUM)) {

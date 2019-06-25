@@ -1,12 +1,12 @@
 <?php include('../includes/mysqli_connect.php');?>
 <?php include('../includes/functions.php');?>
 <?php session_start(); ?>
-<?php admin_access();?>
+<?php editor_access();?>
 <?php 
   //xac nhan bien GET ton tai va thuoc loai du lieu cho phep
-  if(isset($_POST['baivietdiadiem_id']) && filter_var($_POST['baivietdiadiem_id'], FILTER_VALIDATE_INT, array('min_range' =>1))){
-    $id = $_POST['baivietdiadiem_id'];
-    $query = "DELETE FROM baiviet_diadiem WHERE baiviet_diadiem_id = ?";
+  if(isset($_POST['id']) && filter_var($_POST['id'], FILTER_VALIDATE_INT, array('min_range' =>1))){
+    $id = $_POST['id'];
+    $query = "DELETE FROM baiviet_diadiem WHERE id = ?";
     $stmt = $dbc->prepare($query);
 
     //Gan tham so cho prepare

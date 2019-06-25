@@ -3,6 +3,7 @@
 <?php include('includes/header_sub.php');?>
 
 <?php 
+
   if($_SERVER['REQUEST_METHOD'] == "POST"){ //Giá trị tồn tại, xử lý form
     $errors = array();
     $trimmed = array_map('trim', $_POST);
@@ -13,11 +14,7 @@
       $errors[] = "tieude";
     }
 
-    if($trimmed['cauchuyen_tacgia']){
-      $tacgia = $trimmed['cauchuyen_tacgia'];
-    } else {
-      $errors[] = "tacgia";
-    }
+    $tacgia = $_SESSION['id'];
 
     if($trimmed['cauchuyen_noidung']){
       $noidung = $trimmed['cauchuyen_noidung'];
@@ -27,11 +24,11 @@
 
     if(empty($errors)){ // kiểm tra nếu không có lỗi xảy ra, thì chèn dữ liệu vào database
 
-      $query = "INSERT INTO cauchuyen (cauchuyen_tieude, cauchuyen_tacgia, cauchuyen_noidung, cauchuyen_ngay, cauchuyen_trangthai, cauchuyen_hot) VALUES ( ?, ?, ?,NOW(), 0 ,0)";
+      $query = "INSERT INTO cauchuyen (cauchuyen_tieude, user_id, cauchuyen_noidung, cauchuyen_ngay, cauchuyen_trangthai, cauchuyen_hot) VALUES ( ?, ?, ?,NOW(), 0 ,0)";
       $stmt = $dbc->prepare($query);
 
       //gan tham so cho cau lenh prepare
-      $stmt->bind_param('sss', $tieude, $tacgia, $noidung);
+      $stmt->bind_param('sis', $tieude, $tacgia, $noidung);
 
       //cho chay cau lenh prepare
       $stmt->execute();
@@ -64,6 +61,8 @@
 									<div class="col-md-12">
 										<div class="box-content">
 											<?php if(isset($messages)) {echo $messages;} ?>
+											<?php if(is_user()){ ?>
+
 				                        	<form action="" method="post">
 									            <div class="form-group">
 									              <label for="title">Tiêu đề</label>
@@ -72,17 +71,6 @@
 									                if(isset($errors) && in_array('tieude',$errors)) 
 									                echo "
 									                  <div class='alert alert-danger' role='alert'>Chưa nhập tên tiêu đề</div>
-									                ";
-									              ?>
-									            </div>
-
-									            <div class="form-group">
-									              <label for="tags">Tên của bạn</label>
-									              <input type="text" class="form-control form-control-lg" id="tags" name="cauchuyen_tacgia" placeholder="Nhập tên của bạn" value="<?php if(isset($_POST['cauchuyen_tacgia'])) echo strip_tags($_POST['cauchuyen_tacgia']); ?>">
-									              <?php 
-									                if(isset($errors) && in_array('tacgia',$errors)) 
-									                echo "
-									                  <div class='alert alert-danger' role='alert'>Chưa nhập tên</div>
 									                ";
 									              ?>
 									            </div>
@@ -100,6 +88,13 @@
 
 									            <button type="submit" class="btn btn-success">Chia sẻ</button>
 									        </form>
+
+											<?php
+											} else {
+												$messages = "<p>Bạn phải <a style='color: red' href='". BASE_URL ."/admin/login.php'>đăng nhập tài khoản</a> mới có thể thực hiện chức năng này</p>";
+												if(isset($messages)) {echo $messages;}
+											}
+											 ?>
 										</div>
 									</div>
 								</div>

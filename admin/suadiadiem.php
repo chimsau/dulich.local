@@ -3,7 +3,7 @@
 <?php include('includes/header.php');?>
 <?php include('includes/top-header.php');?>
 <?php include('includes/left-sidebar.php');?>
-<?php admin_access();?>
+<?php editor_access();?>
 <?php 
   // Kiem tra gia tri cua bien tid tu $_GET
   if(isset($_GET['id']) && filter_var($_GET['id'], FILTER_VALIDATE_INT, array('min_range' =>1))){
@@ -56,7 +56,7 @@
       
 
       if(empty($errors)){ // kiểm tra nếu không có lỗi xảy ra, thì chèn dữ liệu vào database
-        $query = "UPDATE diadiem SET diadiem_ten = ?, diadiem_anh = ?, diadiem_vitri = ? WHERE diadiem_id = ? LIMIT 1";
+        $query = "UPDATE diadiem SET diadiem_ten = ?, diadiem_anh = ?, diadiem_vitri = ? WHERE id = ? LIMIT 1";
         $stmt = $dbc->prepare($query);
 
         //gan tham so cho cau lenh prepare
@@ -84,7 +84,7 @@
 <div class="be-content">
   <?php 
   //truy van csdl lieu de do du lieu ra
-    $query = "SELECT * FROM diadiem WHERE diadiem_id = {$id}";
+    $query = "SELECT * FROM diadiem WHERE id = {$id}";
     if($stmt = $dbc->query($query)){
       if($stmt->num_rows == 1) {
         //neu du lieu ton tai trong database, dua du lieu thong qua TID vao, xuat du lieu ra ngoai trinh duyet

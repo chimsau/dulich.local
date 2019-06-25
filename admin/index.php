@@ -2,7 +2,8 @@
 <?php include('includes/header.php');?>
 <?php include('includes/top-header.php');?>
 <?php include('includes/left-sidebar.php');?>
-<?php admin_access();?>
+
+<?php editor_access();?>
 
 
 <div class="be-content">

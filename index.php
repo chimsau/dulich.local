@@ -65,7 +65,7 @@
 											    		if(!empty($posts[0])) {
 												    		$items = $posts[0];
 												    		$type = 'tintuc';
-															$countComment = countComment($type, $items['tintuc_id']);
+															$countComment = countComment($type, $items['id']);
 															if($countComment > 0) {
 																$count = $countComment;
 															} else {
@@ -75,15 +75,15 @@
 											    			<div class='col-md-6'>
 														        <div class='post-inner post-hover'>
 														            <div class='post-thumbnail featured-img-thumb-large'>
-														                <a href='single.php?id={$items['tintuc_id']}'>
+														                <a href='single.php?id={$items['id']}'>
 														                    <img src='".BASE_URL."/admin/uploads/images/{$items['tintuc_anh']}' class='img-fluid' alt=''>
 														                </a>
-														                <a class='post-comments' href='single.php?id={$items['tintuc_id']}#disscuss'><span><i class='fa fa-comments-o'></i>{$count}</span></a>
+														                <a class='post-comments' href='single.php?id={$items['id']}#disscuss'><span><i class='fa fa-comments-o'></i>{$count}</span></a>
 														            </div>
 														         
 
 														            <div class='post-meta clearfix'>
-														                <p class='post-category'><a href='danhmuctintuc.php?id={$items['danhmuc_id']}'>{$items['danhmuc_ten']}</a></p>
+														                <p class='post-category'><a href='danhmuctintuc.php?id={$items['catid']}'>{$items['danhmuc_ten']}</a></p>
 														                <p class='post-date'>
 														                    <time class='published' datetime=''>{$items['date']}</time>
 														                </p>
@@ -91,7 +91,7 @@
 														           
 
 														            <h2 class='post-title'>
-		        														<a href='single.php?id={$items['tintuc_id']}' title='{$items['tintuc_ten']}'>{$items['tintuc_ten']}</a>
+		        														<a href='single.php?id={$items['id']}' title='{$items['tintuc_ten']}'>{$items['tintuc_ten']}</a>
 		        													</h2>
 														           
 														            <div class='excerpt'>
@@ -121,7 +121,7 @@
 						                        unset($posts[0]);
 						                        if(!empty($posts[1])) {
 							                        foreach ($posts as $post) {
-							                        	$countComment = countComment($type, $post['tintuc_id']);
+							                        	$countComment = countComment($type, $post['id']);
 														if($countComment > 0) {
 															$count = $countComment;
 														} else {
@@ -132,19 +132,19 @@
 							                                    <article class='clearfix post'>
 							                                      <div class='post-inner post-hover'>
 							                                          <div class='post-thumbnail featured-img-thumb-large'>
-							                                              <a href='single.php?id={$post['tintuc_id']}' title=''>
+							                                              <a href='single.php?id={$post['id']}' title=''>
 							                                                  <img src='".BASE_URL."/admin/uploads/images/{$post['tintuc_anh']}' class='img-fluid' alt=''>
 							                                              </a>
-							                                              <a class='post-comments' href='single.php?id={$post['tintuc_id']}#disscuss'><span><i class='fa fa-comments-o'></i>{$count}</span></a>
+							                                              <a class='post-comments' href='single.php?id={$post['id']}#disscuss'><span><i class='fa fa-comments-o'></i>{$count}</span></a>
 							                                          </div>
 							                                          <div class='post-meta clearfix'>
-							                                              <p class='post-category'><a href='danhmuctintuc.php?id={$post['danhmuc_id']}'>{$post['danhmuc_ten']}</a></p>
+							                                              <p class='post-category'><a href='danhmuctintuc.php?id={$post['catid']}'>{$post['danhmuc_ten']}</a></p>
 							                                              <p class='post-date'>
 							                                                  <time class='published'>{$post['date']}</time>
 							                                              </p>
 							                                          </div>
 							                                          <h2 class='post-title'>
-							                                            <a href='single.php?id={$post['tintuc_id']}' title='{$post['tintuc_ten']}'>{$post['tintuc_ten']}</a>
+							                                            <a href='single.php?id={$post['id']}' title='{$post['tintuc_ten']}'>{$post['tintuc_ten']}</a>
 							                                          </h2>
 							                                          <div class='excerpt'>
 							                                              <p>".the_excerpt($post['tintuc_mota'], 250)."</p>

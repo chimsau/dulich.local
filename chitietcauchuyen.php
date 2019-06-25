@@ -15,7 +15,7 @@ if($id = validate_id($_GET['id'])) {
       'cauchuyen_tieude' => $story['cauchuyen_tieude'], 
       'cauchuyen_noidung' => $story['cauchuyen_noidung'], 
       'date' => $story['date'],
-      'cauchuyen_tacgia' => $story['cauchuyen_tacgia'],
+      'uname' => $story['uname'],
 
     );
 
@@ -52,7 +52,7 @@ if($id = validate_id($_GET['id'])) {
                             echo "
                               <h3>{$post['cauchuyen_tieude']}</h3>
                               <div class='post-meta clearfix'>
-                                <p class='post-category'><a>{$post['cauchuyen_tacgia']}</a></p>
+                                <p class='post-category'><a>{$post['uname']}</a></p>
                                 <p class='post-date'>
                                     <time class='published'>{$post['date']}</time>
                                 </p>

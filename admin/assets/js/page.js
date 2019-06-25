@@ -5,7 +5,7 @@ var functions = {
 			if (result) {
 				var container = $(this).closest("tr");
 				var id = $(this).attr('id');
-				var string = 'cauchuyen_id='+ id;
+				var string = 'id='+ id;
 
 				$.ajax({
 					type: "POST",
@@ -24,11 +24,30 @@ var functions = {
 			if (result) {
 				var container = $(this).closest("tr");
 				var id = $(this).attr('id');
-				var string = 'tintuc_id='+ id;
+				var string = 'id='+ id;
 
 				$.ajax({
 					type: "POST",
 					url: "xoatintuc.php",
+					data: string,
+					success: function(){
+						container.slideUp('slow', function() {container.remove();});
+					}
+				});
+			}
+		});
+	},
+	remove_user: function(){
+		$('.remove').on('click', function(){
+			var result = confirm("Bạn muốn xóa");
+			if (result) {
+				var container = $(this).closest("tr");
+				var id = $(this).attr('id');
+				var string = 'id='+ id;
+
+				$.ajax({
+					type: "POST",
+					url: "xoauser.php",
 					data: string,
 					success: function(){
 						container.slideUp('slow', function() {container.remove();});
@@ -43,7 +62,7 @@ var functions = {
 			if (result) {
 				var container = $(this).closest("tr");
 				var id = $(this).attr('id');
-				var string = 'danhmuc_id='+ id;
+				var string = 'id='+ id;
 
 				$.ajax({
 					type: "POST",
@@ -62,7 +81,7 @@ var functions = {
 			if (result) {
 				var container = $(this).closest("tr");
 				var id = $(this).attr('id');
-				var string = 'diadiem_id='+ id;
+				var string = 'id='+ id;
 
 				$.ajax({
 					type: "POST",
@@ -81,7 +100,7 @@ var functions = {
 			if (result) {
 				var container = $(this).closest("tr");
 				var id = $(this).attr('id');
-				var string = 'baivietdiadiem_id='+ id;
+				var string = 'id='+ id;
 
 				$.ajax({
 					type: "POST",
@@ -100,7 +119,7 @@ var functions = {
 			if (result) {
 				var container = $(this).closest("tr");
 				var id = $(this).attr('id');
-				var string = 'binhluan_id='+ id;
+				var string = 'id='+ id;
 
 				$.ajax({
 					type: "POST",

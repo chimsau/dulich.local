@@ -3,14 +3,14 @@
 <?php include('includes/header.php');?>
 <?php include('includes/top-header.php');?>
 <?php include('includes/left-sidebar.php');?>
-<?php admin_access();?>
+<?php editor_access();?>
 
 <div class="be-content">
     <div class="main-content container-fluid">
       <div class="row">
         <div class="col-md-12">
           <div class="card card-table">
-            <div class="card-header">Bài viết về địa điểm</div>
+            <div class="card-header">Bài viết về địa điểm <span style="margin-left:10px"><a href="thembaivietdiadiem.php" class="btn btn-space btn-primary btn-lg"><i class="icon icon-left mdi mdi-plus-circle-o"></i>Thêm mới</a></span></div>
             <div class="card-body table-responsive">
                 <table class="table table-striped table-hover" style="font-size: 13px">
                     <thead>
@@ -46,18 +46,18 @@
                             break;
                           
                           default:
-                            $order_by = 'baiviet_diadiem_id';
+                            $order_by = 'id';
                             break;
                         }
                       } else {
-                        $order_by = 'baiviet_diadiem_id';
+                        $order_by = 'id';
                       }
 
                         // truy vấn CSDL
-                        $query = "SELECT b.baiviet_diadiem_id, b.baiviet_diadiem_ten, b.baiviet_diadiem_noidung, b.baiviet_diadiem_anh, DATE_FORMAT(b.baiviet_diadiem_ngaytao, '%d/%m/%y') AS date, b.baiviet_diadiem_hot, d.diadiem_ten ";
+                        $query = "SELECT b.id, b.baiviet_diadiem_ten, b.baiviet_diadiem_noidung, b.baiviet_diadiem_anh, DATE_FORMAT(b.baiviet_diadiem_ngaytao, '%d/%m/%y') AS date, b.baiviet_diadiem_hot, d.diadiem_ten ";
                         $query .= " FROM baiviet_diadiem AS b";
                         $query .= " JOIN diadiem AS d";
-                        $query .= " USING (diadiem_id)";
+                        $query .= " ON b.diadiem_id = d.id";
                         $query .= " ORDER BY {$order_by} ASC";
                           if ($result = $dbc->query($query)) {
                             $status = array(0 => 'Không', 1 => 'có');
@@ -72,10 +72,10 @@
                                   <td class='actions'>{$baivietdiadiem['date']}</td>
                                   <td class='actions'>
                                     <span style='padding:0 3px'>
-                                    <a href='suabaivietdiadiem.php?id={$baivietdiadiem['baiviet_diadiem_id']}' class='icon' href='#'><i class='mdi mdi-edit'></i></a>
+                                    <a href='suabaivietdiadiem.php?id={$baivietdiadiem['id']}' class='icon' href='#'><i class='mdi mdi-edit'></i></a>
                                     </span>
                                     <span style='padding:0 3px'>
-                                    <a id='{$baivietdiadiem['baiviet_diadiem_id']}' class='icon remove'><i class='mdi mdi-delete'></i>
+                                    <a id='{$baivietdiadiem['id']}' class='icon remove'><i class='mdi mdi-delete'></i>
                                     </a>
                                     </span>
                                   </td>

@@ -3,7 +3,7 @@
 <?php include('includes/header.php');?>
 <?php include('includes/top-header.php');?>
 <?php include('includes/left-sidebar.php');?>
-<?php admin_access();?>
+<?php editor_access();?>
 
 <?php 
   //xac nhan bien GET ton tai va thuoc loai du lieu cho phep
@@ -28,7 +28,7 @@
       }
 
       if(empty($errors)){// kiểm tra nếu không có lỗi xảy ra, thì chèn dữ liệu vào database
-        $query = "UPDATE danhmuc SET danhmuc_ten = ?, danhmuc_vitri = ? WHERE danhmuc_id = ? LIMIT 1";
+        $query = "UPDATE danhmuc SET danhmuc_ten = ?, danhmuc_vitri = ? WHERE id = ? LIMIT 1";
         if($upd_stmt = $dbc->prepare($query)) {
 
           //gan tham so
@@ -54,7 +54,7 @@
  ?>
 <div class="be-content">
   <?php 
-    $query = "SELECT danhmuc_ten, danhmuc_vitri FROM danhmuc WHERE danhmuc_id = {$cid}";
+    $query = "SELECT danhmuc_ten, danhmuc_vitri FROM danhmuc WHERE id = {$cid}";
     if($stmt = $dbc->query($query)){
       if($stmt->num_rows == 1) {
         //neu danh muc ton tai trong database, dua du lieu thong qua CID vao, xuat du lieu ra ngoai trinh duyet
@@ -90,7 +90,7 @@
                   <div class="col-12 col-sm-8 col-lg-6">
                     <select name="danhmuc_vitri" tabindex='2' class="form-control">
                       <?php
-                          $query = "SELECT count(danhmuc_id) AS count FROM danhmuc";
+                          $query = "SELECT count(id) AS count FROM danhmuc";
                           $stmt = $dbc->query($query);
                           if($stmt->num_rows == 1) {
                             list($num) = $stmt->fetch_array(MYSQLI_NUM);

@@ -24,7 +24,7 @@
                             $type = 'diadiem';
                             if(!empty($posts)){
                               foreach ($posts as $post) {
-                                $countComment = countComment($type, $post['baiviet_diadiem_id']);
+                                $countComment = countComment($type, $post['id']);
                                 if($countComment > 0) {
                                   $count = $countComment;
                                 } else {
@@ -33,15 +33,15 @@
                                 echo "
                                   <div class='item_wrap clearfix'>
                                     <div class='image_wrap'>
-                                      <a href='chitietdiadiem.php?id={$post['baiviet_diadiem_id']}'>
+                                      <a href='chitietdiadiem.php?id={$post['id']}'>
                                         <img src='".BASE_URL."/admin/uploads/images/{$post['baiviet_diadiem_anh']}' class='img-fluid' alt=''>
                                       </a>
-                                      <a class='post-comments' href='chitietdiadiem.php?id={$post['baiviet_diadiem_id']}#disscuss'><span><i class='fa fa-comments-o'></i>{$count}</span></a>
-                                      <a href='diadiem.php?id={$post['diadiem_id']}'><div class='location-icon'><i class='fa fa-map-marker' aria-hidden='true'></i> {$post['diadiem_ten']}</div></a>
+                                      <a class='post-comments' href='chitietdiadiem.php?id={$post['id']}#disscuss'><span><i class='fa fa-comments-o'></i>{$count}</span></a>
+                                      <a href='diadiem.php?id={$post['catid']}'><div class='location-icon'><i class='fa fa-map-marker' aria-hidden='true'></i> {$post['diadiem_ten']}</div></a>
                                     </div>
                                     <div class='details_wrap'>
                                       <div class='information_wrapper'>
-                                          <h2 class='name'><a href='chitietdiadiem.php?id={$post['baiviet_diadiem_id']}'>{$post['baiviet_diadiem_ten']}</a></h2>
+                                          <h2 class='name'><a href='chitietdiadiem.php?id={$post['id']}'>{$post['baiviet_diadiem_ten']}</a></h2>
                                           <div class='description'>".the_excerpt($post['baiviet_diadiem_mota'], 250)."</div>
                                       </div>
                                     </div>

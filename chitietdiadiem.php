@@ -11,7 +11,7 @@ if($id = validate_id($_GET['id'])) {
     $location = mysqli_fetch_array($set, MYSQLI_ASSOC); 
     $title = $location['baiviet_diadiem_ten'];
     $diadiemten = $location['diadiem_ten'];
-    $diadiemid = $location['diadiem_id'];
+    $diadiemid = $location['catid'];
 
     $posts[] = array(
       'baiviet_diadiem_ten' => $location['baiviet_diadiem_ten'], 
@@ -20,7 +20,7 @@ if($id = validate_id($_GET['id'])) {
       'baiviet_diadiem_anh' => $location['baiviet_diadiem_anh'],
       'date' => $location['date'],
       'diadiem_ten' => $location['diadiem_ten'],
-      'diadiem_id' => $location['diadiem_id'],
+      'catid' => $location['catid'],
     );
 
   } else {

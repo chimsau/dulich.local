@@ -3,7 +3,7 @@
 <?php include('includes/header.php');?>
 <?php include('includes/top-header.php');?>
 <?php include('includes/left-sidebar.php');?>
-<?php admin_access();?>
+<?php editor_access();?>
 
 
 <div class="be-content">
@@ -11,7 +11,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="card card-table">
-            <div class="card-header">Địa điểm</div>
+            <div class="card-header">Địa điểm <span style="margin-left:10px"><a href="themdiadiem.php" class="btn btn-space btn-primary btn-lg"><i class="icon icon-left mdi mdi-plus-circle-o"></i>Thêm mới</a></span></div>
             <div class="card-body table-responsive">
                 <table class="table table-striped table-hover">
                     <thead>
@@ -36,11 +36,11 @@
                             break;
                           
                           default:
-                            $order_by = 'diadiem_id';
+                            $order_by = 'id';
                             break;
                         }
                       } else {
-                        $order_by = 'diadiem_id';
+                        $order_by = 'id';
                       }
 
                         // truy vấn CSDL
@@ -54,10 +54,10 @@
                                     <td class='actions'>{$diadiem['diadiem_vitri']}</td>
                                     <td class='actions'>
                                       <span style='padding:0 3px'>
-                                      <a href='suadiadiem.php?id={$diadiem['diadiem_id']}' class='icon' href='#'><i class='mdi mdi-edit'></i></a>
+                                      <a href='suadiadiem.php?id={$diadiem['id']}' class='icon' href='#'><i class='mdi mdi-edit'></i></a>
                                       </span>
                                       <span style='padding:0 3px'>
-                                      <a id='{$diadiem['diadiem_id']}' class='icon remove'><i class='mdi mdi-delete'></i>
+                                      <a id='{$diadiem['id']}' class='icon remove'><i class='mdi mdi-delete'></i>
                                       </a>
                                       </span>
                                     </td>
