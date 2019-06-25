@@ -27,8 +27,10 @@
                   <li><a href="binhluancauchuyen.php">Bình luận câu chuyện</a></li>
               </ul>
             </li>
+            <?php if(is_admin()){ ?>
             <li><a href="thongke.php"><i class="icon mdi mdi-view-week"></i><span>Thống kê</span></a>
             <li><a href="user.php"><i class="icon mdi mdi-account"></i><span>User</span></a>
+            <?php } ?>
           </ul>
         </div>
       </div>

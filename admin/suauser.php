@@ -14,65 +14,48 @@
       $errors = array();
       $trimmed = array_map('trim', $_POST);
 
-      if($trimmed['tintuc_ten']){
-        $tinTucTen = $trimmed['tintuc_ten'];
+      if($trimmed['name']){
+        $name = $trimmed['name'];
       } else {
-        $errors[] = "tinTucTen";
+        $errors[] = "name";
       }
 
-      if(filter_var($trimmed['danhmuc'], FILTER_VALIDATE_INT, array('min_range'=>1))) {
-        $danhMuc = $trimmed['danhmuc'];
+      if($trimmed['email']){
+        $email = $trimmed['email'];
       } else {
-        $errors[] = "danhMuc";
-      }
-      if($trimmed['tintuc_mota']){
-        $tinTucMoTa = $trimmed['tintuc_mota'];
-      }
-      if($trimmed['tintuc_noidung']){
-        $tinTucNoiDung = $trimmed['tintuc_noidung'];
-      } 
-
-      $tinTucHot = isset($trimmed['tintuc_hot']) ? 1 : 0;
-
-      if(isset($_FILES['file-2'])) {
-        $renamed = NULL;
-        // tao mot array, de kiem tra xem file upload co thuoc dang cho phep
-        $allowed = array('image/jpeg', 'image/jpg', 'image/png', 'images/x-png');
-
-        //kiem tra xem file upload co nam trong dinh dang cho phep
-        if(in_array(strtolower($_FILES['file-2']['type']), $allowed)) {
-          // Neu co trong dinh dang cho phep, tach lay phan mo rong
-          $tmp = explode('.',  $_FILES['file-2']['name']);
-          $ext = end($tmp);
-          $renamed = uniqid(rand(),true).'.'."$ext";
-
-          if(!move_uploaded_file($_FILES['file-2']['tmp_name'], "uploads/images/".$renamed)) {
-            $messages = "<div class='alert alert-danger alert-icon alert-dismissible' role='alert'><div class='icon'><span class='mdi mdi-close-circle-o'></span></div><div class='message'>Lỗi server</div></div>";
-          }
-        } else {
-          //File upload không thuộc định dạng cho phép
-          $messages = "<div class='alert alert-danger alert-icon alert-dismissible' role='alert'><div class='icon'><span class='mdi mdi-close-circle-o'></span></div><div class='message'>Không đúng định dạng ảnh</div></div>";
-        }
-
-        if(isset($_FILES['file-2']['tmp_name']) && is_file($_FILES['file-2']['tmp_name']) && file_exists($_FILES['file-2']['tmp_name'])) {
-          unlink($_FILES['file-2']['tmp_name']);
-        }
-
-        $tinTucAnh = is_null($renamed) ? $trimmed['tintuc_anh'] : $renamed;
+        $errors[] = "email";
       }
 
+      if($trimmed['password']){
+        $password = $trimmed['password'];
+      } else {
+        $errors[] = "password";
+      }
+
+      $role = isset($trimmed['role']) ? $trimmed['role'] : 0;
+
+      if($trimmed['phone']) {
+        $phone = $trimmed['phone'];
+      } else {
+        $errors[] = "phone";
+      }
+
+      $active = isset($trimmed['active']) ? NULL : 0;
+       
+      if($trimmed['address']){
+        $address = $trimmed['address'];
+      }
       
-
       if(empty($errors)){ // kiểm tra nếu không có lỗi xảy ra, thì chèn dữ liệu vào database
-        $query = "UPDATE tintuc SET tintuc_ten = ?, danhmuc_id = ?, tintuc_mota = ?, tintuc_noidung = ?, tintuc_anh = ?, tintuc_hot = ? WHERE id = ? LIMIT 1";
+        $query = "UPDATE user SET name = ?, email = ?, password = ?, role = ?, phone = ?, address = ?, active = ? WHERE id = ? LIMIT 1";
         $stmt = $dbc->prepare($query);
 
         //gan tham so cho cau lenh prepare
-        $stmt->bind_param('sisssii', $tinTucTen, $danhMuc, $tinTucMoTa, $tinTucNoiDung, $tinTucAnh, $tinTucHot, $id);
+        $stmt->bind_param('sssisssi', $name, $email, $password, $role, $phone, $address, $active, $id);
 
         //cho chay cau lenh prepare
         $stmt->execute();
-
+        confirm_query($stmt, $query);
         if($stmt->affected_rows == 1){
           $messages = "<div class='alert alert-success alert-icon alert-dismissible' role='alert'><div class='icon'><span class='mdi mdi-close-circle-o'></span></div><div class='message'>Cập nhập thành công</div></div>";
         } else {
@@ -156,17 +139,10 @@
                   <label class="col-12 col-sm-3 col-form-label text-sm-right">Quyền hạng *</label>
                   <div class="col-12 col-sm-8 col-lg-6">
                     <select class="form-control" name="role">
-                      <option>-- Chọn quyền --</option>
                       <option value="0">Người dùng</option>
                       <option value="1">Biên tập</option>
-                      <option value="">Root</option>
+                      <option value="2">Root</option>
                     </select>
-                    <?php 
-                      if(isset($errors) && in_array('role',$errors)) 
-                        echo "
-                          <ul class='parsley-errors-list filled'><li class='parsley-required'>Chưa chọn Quyền</li></ul>
-                        ";
-                      ?>
                   </div>
                 </div>
 
@@ -191,19 +167,11 @@
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-12 col-sm-3 col-form-label text-sm-right">Phê duyệt</label>
-                  <div class="col-12 col-sm-8 col-lg-6">
-                    <select class="form-control" name="active">
-                      <option>-- Phê duyệt --</option>
-                      <option value="NULL">Phê duyệt</option>
-                      <option value="0">Chưa phê duyệt</option>
-                    </select>
-                    <?php 
-                      if(isset($errors) && in_array('active',$errors)) 
-                        echo "
-                          <ul class='parsley-errors-list filled'><li class='parsley-required'>Chưa phê duyệt</li></ul>
-                        ";
-                      ?>
+                  <div class="col-12 col-sm-8 col-lg-6 offset-sm-3">
+                      <div class="be-checkbox custom-control custom-checkbox">
+                          <input class="custom-control-input" type="checkbox" id="check1" name="active" <?php echo (is_null($users['active']) ? 'checked' : '')?>>
+                          <label class="custom-control-label" for="check1">Phê duyệt</label>
+                      </div>
                   </div>
                 </div>
 
@@ -219,5 +187,10 @@
       </div>
     </div>
 </div>
+<script>
+  $(document).ready(function() {
+    functions.remove_user();
+  });
+</script>
 <?php include('includes/right-sidebar.php');?>
 <?php include('includes/footer.php');?>

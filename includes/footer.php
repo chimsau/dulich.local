@@ -15,7 +15,7 @@
 									<ul>
 										<li><a href='https://www.facebook.com/AsiaCreativeTravel/' target='_blank'><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
 										<li><a href='' target='_blank'><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
-										<li><a href='' target='_blank'><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+										<li><a href='https://www.instagram.com/explore/locations/170746486905127/asia-creative-travel/' target='_blank'><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
 									</ul>
 								</div>
 							</div>
