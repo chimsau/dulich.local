@@ -49,6 +49,55 @@ session_start(); ?>
 
 	<body>
 		<header id="header">
+			<div class="wrapper-search">
+				<div class="container">
+					<div class="row">						
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<div class="social">
+							  <ul>
+							    <li>
+							    	<a href="https://www.facebook.com/AsiaCreativeTravel/" target="_blank">
+							    		<i class="fa fa-facebook" aria-hidden="true"></i>
+							    	</a></li>
+							    <li>
+							    	<a href="" target="_blank">
+							    		<i class="fa fa-youtube-play" aria-hidden="true"></i>
+							    	</a>
+							    </li>
+							    <li>
+							    	<a href="https://www.instagram.com/explore/locations/170746486905127/asia-creative-travel/" target="_blank">
+							    		<i class="fa fa-instagram" aria-hidden="true"></i>
+							    	</a>
+							    </li>
+							  </ul>
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<ul class='login'>
+								<li>
+									<a href="<?php echo BASE_URL ?>/admin/login.php"><i class="fa fa-sign-in" aria-hidden="true"></i> Đăng nhập</a>
+								</li>
+								<li>
+									<a href="<?php echo BASE_URL ?>/admin/signup.php"><i class="fa fa-user-circle" aria-hidden="true"></i> Đăng ký</a>
+								</li>
+							</ul>
+							<div class="search-form">
+								<form>
+						            <div class="input-group">
+						                <input type="text" class="form-control" placeholder="Tìm kiếm">
+						                <span class="mdi mdi-magnify"></span>
+						                <div class="input-group-append">
+						                    <button class="btn btn-primary" type="submit">
+												<i class="fa fa-search" aria-hidden="true"></i>
+						                    </button>
+						                </div>
+						            </div>
+						        </form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			<div class="wrapper-nav">
 				<div class="container">
 					<div class="row">
@@ -64,16 +113,16 @@ session_start(); ?>
 								<div class="collapse navbar-collapse" id="navbarsExample04">
 									<ul class="navbar-nav mr-auto">
 										<li class="nav-item active">
-											<a class="nav-link" href="index.php">Trang chủ</a>
+											<a class="nav-link" href="index.php"><i class="fa fa-home" aria-hidden="true"></i> Trang chủ</a>
 										</li>						
 										<li class="nav-item">
-											<a class="nav-link" href="diadiemdulich.php">Địa điểm du lịch</a>
+											<a class="nav-link" href="diadiemdulich.php"><i class="fa fa-paper-plane" aria-hidden="true"></i> Địa điểm du lịch</a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" href='post-story.php'>Chia sẻ câu chuyện</a>
+											<a class="nav-link" href='post-story.php'><i class="fa fa-meh-o" aria-hidden="true"></i> Chia sẻ câu chuyện</a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" href="cauchuyen.php">Câu chuyện</a>
+											<a class="nav-link" href="cauchuyen.php"><i class="fa fa-heart" aria-hidden="true"></i> Câu chuyện</a>
 										</li>
 									</ul>
 									
@@ -82,32 +131,7 @@ session_start(); ?>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<ul class='login'>
-							<li>
-								<a href="<?php echo BASE_URL ?>/admin/login.php">Đăng nhập</a>
-							</li>
-							<li>
-								<a href="<?php echo BASE_URL ?>/admin/signup.php">Đăng ký</a>
-							</li>
-						</ul>
-						<div class="search-form">
-							<form>
-					            <div class="input-group">
-					                <input type="text" class="form-control" placeholder="Tìm kiếm">
-					                <span class="mdi mdi-magnify"></span>
-					                <div class="input-group-append">
-					                    <button class="btn btn-primary" type="submit">Tìm kiếm</button>
-					                </div>
-					            </div>
-					        </form>
-						</div>
-					</div>
-				</div>
-			</div>
+			</div>			
 			<div class="wrapper-logo">
 				
 				<div class="container">

@@ -53,13 +53,18 @@
 								</div>
 							</div>
 							
-							<div class="wrapper-main-content">
+							<div class="wrapper-main-content m-0">
 								<h2 class="title-home"><span class="post-subheading">Blog</span> dân đi phượt </h2>
 								<div class="row">
 									<div class="col-md-12">
 										<div class="box-content">
 											<div class="featured">
 											    <article class="row clearfix post">
+											    	<div class="col-md-3">
+											    		<div class="image-ads img-fluid-left">
+											        		<a target="_blank" href="https://www.google.com.vn/"><img  src="/dulich//admin/uploads/images/h7-banner-img-7.jpg"></a>
+											        	</div>
+											        </div>
 											    	<?php 
 											    		$posts = fetch_news();
 											    		if(!empty($posts[0])) {
@@ -72,7 +77,7 @@
 																$count = 0;
 															}
 											    			echo"
-											    			<div class='col-md-8'>
+											    			<div class='col-md-6'>
 														        <div class='post-inner post-hover'>
 														            <div class='post-thumbnail featured-img-thumb-large'>
 														                <a href='single.php?id={$items['id']}'>
@@ -104,8 +109,10 @@
 											    		}
 											    	 ?>
 											        <!--/.post-inner-->
-											        <div class="col-md-4">
-											        	<a target="_blank" href="https://www.google.com.vn/"><img style="height: 660px" src="assets/img/111.jpg" class="img-fluid"></a>
+											        <div class="col-md-3">
+											        	<div class="image-ads img-fluid-right">
+											        		<a target="_blank" href="https://www.google.com.vn/"><img  src="/dulich//admin/uploads/images/h7-banner-img-6.jpg"></a>
+											        	</div>
 											        </div>
 											    </article>
 											    <!--/.post-->
