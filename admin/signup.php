@@ -94,7 +94,9 @@ session_start(); ?>
         <div class="main-content container-fluid">
           <div class="splash-container">
             <div class="card card-border-color card-border-color-primary">
-              <div class="card-header"><span class="logo">ĐĂNG KÝ</span></div>
+              <div class="card-header"><div class="logo">
+                    <a href="<?php echo BASE_URL ?>"><span>LA</span>-adventure</a>
+                  </div></div>
               <div class="card-body">
                 <?php if(isset($messages)) {echo $messages;} ?>
                 <form action="" method="post">

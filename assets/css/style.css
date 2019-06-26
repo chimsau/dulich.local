@@ -296,12 +296,15 @@ h2.title{
 .address{
     color:#fff;
     font-size:14px;
-    padding: 15px;
+    padding: 0;
+}
+.hotline{
+    padding: 0px;
 }
 .address p{margin-bottom:0;}
 .social li{display:inline-block;padding: 0 3px;}
 .social li a{width:40px;height:40px;line-height:40px;color:#fff;display: inline-block;text-align: center;background:#4f5e6f;border-radius: 3px;}
-.social{float:right;margin: 5px 15px;}
+.social{/* float:right; */margin: 0;}
 .social ul{margin-bottom:0;}
 .social li a:hover{
     color:#fff !important;
@@ -500,4 +503,14 @@ h2.title{
 }
 .collapse.show .mr-auto li a {
     color: #333 !important;
+}
+.wrapper-footer{padding: 25px 15px;}
+.login{position:absolute;top: 20px;right: 20px;z-index: 9;}
+.login li{display:inline-block;border-right:1px solid rgba(255,255,255,.5);padding: 0px 10px 0 5px;}
+.login li:last-child{border:none;}
+.login li a{color: rgba(255,255,255,.5);}
+.login li a:hover{color:#fff !important;}
+.search-form{width: 300px;position: absolute;z-index: 9;top: 14px;right: 192px;}
+.search-form button[type="submit"]{
+    background: #000;
 }

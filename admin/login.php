@@ -67,7 +67,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
               <div class="card-header">
                 <!-- <img class="logo-img" src="assets/img/logo-xx.png" alt="logo" width="102" height="27"> -->
                   <div class="logo">
-                    <a href="index.php"><span>LA</span>-adventure</a>
+                    <a href="<?php echo BASE_URL ?>"><span>LA</span>-adventure</a>
                   </div>
                 </div>
               <div class="card-body">

@@ -72,7 +72,7 @@
 																$count = 0;
 															}
 											    			echo"
-											    			<div class='col-md-6'>
+											    			<div class='col-md-8'>
 														        <div class='post-inner post-hover'>
 														            <div class='post-thumbnail featured-img-thumb-large'>
 														                <a href='single.php?id={$items['id']}'>
@@ -104,6 +104,9 @@
 											    		}
 											    	 ?>
 											        <!--/.post-inner-->
+											        <div class="col-md-4">
+											        	<a target="_blank" href="https://www.google.com.vn/"><img style="height: 660px" src="assets/img/111.jpg" class="img-fluid"></a>
+											        </div>
 											    </article>
 											    <!--/.post-->
 											</div>

@@ -83,10 +83,37 @@ session_start(); ?>
 					</div>
 				</div>
 			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<ul class='login'>
+							<li>
+								<a href="<?php echo BASE_URL ?>/admin/login.php">Đăng nhập</a>
+							</li>
+							<li>
+								<a href="<?php echo BASE_URL ?>/admin/signup.php">Đăng ký</a>
+							</li>
+						</ul>
+						<div class="search-form">
+							<form>
+					            <div class="input-group">
+					                <input type="text" class="form-control" placeholder="Tìm kiếm">
+					                <span class="mdi mdi-magnify"></span>
+					                <div class="input-group-append">
+					                    <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+					                </div>
+					            </div>
+					        </form>
+						</div>
+					</div>
+				</div>
+			</div>
 			<div class="wrapper-logo">
+				
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
+							
 							<div class="clock fl">
 							    <span id="digclock" style="font-weight: 700;"></span>
 							</div>
