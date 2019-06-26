@@ -91,9 +91,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                       ";
                     ?>
                   </div>
-                  <div class="form-group row login-tools">
+                  <!-- <div class="form-group row login-tools">
                     <div class="col-12 login-forgot-password"><a href="pages-forgot-password.html">Quên mật khẩu?</a></div>
-                  </div>
+                  </div> -->
                   <div class="form-group row login-submit">
                     <div class="col-6"><a class="btn btn-secondary btn-xl" href="signup.php">Đăng ký</a></div>
                     <div class="col-6"><button class="btn btn-primary btn-xl" type="submit" >Đăng nhập</button></div>

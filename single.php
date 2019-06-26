@@ -65,6 +65,19 @@ if($id = validate_id($_GET['id'])) {
                           } // End foreach.
                         ?>
                         <?php if(isset($messages)) {echo $messages;} ?>
+                        <script src="assets/lib/jssocials/jquery-1.10.1.min.js"></script>
+                        <link rel="stylesheet" href="assets/lib/jssocials/jssocials.css" />
+                        <link rel="stylesheet" href="assets/lib/jssocials/jssocials-theme-flat.css" />
+                        <script type="text/javascript" src="assets/lib/jssocials/jssocials.min.js"></script>
+                        <div id="share"></div>
+                        <script type="text/javascript">
+                          $("#share").jsSocials({
+                              showLabel: false,
+                              showCount: false,
+                              shares: ["twitter", "facebook", "googleplus"]
+                          });
+                        </script>
+
                       </div>
                       <?php include('includes/comment_form.php'); ?>
                     </div>
