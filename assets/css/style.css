@@ -597,3 +597,26 @@ h2.title{
     z-index: 9;
 }
 
+<<<<<<< HEAD
+=======
+/*style mobile*/
+@media (max-width 480px){
+    .wrapper-search .row>div:nth-child(1) {
+        border-bottom: 1px solid #fff;
+    }
+
+    .wrapper-search .login {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        z-index: 99;
+    }
+
+    .wrapper-search .search-form {
+        float: none;
+        margin: 5px 0;
+    }
+}
+.navbar-nav .nav-link{color:rgba(255,255,255,.5);}
+.wrapper-main-content-search{padding:15px;}
+>>>>>>> b0f8e0509c680db6428b33bbb4da1c009e02813e
