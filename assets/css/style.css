@@ -367,7 +367,7 @@ h2.title{
 }
 .detail-content img{max-width:100% !important;height:auto !important;}
 
-/* background chạy trên chữ */
+/* background chạy trên chữ trang chủ*/
 .buzz{
     background-image:  url(http://localhost/dulich/admin/uploads/images/detail-header.jpg);
     -webkit-text-fill-color: transparent;
@@ -386,8 +386,9 @@ h2.title{
 }
 /* */
 
+/* background header trang phụ*/
 .sub-header {background: url(http://localhost/dulich/admin/uploads/images/home2.jpg)no-repeat !important;background-position-y: 80% !important;}
-
+/**/
 .sub-header .wrapper-logo {
     min-height: 300px;
 }
@@ -569,6 +570,7 @@ h2.title{
     transition: transform .8s cubic-bezier(.6,.23,.32,.95);
 }
 
+/* ảnh quảng cáo 2 bên cạnh tin tức */
 .img-fluid-left>a:before {
     content: "";
     display: block;
@@ -593,24 +595,5 @@ h2.title{
     bottom: 0;
     left: 0;
     z-index: 9;
-}
-
-/*style mobile*/
-@media (max-width 480px){
-    .wrapper-search .row>div:nth-child(1) {
-        border-bottom: 1px solid #fff;
-    }
-
-    .wrapper-search .login {
-        position: absolute;
-        top: -40px;
-        right: 0;
-        z-index: 99;
-    }
-
-    .wrapper-search .search-form {
-        float: none;
-        margin: 5px 0;
-    }
 }
 
