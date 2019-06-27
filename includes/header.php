@@ -73,6 +73,18 @@ session_start(); ?>
 							</div>
 						</div>
 						<div class="col-md-6 col-sm-6 col-xs-12">
+							<?php if(isset($_SESSION['name']))  {?>
+								<div class="be-right-navbar">
+								     <ul class="nav navbar-nav float-right be-user-nav">
+								        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
+								        	<?php echo $_SESSION['name'] ?><span class="user-name"></span></a>
+								          	<div class="dropdown-menu" role="menu">     
+								            	<a class="dropdown-item" href="<?php echo BASE_URL."admin/logout.php" ?>"><span class="icon mdi mdi-power"></span>Logout</a>
+								          	</div>
+								        </li>
+								     </ul>
+							    </div>
+							<?php } else { ?>
 							<ul class='login'>
 								<li>
 									<a href="<?php echo BASE_URL ?>/admin/login.php"><i class="fa fa-sign-in" aria-hidden="true"></i> Đăng nhập</a>
@@ -81,18 +93,19 @@ session_start(); ?>
 									<a href="<?php echo BASE_URL ?>/admin/signup.php"><i class="fa fa-user-circle" aria-hidden="true"></i> Đăng ký</a>
 								</li>
 							</ul>
+							<?php } ?>
 							<div class="search-form">
-								<form>
-						            <div class="input-group">
-						                <input type="text" class="form-control" placeholder="Tìm kiếm">
-						                <span class="mdi mdi-magnify"></span>
-						                <div class="input-group-append">
-						                    <button class="btn btn-primary" type="submit">
-												<i class="fa fa-search" aria-hidden="true"></i>
-						                    </button>
-						                </div>
-						            </div>
-						        </form>
+								<form action="<?php echo BASE_URL ?>/search.php" method="get">
+									<div class="input-group">
+										<input name="search-form" type="text" class="form-control" placeholder="Tìm kiếm tin tức">
+										<span class="mdi mdi-magnify"></span>
+										<div class="input-group-append">
+										  	<button class="btn btn-primary" type="submit">
+										  	<i class="fa fa-search" aria-hidden="true"></i>
+										  	</button>
+										</div>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
