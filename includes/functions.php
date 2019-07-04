@@ -99,6 +99,27 @@
 
     }
 
+    function fetch_news_all() {
+        global $dbc;
+        $query = "SELECT n.tintuc_hot ,n.id ,n.tintuc_ten, n.tintuc_mota, n.tintuc_noidung, n.tintuc_anh, DATE_FORMAT(n.tintuc_ngaytao, '%d Tháng %m, %y') AS date, c.danhmuc_ten, c.id AS catid ";
+        $query .= " FROM tintuc AS n "; 
+        $query .= " LEFT JOIN danhmuc AS c "; 
+        $query .= " ON n.danhmuc_id = c.id ORDER BY n.tintuc_hot DESC ";
+        $result = $dbc->query($query);
+        confirm_query($result, $query);
+
+        if($result->num_rows > 0) {
+            $posts = array();
+            while($results = $result->fetch_array(MYSQLI_ASSOC)) {
+                $posts[] = $results;
+            }
+            return $posts;
+        } else {
+            return FALSE;
+        }
+
+    }
+
     function fetch_location($display = 5) {
         global $dbc;
         $start = (isset($_GET['s']) && filter_var($_GET['s'], FILTER_VALIDATE_INT, array('min_range' => 1))) ? $_GET['s'] : 0;

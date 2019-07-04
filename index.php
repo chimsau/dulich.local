@@ -66,7 +66,7 @@
 											        	</div>
 											        </div>
 											    	<?php 
-											    		$posts = fetch_news();
+											    		$posts = fetch_news_all();
 											    		if(!empty($posts[0])) {
 												    		$items = $posts[0];
 												    		$type = 'tintuc';
@@ -119,12 +119,10 @@
 											</div>
 											<div id="grid-wrapper" class="post-list clearfix">
 												<div class="row">
+												<div class='owl-carousel owl-theme'>
 												<?php  
-												
-												$display = 5;
-												// Xác định vị trí bắt đầu.    
-                								$start = (isset($_GET['s']) && filter_var($_GET['s'], FILTER_VALIDATE_INT, array('min_range' => 1))) ? $_GET['s'] : 0;
-						                        $posts = fetch_news($display);
+
+						                        $posts = fetch_news_all();
 
 						                        $type = 'tintuc';
 												
@@ -138,7 +136,8 @@
 															$count = 0;
 														}
 											            echo "
-											                <div class='col-md-3'>
+											            <div class='item'>
+											                <div class='col-md-12'>
 							                                    <article class='clearfix post'>
 							                                      <div class='post-inner post-hover'>
 							                                          <div class='post-thumbnail featured-img-thumb-large'>
@@ -154,23 +153,23 @@
 							                                              </p>
 							                                          </div>
 							                                          <h2 class='post-title'>
-							                                            <a href='single.php?id={$post['id']}' title='{$post['tintuc_ten']}'>{$post['tintuc_ten']}</a>
+							                                            <a href='single.php?id={$post['id']}' title='{$post['tintuc_ten']}'>".the_excerpt($post['tintuc_ten'], 70)."</a>
 							                                          </h2>
 							                                          <div class='excerpt'>
-							                                              <p>".the_excerpt($post['tintuc_mota'], 250)."</p>
+							                                              <p>".the_excerpt($post['tintuc_mota'], 150)."</p>
 							                                          </div>
 							                                      </div>
 							                                    </article>
 							                                </div>
+							                            </div>
 											            ";
 											        }
 
 						                        }
 											    ?>
+											    </div>
 												</div>
 											</div>
-											<?php echo pagination(NULL ,$display , 'tintuc');  ?>
-									     
 										</div>
 									</div>
 								</div>
@@ -183,3 +182,24 @@
 	</div>
 </main>
 <?php include('includes/footer.php');?>
+<script type="text/javascript">
+	$('.owl-carousel').owlCarousel({
+    loop:true,
+    nav:true,
+    loop:true,
+    autoplay:true,
+    autoplayTimeout:5000,
+    autoplayHoverPause:true,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:2
+        },
+        1000:{
+            items:4
+        }
+    }
+})
+</script>

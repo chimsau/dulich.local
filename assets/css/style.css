@@ -597,8 +597,6 @@ h2.title{
     z-index: 9;
 }
 
-<<<<<<< HEAD
-=======
 /*style mobile*/
 @media (max-width 480px){
     .wrapper-search .row>div:nth-child(1) {
@@ -619,4 +617,42 @@ h2.title{
 }
 .navbar-nav .nav-link{color:rgba(255,255,255,.5);}
 .wrapper-main-content-search{padding:15px;}
->>>>>>> b0f8e0509c680db6428b33bbb4da1c009e02813e
+.owl-carousel .owl-prev span[aria-label="Previous"],
+.owl-carousel .owl-next span[aria-label="Next"]{
+    font-size:0;
+
+}
+.owl-carousel .owl-prev,
+.owl-carousel .owl-next{
+    position:absolute;
+    top: 10%;
+    opacity:0.5;
+}
+.owl-carousel .owl-prev{left:0;right:auto;}
+.owl-carousel .owl-next{right:0;left:auto;}
+.owl-carousel .owl-prev span[aria-label="Previous"]::before,
+.owl-carousel .owl-next span[aria-label="Next"]::before{
+    position: absolute;
+    font-family: FontAwesome;
+    font-size: 42px;
+    
+}
+.owl-carousel .owl-prev span[aria-label="Previous"]::before{
+    content:'\f053';
+    left: 10px;
+}
+.owl-carousel .owl-next span[aria-label="Next"]::before
+{
+    content:'\f054';
+    right: 10px;
+}
+.owl-carousel .owl-prev:focus,
+.owl-carousel .owl-next:focus{
+    -webkit-box-shadow: none;
+    outline: -webkit-focus-ring-color auto 0px;
+}
+.owl-carousel .owl-prev:hover,
+.owl-carousel .owl-next:hover{
+    color:#333 !important;
+    opacity:1;
+}
