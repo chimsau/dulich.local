@@ -1,6 +1,5 @@
 <?php include('includes/mysqli_connect.php');?>
 <?php include('includes/functions.php');?>
-<?php include('includes/header_sub.php');?>
 <?php 
 $type = 'tintuc';
 if($id = validate_id($_GET['id'])) {
@@ -9,7 +8,9 @@ if($id = validate_id($_GET['id'])) {
 
   if($set->num_rows > 0) {
     $news = $set->fetch_array(MYSQLI_ASSOC);
-    $title = isset($news['tintuc_ten']) ? $news['tintuc_ten'] : '' ;
+    $title = isset($news['tintuc_ten']) ? the_excerpt($news['tintuc_ten'], 80) : '' ;
+    $description = isset($news['tintuc_mota']) ? the_excerpt($news['tintuc_mota'], 80) : '' ;
+    $image = isset($news['tintuc_anh']) ? $news['tintuc_anh'] : '' ;
     $danhMucTen = isset($news['danhmuc_ten']) ? $news['danhmuc_ten'] : '' ;
     $danhMucId =  isset($news['danhmuc_id']) ? $news['danhmuc_id'] : '' ;
 
@@ -31,6 +32,7 @@ if($id = validate_id($_GET['id'])) {
 }
              
  ?>
+ <?php include('includes/header_sub.php');?>
 <main id="main">
   <div class="container">
     <div class="row">

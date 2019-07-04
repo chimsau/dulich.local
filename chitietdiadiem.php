@@ -1,6 +1,6 @@
 <?php include('includes/mysqli_connect.php');?>
 <?php include('includes/functions.php');?>
-<?php include('includes/header_sub.php');?>
+
 <?php 
 $type = 'diadiem';
 if($id = validate_id($_GET['id'])) {
@@ -9,7 +9,9 @@ if($id = validate_id($_GET['id'])) {
 
   if($set->num_rows > 0) {
     $location = mysqli_fetch_array($set, MYSQLI_ASSOC); 
-    $title = $location['baiviet_diadiem_ten'];
+    $title = the_excerpt($location['baiviet_diadiem_ten'], 80);
+    $description = the_excerpt($location['baiviet_diadiem_mota'], 80) ;
+    $image = $location['baiviet_diadiem_anh'];
     $diadiemten = $location['diadiem_ten'];
     $diadiemid = $location['catid'];
 
@@ -31,6 +33,7 @@ if($id = validate_id($_GET['id'])) {
 }
              
  ?>
+ <?php include('includes/header_sub.php');?>
 <main id="main">
   <div class="container">
     <div class="row">

@@ -15,7 +15,7 @@
 										<div class="box-sv">
 											<a href="diadiemdulich.php">
 												<div class="image">
-													<img src="/dulich//admin/uploads/images/sev1.jpg" class="img-fluid" alt="">
+													<img src="<?php echo BASE_URL ?>admin/uploads/images/sev1.jpg" class="img-fluid" alt="">
 												</div>
 												<div class="des">
 													<h2>Địa điểm</h2>
@@ -28,7 +28,7 @@
 										<div class="box-sv">
 											<a href="post-story.php">
 												<div class="image">
-													<img src="/dulich//admin/uploads/images/sev2.png" class="img-fluid" alt="">
+													<img src="<?php echo BASE_URL ?>admin/uploads/images/sev2.png" class="img-fluid" alt="">
 												</div>
 												<div class="des">
 													<h2>Chia sẻ</h2>
@@ -41,7 +41,7 @@
 										<div class="box-sv">
 											<a href="cauchuyen.php">
 												<div class="image">
-													<img src="/dulich//admin/uploads/images/sev3.jpg" class="img-fluid" alt="">
+													<img src="<?php echo BASE_URL ?>admin/uploads/images/sev3.jpg" class="img-fluid" alt="">
 												</div>
 												<div class="des">
 													<h2>Câu chuyện</h2>
@@ -62,7 +62,7 @@
 											    <article class="row clearfix post">
 											    	<div class="col-md-3">
 											    		<div class="image-ads img-fluid-left">
-											        		<a target="_blank" href="https://www.google.com.vn/"><img  src="/dulich//admin/uploads/images/h7-banner-img-7.jpg"></a>
+											        		<a target="_blank" href="https://www.google.com.vn/"><img  src="<?php echo BASE_URL ?>/admin/uploads/images/h7-banner-img-7.jpg"></a>
 											        	</div>
 											        </div>
 											    	<?php 
@@ -111,7 +111,7 @@
 											        <!--/.post-inner-->
 											        <div class="col-md-3">
 											        	<div class="image-ads img-fluid-right">
-											        		<a target="_blank" href="https://www.google.com.vn/"><img  src="/dulich//admin/uploads/images/h7-banner-img-6.jpg"></a>
+											        		<a target="_blank" href="https://www.google.com.vn/"><img  src="<?php echo BASE_URL ?>admin/uploads/images/h7-banner-img-6.jpg"></a>
 											        	</div>
 											        </div>
 											    </article>

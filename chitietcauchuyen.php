@@ -1,6 +1,6 @@
 <?php include('includes/mysqli_connect.php');?>
 <?php include('includes/functions.php');?>
-<?php include('includes/header_sub.php');?>
+
 <?php 
 $type = 'cauchuyen';
 if($id = validate_id($_GET['id'])) {
@@ -9,7 +9,8 @@ if($id = validate_id($_GET['id'])) {
 
   if($set->num_rows > 0) {
     $story = mysqli_fetch_array($set, MYSQLI_ASSOC); 
-    $title = isset($story['cauchuyen_tieude']) ? $story['cauchuyen_tieude'] : '' ;
+    $title = isset($story['cauchuyen_tieude']) ? the_excerpt($story['cauchuyen_tieude'], 80) : '' ;
+    $description = isset($story['cauchuyen_tieude']) ? the_excerpt($story['cauchuyen_tieude'], 80) : '' ;
 
     $posts[] = array(
       'cauchuyen_tieude' => $story['cauchuyen_tieude'], 
@@ -27,6 +28,7 @@ if($id = validate_id($_GET['id'])) {
 }
              
  ?>
+ <?php include('includes/header_sub.php');?>
 <main id="main">
   <div class="container">
     <div class="row">
