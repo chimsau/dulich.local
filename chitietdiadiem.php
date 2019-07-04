@@ -77,7 +77,7 @@ if($id = validate_id($_GET['id'])) {
                           $("#share").jsSocials({
                               showLabel: false,
                               showCount: false,
-                              shares: ["twitter", "facebook", "googleplus"]
+                              shares: ["twitter", "facebook"]
                           });
                         </script>
                       </div>
