@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 25, 2019 at 06:06 PM
+-- Generation Time: Jul 05, 2019 at 06:45 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 5.6.40
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `dulich`
+-- Database: `dulich_local`
 --
 
 -- --------------------------------------------------------
@@ -74,6 +74,15 @@ CREATE TABLE `binhluan` (
   `binhluan_noidung` text NOT NULL,
   `binhluan_ngay` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `binhluan`
+--
+
+INSERT INTO `binhluan` (`id`, `foreign_id`, `user_id`, `binhluan_kieu`, `binhluan_noidung`, `binhluan_ngay`) VALUES
+(2, 47, 1, 'tintuc', '<p>b&agrave;i viết rất hay</p>', '2019-07-05'),
+(3, 43, 1, 'cauchuyen', '<p>b&agrave;i viết rất hay</p>', '2019-07-05'),
+(4, 10, 1, 'diadiem', '<p>rất tuyệt vời</p>', '2019-07-05');
 
 -- --------------------------------------------------------
 
@@ -224,8 +233,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `name`, `email`, `password`, `role`, `phone`, `address`, `active`) VALUES
 (1, 'Lan Anh', 'anhht.utt@gmail.com', '123456', 2, '0981331497', 'Hưng yên', NULL),
-(2, 'Nguyễn Hoàng Tuyển', 'hoangtuyen1106@gmail.com', '123456', 1, '0389838637', 'sdfsdf', NULL),
-(4, 'tuyen 123456', 'tuyen123@gmail.com', '123456', 0, '0389838637', 'sdf', 0);
+(3, 'abcd', 'abcd@gmail.com', '123456', 1, '0389838637', 'Hà nội', NULL);
 
 --
 -- Indexes for dumped tables
@@ -287,13 +295,13 @@ ALTER TABLE `baiviet_diadiem`
 -- AUTO_INCREMENT for table `binhluan`
 --
 ALTER TABLE `binhluan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `cauchuyen`
 --
 ALTER TABLE `cauchuyen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `danhmuc`
@@ -317,7 +325,7 @@ ALTER TABLE `tintuc`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
