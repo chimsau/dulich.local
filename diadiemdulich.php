@@ -22,6 +22,7 @@
                             $display = 5;
                             $posts = fetch_location($display);
                             $type = 'diadiem';
+                            $start = (isset($_GET['s']) && filter_var($_GET['s'], FILTER_VALIDATE_INT, array('min_range' => 1))) ? $_GET['s'] : 0;
                             if(!empty($posts)){
                               foreach ($posts as $post) {
                                 $countComment = countComment($type, $post['id']);
