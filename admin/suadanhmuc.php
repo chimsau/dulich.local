@@ -1,3 +1,4 @@
+<?php $title = "Sửa danh mục"; ?>
 <?php include('../includes/mysqli_connect.php');?>
 <?php include('../includes/functions.php');?>
 <?php include('includes/header.php');?>

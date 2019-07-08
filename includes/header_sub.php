@@ -12,7 +12,7 @@ session_start(); ?>
 		<meta property="og:description"        content="<?php echo (isset($description)) ? $description : "Du lịch - Phượt"; ?>" />
 		<meta property="og:image"              content="<?php echo (isset($image)) ? ''.BASE_URL.'admin/uploads/images/'.$image.'' : ''.BASE_URL.'admin/uploads/images/bg1.png'; ?>" />
 
-		<title><?php echo (isset($title)) ? $title : "Du lịch"; ?></title>
+		<title><?php echo (isset($title)) ? $title : "Phượt"; ?></title>
 
 		<!-- Bootstrap core CSS -->
 		<link href="assets/css/bootstrap.min.css" rel="stylesheet">

@@ -10,7 +10,7 @@ session_start(); ?>
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="assets/img/logo-fav.png">
-    <title>Beagle</title>
+    <title>Đăng ký</title>
     <link rel="stylesheet" href="assets/css/app.css" type="text/css">
   </head>
   <body class="be-splash-screen">

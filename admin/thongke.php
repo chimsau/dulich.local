@@ -1,3 +1,4 @@
+<?php $title = "Thống kê"; ?>
 <?php include('../includes/functions.php');?>
 <?php include('../includes/mysqli_connect.php');?>
 <?php include('includes/header.php');?>

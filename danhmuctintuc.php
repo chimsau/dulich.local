@@ -1,3 +1,4 @@
+<?php $title = "Danh mục tin tức"; ?>
 <?php include('includes/mysqli_connect.php');?>
 <?php include('includes/functions.php');?>
 <?php include('includes/header_sub.php');?>

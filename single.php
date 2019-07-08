@@ -12,7 +12,7 @@ if($id = validate_id($_GET['id'])) {
     $description = isset($news['tintuc_mota']) ? the_excerpt($news['tintuc_mota'], 80) : '' ;
     $image = isset($news['tintuc_anh']) ? $news['tintuc_anh'] : '' ;
     $danhMucTen = isset($news['danhmuc_ten']) ? $news['danhmuc_ten'] : '' ;
-    $danhMucId =  isset($news['danhmuc_id']) ? $news['danhmuc_id'] : '' ;
+    $danhMucId =  isset($news['catid']) ? $news['catid'] : '' ;
 
     $posts[] = array(
       'tintuc_ten' => $news['tintuc_ten'], 
